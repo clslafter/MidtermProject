@@ -10,6 +10,8 @@
 
 <h2>Destinations</h2>
 
+${SMOKETEST}
+
 
 </body>
 </html>
