@@ -14,15 +14,19 @@ public class ReviewReactionId implements Serializable {
 	@Column(name = "user_id")
 	private int userId;
 
-	private ReviewId reviewId;
+	@Column(name = "review_destination_id")
+	private int reviewDestinationId;
 
-	public ReviewReactionId() {
-	}
+	@Column(name = "review_user_id")
+	private int reviewUserId;
 
-	public ReviewReactionId(int userId, ReviewId reviewId) {
+	public ReviewReactionId() {}
+
+	public ReviewReactionId(int userId, int reviewDestinationId, int reviewUserId) {
 		super();
 		this.userId = userId;
-		this.reviewId = reviewId;
+		this.reviewDestinationId = reviewDestinationId;
+		this.reviewUserId = reviewUserId;
 	}
 
 	public int getUserId() {
@@ -33,17 +37,29 @@ public class ReviewReactionId implements Serializable {
 		this.userId = userId;
 	}
 
-	public ReviewId getReviewId() {
-		return reviewId;
+	public int getReviewDestinationId() {
+		return reviewDestinationId;
 	}
 
-	public void setReviewId(ReviewId reviewId) {
-		this.reviewId = reviewId;
+	public void setReviewDestinationId(int reviewDestinationId) {
+		this.reviewDestinationId = reviewDestinationId;
+	}
+
+	public int getReviewUserId() {
+		return reviewUserId;
+	}
+
+	public void setReviewUserId(int reviewUserId) {
+		this.reviewUserId = reviewUserId;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(reviewId, userId);
+		return Objects.hash(reviewDestinationId, reviewUserId, userId);
 	}
 
 	@Override
@@ -55,12 +71,17 @@ public class ReviewReactionId implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ReviewReactionId other = (ReviewReactionId) obj;
-		return Objects.equals(reviewId, other.reviewId) && userId == other.userId;
+		return reviewDestinationId == other.reviewDestinationId && reviewUserId == other.reviewUserId
+				&& userId == other.userId;
 	}
 
 	@Override
 	public String toString() {
-		return "ReviewReactionId [userId=" + userId + ", reviewId=" + reviewId + "]";
+		return "ReviewReactionId [userId=" + userId + ", reviewDestinationId=" + reviewDestinationId + ", reviewUserId="
+				+ reviewUserId + "]";
 	}
+
+	
+	
 
 }
