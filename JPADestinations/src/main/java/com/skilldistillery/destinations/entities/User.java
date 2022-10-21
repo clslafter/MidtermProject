@@ -1,6 +1,8 @@
 package com.skilldistillery.destinations.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,7 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+
 
 @Entity
 public class User {
@@ -46,6 +51,8 @@ public class User {
 	@JoinColumn(name="address_id")
 	private Address address;
 	
+	@OneToMany(mappedBy="user")
+	private List <Destination> destinations;
 	
 	//METHODS
 
@@ -149,6 +156,33 @@ public class User {
 		this.address = address;
 	}
 
+	public List<Destination> getDestinations() {
+		return destinations;
+	}
+
+	public void setDestinations(List<Destination> destinations) {
+		this.destinations = destinations;
+	}
+
+	public void addDestination(Destination destination) {
+		if (destinations == null)
+			destinations = new ArrayList<>();
+		if (!destinations.contains(destination)) {
+			destinations.add(destination);
+			if (destination.getUser() != null) {
+				destination.getUser().getDestinations().remove(destination);
+			}
+			destination.setUser(this);
+		}
+	}
+
+	public void removeDestination(Destination destination) {
+		if (destinations != null) {
+			destinations.remove(destination);
+			destination.setUser(null);
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
