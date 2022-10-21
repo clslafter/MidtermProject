@@ -1,11 +1,14 @@
 package com.skilldistillery.destinations.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +21,11 @@ public class PricingType {
 	private String name;
 
 	private String description;
+	
+	@OneToMany(mappedBy="pricingType")
+	private List <Price> prices;
+	
+	//METHODS
 
 	public PricingType() {
 	}
@@ -46,6 +54,33 @@ public class PricingType {
 		this.description = description;
 	}
 
+
+	public List<Price> getPrices() {
+		return prices;
+	}
+
+	public void setPrices(List<Price> prices) {
+		this.prices = prices;
+	}
+
+	public void addPrice(Price price) {
+		if (prices == null)
+			prices = new ArrayList<>();
+		if (!prices.contains(price)) {
+			prices.add(price);
+			if (price.getPricingType() != null) {
+				price.getPricingType().getPrices().remove(price);
+			}
+			price.setPricingType(this);
+		}
+	}
+	
+	public void removePrice(Price price) {
+		if (prices != null) {
+			prices.remove(price);
+			price.setPricingType(null);
+		}
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

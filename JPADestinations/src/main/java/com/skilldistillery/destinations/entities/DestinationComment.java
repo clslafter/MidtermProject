@@ -1,6 +1,8 @@
 package com.skilldistillery.destinations.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +29,23 @@ public class DestinationComment {
 	private LocalDateTime createdDate;
 
 	private boolean enabled;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name="destination_id")
+	private Destination destination;
+	
+	@ManyToOne
+	@JoinColumn(name="in_reply_to_id")
+	private DestinationComment destinationComment;
+	
+	@OneToMany(mappedBy="destinationComment")
+	private List <DestinationComment> destinationComments;
+	
+	//METHODS
 
 	public DestinationComment() {
 	}
@@ -60,6 +82,57 @@ public class DestinationComment {
 		this.enabled = enabled;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Destination getDestination() {
+		return destination;
+	}
+
+	public void setDestination(Destination destination) {
+		this.destination = destination;
+	}
+
+	public DestinationComment getDestinationComment() {
+		return destinationComment;
+	}
+
+	public void setDestinationComment(DestinationComment destinationComment) {
+		this.destinationComment = destinationComment;
+	}
+
+	public List<DestinationComment> getDestinationComments() {
+		return destinationComments;
+	}
+
+	public void setDestinationComments(List<DestinationComment> destinationComments) {
+		this.destinationComments = destinationComments;
+	}
+
+	public void addDestinationComment(DestinationComment destinationComment) {
+		if (destinationComments == null)
+			destinationComments = new ArrayList<>();
+		if (!destinationComments.contains(destinationComment)) {
+			destinationComments.add(destinationComment);
+			if (destinationComment.getDestinationComment() != null) {
+				destinationComment.getDestinationComment().getDestinationComments().remove(destinationComment);
+			}
+			destinationComment.setDestinationComment(this);
+		}
+	}
+
+	public void removeDestinationComment(DestinationComment destinationComment) {
+		if (destinationComments != null) {
+			destinationComments.remove(destinationComment);
+			destinationComment.setDestinationComment(null);
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

@@ -1,6 +1,8 @@
 package com.skilldistillery.destinations.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+
 
 @Entity
 public class User {
@@ -39,6 +46,21 @@ public class User {
 	private String imageUrl;
 
 	private String bio;
+	
+	@OneToOne
+	@JoinColumn(name="address_id")
+	private Address address;
+	
+	@OneToMany(mappedBy="user")
+	private List <Destination> destinations;
+	
+	@OneToMany(mappedBy="user")
+	private List <DestinationImage> images;
+	
+	@OneToMany(mappedBy="user")
+	private List <DestinationComment> destinationComments;
+	
+	//METHODS
 
 	public User() {
 		super();
@@ -131,7 +153,96 @@ public class User {
 	public void setBio(String bio) {
 		this.bio = bio;
 	}
+	
+	public Address getAddress() {
+		return address;
+	}
 
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public List<Destination> getDestinations() {
+		return destinations;
+	}
+
+	public void setDestinations(List<Destination> destinations) {
+		this.destinations = destinations;
+	}
+
+	public void addDestination(Destination destination) {
+		if (destinations == null)
+			destinations = new ArrayList<>();
+		if (!destinations.contains(destination)) {
+			destinations.add(destination);
+			if (destination.getUser() != null) {
+				destination.getUser().getDestinations().remove(destination);
+			}
+			destination.setUser(this);
+		}
+	}
+
+	public void removeDestination(Destination destination) {
+		if (destinations != null) {
+			destinations.remove(destination);
+			destination.setUser(null);
+		}
+	}
+	
+	public List<DestinationImage> getImages() {
+		return images;
+	}
+
+	public void setImages(List<DestinationImage> images) {
+		this.images = images;
+	}
+	
+	public void addDestinationImage(DestinationImage image) {
+		if (images == null)
+			images = new ArrayList<>();
+		if (!images.contains(image)) {
+			images.add(image);
+			if (image.getUser() != null) {
+				image.getUser().getImages().remove(image);
+			}
+			image.setUser(this);
+		}
+	}
+	
+	public void removeDestinationImage(DestinationImage image) {
+		if (images != null) {
+			images.remove(image);
+			image.setUser(null);
+		}
+	}
+
+	public List<DestinationComment> getDestinationComments() {
+		return destinationComments;
+	}
+
+	public void setDestinationComments(List<DestinationComment> destinationComments) {
+		this.destinationComments = destinationComments;
+	}
+
+	public void addDestinationComment(DestinationComment destinationComment) {
+		if (destinationComments == null)
+			destinationComments = new ArrayList<>();
+		if (!destinationComments.contains(destinationComment)) {
+			destinationComments.add(destinationComment);
+			if (destinationComment.getUser() != null) {
+				destinationComment.getUser().getDestinationComments().remove(destinationComment);
+			}
+			destinationComment.setUser(this);
+		}
+	}
+
+	public void removeDestinationComment(DestinationComment destinationComment) {
+		if (destinationComments != null) {
+			destinationComments.remove(destinationComment);
+			destinationComment.setUser(null);
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

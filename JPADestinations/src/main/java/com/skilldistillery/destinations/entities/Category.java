@@ -1,11 +1,16 @@
 package com.skilldistillery.destinations.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Category {
@@ -15,6 +20,14 @@ public class Category {
 	private int id;
 
 	private String name;
+	
+	@ManyToMany
+	@JoinTable(name = "destination_category", 
+		joinColumns = @JoinColumn(name = "category_id"), 
+		inverseJoinColumns = @JoinColumn(name = "destination_id"))
+	private List<Destination> destinations;
+	
+	//METHODS
 
 	public Category() {
 	}
@@ -38,6 +51,31 @@ public class Category {
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
+	}
+
+	public List<Destination> getDestinations() {
+		return destinations;
+	}
+
+	public void setDestinations(List<Destination> destinations) {
+		this.destinations = destinations;
+	}
+	
+	public void addDestination(Destination destination) {
+		if (destinations == null)
+			destinations = new ArrayList<>();
+
+		if (!destinations.contains(destination)) {
+			destinations.add(destination);
+			destination.addCategory(this);
+		}
+	}
+
+	public void removeDestination(Destination destination) {
+		if (destinations != null && destinations.contains(destination)) {
+			destinations.remove(destination);
+			destination.removeCategory(this);
+		}
 	}
 
 	@Override
