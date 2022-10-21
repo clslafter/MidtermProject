@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -39,6 +41,13 @@ public class User {
 	private String imageUrl;
 
 	private String bio;
+	
+	@OneToOne
+	@JoinColumn(name="address_id")
+	private Address address;
+	
+	
+	//METHODS
 
 	public User() {
 		super();
@@ -130,6 +139,14 @@ public class User {
 
 	public void setBio(String bio) {
 		this.bio = bio;
+	}
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	@Override
