@@ -15,6 +15,7 @@
     <class>com.skilldistillery.destinations.entities.Feature</class>
     <class>com.skilldistillery.destinations.entities.Price</class>
     <class>com.skilldistillery.destinations.entities.PricingType</class>
+    <class>com.skilldistillery.destinations.entities.Review</class>
     <class>com.skilldistillery.destinations.entities.ReviewComment</class>
     <class>com.skilldistillery.destinations.entities.ReviewId</class>
     <class>com.skilldistillery.destinations.entities.User</class>
