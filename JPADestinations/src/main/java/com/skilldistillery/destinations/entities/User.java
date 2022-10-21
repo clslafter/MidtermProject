@@ -54,6 +54,9 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List <Destination> destinations;
 	
+	@OneToMany(mappedBy="user")
+	private List <DestinationImage> images;
+	
 	//METHODS
 
 	public User() {
@@ -183,6 +186,33 @@ public class User {
 		}
 	}
 	
+	public List<DestinationImage> getImages() {
+		return images;
+	}
+
+	public void setImages(List<DestinationImage> images) {
+		this.images = images;
+	}
+	
+	public void addDestinationImage(DestinationImage image) {
+		if (images == null)
+			images = new ArrayList<>();
+		if (!images.contains(image)) {
+			images.add(image);
+			if (image.getUser() != null) {
+				image.getUser().getImages().remove(image);
+			}
+			image.setUser(this);
+		}
+	}
+	
+	public void removeDestinationImage(DestinationImage image) {
+		if (images != null) {
+			images.remove(image);
+			image.setUser(null);
+		}
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

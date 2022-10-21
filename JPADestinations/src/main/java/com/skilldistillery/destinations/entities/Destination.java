@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -53,6 +54,9 @@ public class Destination {
 	
 	@ManyToMany(mappedBy="destinations")
 	private List <Feature> features;
+	
+	@OneToMany(mappedBy="destination")
+	private List <DestinationImage> images;
 	
 	//METHODS
 
@@ -164,7 +168,7 @@ public class Destination {
 		}
 	}
 	
-	
+
 	public List<Feature> getFeatures() {
 		return features;
 	}
@@ -187,6 +191,33 @@ public class Destination {
 		if (features != null && features.contains(feature)) {
 			features.remove(feature);
 			feature.removeDestination(this);
+		}
+	}
+
+	public List<DestinationImage> getImages() {
+		return images;
+	}
+
+	public void setImages(List<DestinationImage> images) {
+		this.images = images;
+	}
+	
+	public void addDestinationImage(DestinationImage image) {
+		if (images == null)
+			images = new ArrayList<>();
+		if (!images.contains(image)) {
+			images.add(image);
+			if (image.getDestination() != null) {
+				image.getDestination().getImages().remove(image);
+			}
+			image.setDestination(this);
+		}
+	}
+	
+	public void removeDestinationImage(DestinationImage image) {
+		if (images != null) {
+			images.remove(image);
+			image.setDestination(null);
 		}
 	}
 
