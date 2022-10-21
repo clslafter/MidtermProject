@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
@@ -25,13 +26,15 @@ public class ReviewReaction {
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
+	@MapsId(value="userId")
 	private User user;
 	
 	@ManyToOne
 	@JoinColumns({
-		@JoinColumn(name="review_destination_id", referencedColumnName ="destinationId"),
-		@JoinColumn(name="review_user_id", referencedColumnName ="userId")
+		@JoinColumn(name="review_destination_id", referencedColumnName ="destination_id"),
+		@JoinColumn(name="review_user_id", referencedColumnName ="user_id")
 	})
+	@MapsId(value="reviewId")
 	private Review review;
 	
 	//METHODS

@@ -43,8 +43,8 @@ public class ReviewComment {
 	
 	@ManyToOne
 	@JoinColumns({
-		@JoinColumn(name="review_destination_id", referencedColumnName ="destinationId"),
-		@JoinColumn(name="review_user_id", referencedColumnName ="userId")
+		@JoinColumn(name="review_destination_id", referencedColumnName ="destination_id"),
+		@JoinColumn(name="review_user_id", referencedColumnName ="user_id")
 	})
 	private Review review;
 	

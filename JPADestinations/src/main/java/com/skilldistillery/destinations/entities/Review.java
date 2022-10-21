@@ -10,6 +10,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -38,10 +39,12 @@ public class Review {
 	
 	@ManyToOne
 	@JoinColumn(name="destination_id")
+	@MapsId(value="destinationId")
 	private Destination destination;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
+	@MapsId(value="userId")
 	private User user;
 	
 	//METHODS
