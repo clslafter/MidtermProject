@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Price {
@@ -16,6 +18,20 @@ public class Price {
 	private Double amount;
 
 	private String description;
+	
+	@ManyToOne
+	@JoinColumn(name="destination_id")
+	private Destination destination;
+	
+	@ManyToOne
+	@JoinColumn(name="pricing_type_id")
+	private PricingType pricingType;
+	
+	@ManyToOne
+	@JoinColumn(name="currency_id")
+	private Currency currency;
+	
+	//METHODS
 
 	public Price() {
 	}
@@ -42,6 +58,30 @@ public class Price {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Destination getDestination() {
+		return destination;
+	}
+
+	public void setDestination(Destination destination) {
+		this.destination = destination;
+	}
+
+	public PricingType getPricingType() {
+		return pricingType;
+	}
+
+	public void setPricingType(PricingType pricingType) {
+		this.pricingType = pricingType;
+	}
+
+	public Currency getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(Currency currency) {
+		this.currency = currency;
 	}
 
 	@Override

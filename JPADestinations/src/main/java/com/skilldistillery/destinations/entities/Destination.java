@@ -58,6 +58,9 @@ public class Destination {
 	@OneToMany(mappedBy="destination")
 	private List <DestinationImage> images;
 	
+	@OneToMany(mappedBy="destination")
+	private List <Price> prices;
+	
 	//METHODS
 
 	public Destination() {
@@ -218,6 +221,33 @@ public class Destination {
 		if (images != null) {
 			images.remove(image);
 			image.setDestination(null);
+		}
+	}
+
+	public List<Price> getPrices() {
+		return prices;
+	}
+
+	public void setPrices(List<Price> prices) {
+		this.prices = prices;
+	}
+	
+	public void addPrice(Price price) {
+		if (prices == null)
+			prices = new ArrayList<>();
+		if (!prices.contains(price)) {
+			prices.add(price);
+			if (price.getDestination() != null) {
+				price.getDestination().getPrices().remove(price);
+			}
+			price.setDestination(this);
+		}
+	}
+	
+	public void removePrice(Price price) {
+		if (prices != null) {
+			prices.remove(price);
+			price.setDestination(null);
 		}
 	}
 
