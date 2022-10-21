@@ -1,11 +1,16 @@
 package com.skilldistillery.destinations.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Feature {
@@ -16,6 +21,14 @@ public class Feature {
 	private String name;
 
 	private String description;
+	
+	@ManyToMany
+	@JoinTable(name = "feature_destination", 
+		joinColumns = @JoinColumn(name = "feature_id"), 
+		inverseJoinColumns = @JoinColumn(name = "destination_id"))
+	private List<Destination> destinations;
+	
+	//METHODS
 
 	public Feature() {
 	}
@@ -42,6 +55,32 @@ public class Feature {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<Destination> getDestinations() {
+		return destinations;
+	}
+
+	public void setDestinations(List<Destination> destinations) {
+		this.destinations = destinations;
+	}
+	
+	
+	public void addDestination(Destination destination) {
+		if (destinations == null)
+			destinations = new ArrayList<>();
+
+		if (!destinations.contains(destination)) {
+			destinations.add(destination);
+			destination.addFeature(this);
+		}
+	}
+
+	public void removeDestination(Destination destination) {
+		if (destinations != null && destinations.contains(destination)) {
+			destinations.remove(destination);
+			destination.removeFeature(this);
+		}
 	}
 
 	@Override

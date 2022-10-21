@@ -51,6 +51,9 @@ public class Destination {
 	@ManyToMany(mappedBy="destinations")
 	private List <Category> categories;
 	
+	@ManyToMany(mappedBy="destinations")
+	private List <Feature> features;
+	
 	//METHODS
 
 	public Destination() {
@@ -158,6 +161,32 @@ public class Destination {
 		if (categories != null && categories.contains(category)) {
 			categories.remove(category);
 			category.removeDestination(this);
+		}
+	}
+	
+	
+	public List<Feature> getFeatures() {
+		return features;
+	}
+
+	public void setFeatures(List<Feature> features) {
+		this.features = features;
+	}
+	
+	public void addFeature(Feature feature) {
+		if (features == null)
+			features = new ArrayList<>();
+		
+		if (!features.contains(feature)) {
+			features.add(feature);
+			feature.addDestination(this);
+		}
+	}
+	
+	public void removeFeature(Feature feature) {
+		if (features != null && features.contains(feature)) {
+			features.remove(feature);
+			feature.removeDestination(this);
 		}
 	}
 
