@@ -571,6 +571,7 @@ COMMIT;
 START TRANSACTION;
 USE `destinationsdb`;
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (1, 49.99, 3, 4, 1, NULL);
+INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (2, 154, 2, 4, 2, NULL);
 
 COMMIT;
 
