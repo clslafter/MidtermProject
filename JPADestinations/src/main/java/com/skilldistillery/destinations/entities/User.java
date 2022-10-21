@@ -57,6 +57,9 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List <DestinationImage> images;
 	
+	@OneToMany(mappedBy="user")
+	private List <DestinationComment> destinationComments;
+	
 	//METHODS
 
 	public User() {
@@ -213,6 +216,33 @@ public class User {
 		}
 	}
 
+	public List<DestinationComment> getDestinationComments() {
+		return destinationComments;
+	}
+
+	public void setDestinationComments(List<DestinationComment> destinationComments) {
+		this.destinationComments = destinationComments;
+	}
+
+	public void addDestinationComment(DestinationComment destinationComment) {
+		if (destinationComments == null)
+			destinationComments = new ArrayList<>();
+		if (!destinationComments.contains(destinationComment)) {
+			destinationComments.add(destinationComment);
+			if (destinationComment.getUser() != null) {
+				destinationComment.getUser().getDestinationComments().remove(destinationComment);
+			}
+			destinationComment.setUser(this);
+		}
+	}
+
+	public void removeDestinationComment(DestinationComment destinationComment) {
+		if (destinationComments != null) {
+			destinationComments.remove(destinationComment);
+			destinationComment.setUser(null);
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

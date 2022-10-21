@@ -61,6 +61,9 @@ public class Destination {
 	@OneToMany(mappedBy="destination")
 	private List <Price> prices;
 	
+	@OneToMany(mappedBy="destination")
+	private List <DestinationComment> destinationComments;
+	
 	//METHODS
 
 	public Destination() {
@@ -251,6 +254,33 @@ public class Destination {
 		}
 	}
 
+	public List<DestinationComment> getDestinationComments() {
+		return destinationComments;
+	}
+
+	public void setDestinationComments(List<DestinationComment> destinationComments) {
+		this.destinationComments = destinationComments;
+	}
+
+	public void addDestinationComment(DestinationComment destinationComment) {
+		if (destinationComments == null)
+			destinationComments = new ArrayList<>();
+		if (!destinationComments.contains(destinationComment)) {
+			destinationComments.add(destinationComment);
+			if (destinationComment.getDestination() != null) {
+				destinationComment.getDestination().getDestinationComments().remove(destinationComment);
+			}
+			destinationComment.setDestination(this);
+		}
+	}
+
+	public void removeDestinationComment(DestinationComment destinationComment) {
+		if (destinationComments != null) {
+			destinationComments.remove(destinationComment);
+			destinationComment.setDestination(null);
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
