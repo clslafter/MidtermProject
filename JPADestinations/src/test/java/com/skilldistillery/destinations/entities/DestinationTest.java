@@ -47,5 +47,11 @@ class DestinationTest {
 		assertNotNull(destination);
 		assertEquals("Grand Canyon", destination.getName());
 	}
+	
+	@Test
+	void test_Destination_to_Category_mapping () {
+		assertNotNull(destination);
+		assertTrue(destination.getCategories().size() > 0);
+	}
 
 }

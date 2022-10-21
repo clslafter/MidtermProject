@@ -6,6 +6,10 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +23,21 @@ public class ReviewReaction {
 
 	@Column(name = "reaction_date")
 	private LocalDateTime reactionDate;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	@MapsId(value="userId")
+	private User user;
+	
+	@ManyToOne
+	@JoinColumns({
+		@JoinColumn(name="review_destination_id", referencedColumnName ="destination_id"),
+		@JoinColumn(name="review_user_id", referencedColumnName ="user_id")
+	})
+	@MapsId(value="reviewId")
+	private Review review;
+	
+	//METHODS
 
 	public ReviewReaction() {
 	}
@@ -45,6 +64,22 @@ public class ReviewReaction {
 
 	public void setReactionDate(LocalDateTime reactionDate) {
 		this.reactionDate = reactionDate;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Review getReview() {
+		return review;
+	}
+
+	public void setReview(Review review) {
+		this.review = review;
 	}
 
 	@Override

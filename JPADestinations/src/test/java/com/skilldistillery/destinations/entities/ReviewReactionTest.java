@@ -31,7 +31,7 @@ class ReviewReactionTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		ReviewReactionId id = new ReviewReactionId(2, 1, 1);
+		ReviewReactionId id = new ReviewReactionId(2, new ReviewId(1,1));
 
 		reaction = em.find(ReviewReaction.class, id);
 	}

@@ -64,6 +64,9 @@ public class Destination {
 	@OneToMany(mappedBy="destination")
 	private List <DestinationComment> destinationComments;
 	
+	@OneToMany(mappedBy="destination")
+	private List <Review> reviews;
+	
 	//METHODS
 
 	public Destination() {
@@ -281,6 +284,33 @@ public class Destination {
 		}
 	}
 	
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+	
+	public void addReview(Review review) {
+		if (reviews == null)
+			reviews = new ArrayList<>();
+		if (!reviews.contains(review)) {
+			reviews.add(review);
+			if (review.getDestination() != null) {
+				review.getDestination().getReviews().remove(review);
+			}
+			review.setDestination(this);
+		}
+	}
+	
+	public void removeReview(Review review) {
+		if (reviews != null) {
+			reviews.remove(review);
+			review.setDestination(null);
+		}
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

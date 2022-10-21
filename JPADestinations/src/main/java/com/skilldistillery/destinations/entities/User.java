@@ -60,6 +60,15 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List <DestinationComment> destinationComments;
 	
+	@OneToMany(mappedBy="user")
+	private List <ReviewComment> reviewComments;
+	
+	@OneToMany(mappedBy="user")
+	private List <ReviewReaction> reviewReactions;
+	
+	@OneToMany(mappedBy="user")
+	private List <Review> reviews;
+	
 	//METHODS
 
 	public User() {
@@ -240,6 +249,87 @@ public class User {
 		if (destinationComments != null) {
 			destinationComments.remove(destinationComment);
 			destinationComment.setUser(null);
+		}
+	}
+	
+	public List<ReviewComment> getReviewComments() {
+		return reviewComments;
+	}
+
+	public void setReviewComments(List<ReviewComment> reviewComments) {
+		this.reviewComments = reviewComments;
+	}
+	
+	public void addReviewComment(ReviewComment reviewComment) {
+		if (reviewComments == null)
+			reviewComments = new ArrayList<>();
+		if (!reviewComments.contains(reviewComment)) {
+			reviewComments.add(reviewComment);
+			if (reviewComment.getUser() != null) {
+				reviewComment.getUser().getReviewComments().remove(reviewComment);
+			}
+			reviewComment.setUser(this);
+		}
+	}
+	
+	public void removeReviewComment(ReviewComment reviewComment) {
+		if (reviewComments != null) {
+			reviewComments.remove(reviewComment);
+			reviewComment.setUser(null);
+		}
+	}
+
+	public List<ReviewReaction> getReviewReactions() {
+		return reviewReactions;
+	}
+
+	public void setReviewReactions(List<ReviewReaction> reviewReactions) {
+		this.reviewReactions = reviewReactions;
+	}
+
+	public void addReviewReaction(ReviewReaction reviewReaction) {
+		if (reviewReactions == null)
+			reviewReactions = new ArrayList<>();
+		if (!reviewReactions.contains(reviewReaction)) {
+			reviewReactions.add(reviewReaction);
+			if (reviewReaction.getUser() != null) {
+				reviewReaction.getUser().getReviewReactions().remove(reviewReaction);
+			}
+			reviewReaction.setUser(this);
+		}
+	}
+	
+	public void removeReviewReaction(ReviewReaction reviewReaction) {
+		if (reviewReactions != null) {
+			reviewReactions.remove(reviewReaction);
+			reviewReaction.setUser(null);
+		}
+	}
+	
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public void addReview(Review review) {
+		if (reviews == null)
+			reviews = new ArrayList<>();
+		if (!reviews.contains(review)) {
+			reviews.add(review);
+			if (review.getUser() != null) {
+				review.getUser().getReviews().remove(review);
+			}
+			review.setUser(this);
+		}
+	}
+	
+	public void removeReview(Review review) {
+		if (reviews != null) {
+			reviews.remove(review);
+			review.setUser(null);
 		}
 	}
 	
