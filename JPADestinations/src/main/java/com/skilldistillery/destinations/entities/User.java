@@ -63,6 +63,9 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List <ReviewComment> reviewComments;
 	
+	@OneToMany(mappedBy="user")
+	private List <ReviewReaction> reviewReactions;
+	
 	//METHODS
 
 	public User() {
@@ -273,6 +276,33 @@ public class User {
 		}
 	}
 
+	public List<ReviewReaction> getReviewReactions() {
+		return reviewReactions;
+	}
+
+	public void setReviewReactions(List<ReviewReaction> reviewReactions) {
+		this.reviewReactions = reviewReactions;
+	}
+
+	public void addReviewReaction(ReviewReaction reviewReaction) {
+		if (reviewReactions == null)
+			reviewReactions = new ArrayList<>();
+		if (!reviewReactions.contains(reviewReaction)) {
+			reviewReactions.add(reviewReaction);
+			if (reviewReaction.getUser() != null) {
+				reviewReaction.getUser().getReviewReactions().remove(reviewReaction);
+			}
+			reviewReaction.setUser(this);
+		}
+	}
+	
+	public void removeReviewReaction(ReviewReaction reviewReaction) {
+		if (reviewReactions != null) {
+			reviewReactions.remove(reviewReaction);
+			reviewReaction.setUser(null);
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

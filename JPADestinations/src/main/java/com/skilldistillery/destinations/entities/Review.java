@@ -31,6 +31,9 @@ public class Review {
 	@OneToMany(mappedBy="review")
 	private List <ReviewComment> reviewComments;
 	
+	@OneToMany(mappedBy="review")
+	private List <ReviewReaction> reviewReactions;
+	
 	//METHODS
 
 	public Review() {
@@ -108,6 +111,33 @@ public class Review {
 		if (reviewComments != null) {
 			reviewComments.remove(reviewComment);
 			reviewComment.setReview(null);
+		}
+	}
+	
+	public List<ReviewReaction> getReviewReactions() {
+		return reviewReactions;
+	}
+
+	public void setReviewReactions(List<ReviewReaction> reviewReactions) {
+		this.reviewReactions = reviewReactions;
+	}
+
+	public void addReviewReaction(ReviewReaction reviewReaction) {
+		if (reviewReactions == null)
+			reviewReactions = new ArrayList<>();
+		if (!reviewReactions.contains(reviewReaction)) {
+			reviewReactions.add(reviewReaction);
+			if (reviewReaction.getReview() != null) {
+				reviewReaction.getReview().getReviewReactions().remove(reviewReaction);
+			}
+			reviewReaction.setReview(this);
+		}
+	}
+	
+	public void removeReviewReaction(ReviewReaction reviewReaction) {
+		if (reviewReactions != null) {
+			reviewReactions.remove(reviewReaction);
+			reviewReaction.setReview(null);
 		}
 	}
 	
