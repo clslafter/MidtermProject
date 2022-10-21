@@ -1,6 +1,8 @@
 package com.skilldistillery.destinations.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -44,6 +47,9 @@ public class Destination {
 	@OneToOne
 	@JoinColumn(name="address_id")
 	private Address address;
+	
+	@ManyToMany(mappedBy="destinations")
+	private List <Category> categories;
 	
 	//METHODS
 
@@ -128,6 +134,31 @@ public class Destination {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+	
+	public void addCategory(Category category) {
+		if (categories == null)
+			categories = new ArrayList<>();
+
+		if (!categories.contains(category)) {
+			categories.add(category);
+			category.addDestination(this);
+		}
+	}
+
+	public void removeCategory(Category category) {
+		if (categories != null && categories.contains(category)) {
+			categories.remove(category);
+			category.removeDestination(this);
+		}
 	}
 
 	@Override
