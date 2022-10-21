@@ -6,6 +6,16 @@
     </provider>
     
     <!-- entities -->
+    <class>com.skilldistillery.destinations.entities.Address</class>
+    <class>com.skilldistillery.destinations.entities.Category</class>
+    <class>com.skilldistillery.destinations.entities.Currency</class>
+    <class>com.skilldistillery.destinations.entities.Destination</class>
+    <class>com.skilldistillery.destinations.entities.DestinationComment</class>
+    <class>com.skilldistillery.destinations.entities.DestinationImage</class>
+    <class>com.skilldistillery.destinations.entities.Feature</class>
+    <class>com.skilldistillery.destinations.entities.Price</class>
+    <class>com.skilldistillery.destinations.entities.PricingType</class>
+    <class>com.skilldistillery.destinations.entities.ReviewComment</class>
     <class>com.skilldistillery.destinations.entities.User</class>
     
     
