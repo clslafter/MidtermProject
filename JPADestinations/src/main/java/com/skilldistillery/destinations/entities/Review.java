@@ -1,11 +1,14 @@
 package com.skilldistillery.destinations.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Review {
@@ -24,6 +27,11 @@ public class Review {
 	private LocalDateTime reviewDate;
 
 	private boolean enabled;
+	
+	@OneToMany(mappedBy="review")
+	private List <ReviewComment> reviewComments;
+	
+	//METHODS
 
 	public Review() {
 	}
@@ -76,6 +84,33 @@ public class Review {
 		this.enabled = enabled;
 	}
 
+	public List<ReviewComment> getReviewComments() {
+		return reviewComments;
+	}
+
+	public void setReviewComments(List<ReviewComment> reviewComments) {
+		this.reviewComments = reviewComments;
+	}
+
+	public void addReviewComment(ReviewComment reviewComment) {
+		if (reviewComments == null)
+			reviewComments = new ArrayList<>();
+		if (!reviewComments.contains(reviewComment)) {
+			reviewComments.add(reviewComment);
+			if (reviewComment.getReview() != null) {
+				reviewComment.getReview().getReviewComments().remove(reviewComment);
+			}
+			reviewComment.setReview(this);
+		}
+	}
+	
+	public void removeReviewComment(ReviewComment reviewComment) {
+		if (reviewComments != null) {
+			reviewComments.remove(reviewComment);
+			reviewComment.setReview(null);
+		}
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
