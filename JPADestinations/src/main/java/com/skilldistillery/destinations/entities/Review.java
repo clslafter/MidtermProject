@@ -8,6 +8,8 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -33,6 +35,14 @@ public class Review {
 	
 	@OneToMany(mappedBy="review")
 	private List <ReviewReaction> reviewReactions;
+	
+	@ManyToOne
+	@JoinColumn(name="destination_id")
+	private Destination destination;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	//METHODS
 
@@ -141,6 +151,22 @@ public class Review {
 		}
 	}
 	
+	public Destination getDestination() {
+		return destination;
+	}
+
+	public void setDestination(Destination destination) {
+		this.destination = destination;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

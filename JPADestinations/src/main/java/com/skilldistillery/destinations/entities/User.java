@@ -66,6 +66,9 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List <ReviewReaction> reviewReactions;
 	
+	@OneToMany(mappedBy="user")
+	private List <Review> reviews;
+	
 	//METHODS
 
 	public User() {
@@ -300,6 +303,33 @@ public class User {
 		if (reviewReactions != null) {
 			reviewReactions.remove(reviewReaction);
 			reviewReaction.setUser(null);
+		}
+	}
+	
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public void addReview(Review review) {
+		if (reviews == null)
+			reviews = new ArrayList<>();
+		if (!reviews.contains(review)) {
+			reviews.add(review);
+			if (review.getUser() != null) {
+				review.getUser().getReviews().remove(review);
+			}
+			review.setUser(this);
+		}
+	}
+	
+	public void removeReview(Review review) {
+		if (reviews != null) {
+			reviews.remove(review);
+			review.setUser(null);
 		}
 	}
 	
