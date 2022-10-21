@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `destination` (
   `create_date` DATETIME NULL,
   `last_edited` DATETIME NULL,
   `image_url` VARCHAR(1000) NULL,
-  `enabled` TINYINT NULL DEFAULT 1,
+  `enabled` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC),
   INDEX `fk_destination_user1_idx` (`user_id` ASC),
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `review` (
   `destination_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `review_date` DATETIME NULL,
-  `enabled` TINYINT NULL DEFAULT 1,
+  `enabled` TINYINT NOT NULL DEFAULT 1,
   INDEX `fk_review_destination1_idx` (`destination_id` ASC),
   INDEX `fk_review_user1_idx` (`user_id` ASC),
   PRIMARY KEY (`destination_id`, `user_id`),
@@ -211,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `review_comment` (
   `in_reply_to_id` INT NULL,
   `review_destination_id` INT NOT NULL,
   `review_user_id` INT NOT NULL,
-  `enabled` TINYINT NULL DEFAULT 1,
+  `enabled` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`, `review_destination_id`, `review_user_id`),
   INDEX `fk_review_comment_user1_idx` (`user_id` ASC),
   INDEX `fk_review_comment_review_comment1_idx` (`in_reply_to_id` ASC),
@@ -246,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `destination_comment` (
   `user_id` INT NOT NULL,
   `in_reply_to_id` INT NULL,
   `destination_id` INT NOT NULL,
-  `enabled` TINYINT NULL DEFAULT 1,
+  `enabled` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_review_comment_user1_idx` (`user_id` ASC),
   INDEX `fk_review_comment_review_comment1_idx` (`in_reply_to_id` ASC),
@@ -433,9 +433,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `destinationsdb`;
-INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: The Grand Canyon is great!', 5, 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Canyon_River_Tree_%28165872763%29.jpeg/576px-Canyon_River_Tree_%28165872763%29.jpeg', 1, 1, '2022-10-20 14:00:00', NULL);
-INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: Machu Picchu is super cool', 4, 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Before_Machu_Picchu.jpg/600px-Before_Machu_Picchu.jpg', 2, 1, '2022-10-20 14:01:00', NULL);
-INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: Filler text for Elitch Gardens review', 3, NULL, 3, 2, '2022-10-20 14:02:00', NULL);
+INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: The Grand Canyon is great!', 5, 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Canyon_River_Tree_%28165872763%29.jpeg/576px-Canyon_River_Tree_%28165872763%29.jpeg', 1, 1, '2022-10-20 14:00:00', DEFAULT);
+INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: Machu Picchu is super cool', 4, 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Before_Machu_Picchu.jpg/600px-Before_Machu_Picchu.jpg', 2, 1, '2022-10-20 14:01:00', DEFAULT);
+INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: Filler text for Elitch Gardens review', 3, NULL, 3, 2, '2022-10-20 14:02:00', DEFAULT);
 
 COMMIT;
 
