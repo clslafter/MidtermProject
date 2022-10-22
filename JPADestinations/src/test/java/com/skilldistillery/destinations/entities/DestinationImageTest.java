@@ -47,5 +47,17 @@ class DestinationImageTest {
 		assertNotNull(image);
 		assertEquals("This is the Grand Canyon", image.getCaption());
 	}
+	
+	@Test
+	void test_DestinationImage_to_User_entity_mapping() {
+		assertNotNull(image);
+		assertEquals("Dire", image.getUser().getFirstName());
+	}
+	
+	@Test
+	void test_DestinationImage_to_Destination_entity_mapping() {
+		assertNotNull(image);
+		assertEquals("Grand Canyon", image.getDestination().getName());
+	}
 
 }

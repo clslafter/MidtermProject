@@ -48,4 +48,10 @@ class PricingTypeTest {
 		assertEquals("Free", type.getName());
 	}
 
+	@Test
+	void test_PricingType_to_Price_mapping() {
+		PricingType type4 = em.find(PricingType.class, 4);
+		assertNotNull(type4);
+		assertTrue(type4.getPrices().size() > 0);
+	}
 }

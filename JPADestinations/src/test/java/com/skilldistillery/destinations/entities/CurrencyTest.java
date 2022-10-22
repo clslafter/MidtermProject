@@ -47,5 +47,11 @@ class CurrencyTest {
 		assertNotNull(currency);
 		assertEquals("USD", currency.getName());
 	}
+	
+	@Test
+	void test_Currency_to_Price_mapping() {
+		assertNotNull(currency);
+		assertTrue(currency.getPrices().size() > 0);
+	}
 
 }
