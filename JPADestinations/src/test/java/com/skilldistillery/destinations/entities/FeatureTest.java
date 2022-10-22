@@ -47,5 +47,11 @@ class FeatureTest {
 		assertNotNull(feature);
 		assertEquals("Handicapped Parking", feature.getName());
 	}
+	
+	@Test
+	void test_Feature_to_Destination_mapping() {
+		assertNotNull(feature);
+		assertTrue(feature.getDestinations().size() > 0);
+	}
 
 }
