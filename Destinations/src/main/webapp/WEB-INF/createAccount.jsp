@@ -10,7 +10,8 @@
 
 <H1>Create an Account</H1>
 
-	<form action="newAccountInfo" method="POST">
+	<form action="createUserAccount.do" method="POST">
+
 
 		<label for="firstName">First name:</label>
  		<input type="text" id="firstName" name="firstName" required><br>
@@ -21,13 +22,13 @@
   		<label for="email">Email address:</label>
   		<input type="text" id="email" name="email" required><br>
   		
-  		<label for="userName">User name:</label>
-  		<input type="text" id="userName" name="userName" required><br>
+  		<label for="username">User name:</label>
+  		<input type="text" id="username" name="username" required><br>
   		
-  		<label for="Password">Last name:</label>
+  		<label for="password">Password: </label>
   		<input type="text" id="password" name="password" required><br>
-  		 	
- 		<input type="submit" value="Submit">
+  		
+ 		<input type="submit" value="Create Account">
 
 	</form>
 </body>

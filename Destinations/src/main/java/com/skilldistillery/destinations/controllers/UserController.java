@@ -8,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.destinations.data.UserDAO;
+import com.skilldistillery.destinations.entities.Address;
 import com.skilldistillery.destinations.entities.User;
 
 @Controller
@@ -24,12 +26,6 @@ public class UserController {
 		return "welcome";
 	}
 
-	@RequestMapping(path = { "createAccount.do" })
-	public String createAccount(Model model) {
-
-		return "createAccount";
-	}
-
 	@RequestMapping(path = { "updateAccount.do" })
 	public String updateAccount(int uid, Model model) {
 		model.addAttribute("user", userDao.findUserById(uid));
@@ -42,7 +38,7 @@ public class UserController {
 		boolean isAdmin = user.getRole().equals("admin");
 		model.addAttribute("user", user);
 		model.addAttribute("isAdmin", isAdmin);
-		
+
 		return "showUserProfile";
 	}
 
@@ -89,6 +85,35 @@ public class UserController {
 		session.removeAttribute("user");
 		mv.setViewName("welcome");
 		return mv;
+	}
+
+	@RequestMapping(path = { "createAccount.do" })
+	public String createAccount(Model model, User user) {
+		model.addAttribute("user", user);
+		return "createAccount";
+	}
+
+	@RequestMapping(path = "createUserAccount.do", method = RequestMethod.POST)
+	public ModelAndView createUserAccount(User user, RedirectAttributes redir) {
+		ModelAndView mv = new ModelAndView();
+		
+		user.setAddress(userDao.createUserAddress(new Address()));
+		
+		user.setEnabled(true);
+		
+		user = userDao.createUserAccount(user);
+		redir.addFlashAttribute("user", user);
+		mv.setViewName("redirect:userCreated.do");
+		return mv;
+	}
+
+	@RequestMapping(path = "userCreated.do", method = RequestMethod.GET)
+	public ModelAndView userCreated() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("showUserProfile");
+		return mv;
+		
+		
 	}
 
 }
