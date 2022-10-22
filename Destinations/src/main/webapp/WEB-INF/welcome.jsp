@@ -7,6 +7,7 @@
 <title>Welcome Page</title>
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
 
 <h1>Welcome to Travel Destinations</h1>
 <h3>Where travelers discover and share exciting destinations</h3>

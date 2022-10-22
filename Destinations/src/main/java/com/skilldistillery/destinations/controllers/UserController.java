@@ -27,6 +27,7 @@ public class UserController {
 			return null;
 		}
 	}
+	
 	@RequestMapping(path = { "/", "welcome.do" })
 	public String welcome(Model model) {
 		model.addAttribute("SMOKETEST", userDao.findUserById(1));
@@ -125,7 +126,8 @@ public class UserController {
 		mv.setViewName("login");
 		return mv;
 		
-		
 	}
+	
+	
 
 }
