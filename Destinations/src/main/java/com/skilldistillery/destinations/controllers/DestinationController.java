@@ -30,7 +30,13 @@ public class DestinationController {
 	public String showDestination(Integer did, Model model) {
 		model.addAttribute("destination", destinationDao.findDestinationById(did));
 		//Destination destination = destinationDao.findDestinationById(did);
-		
 		return "showDestination";
 	}
+	
+	@RequestMapping(path = "createDestination.do")
+	public String createDestination(Model model) {
+		return "createDestination";
+	}
+	
+	
 }
