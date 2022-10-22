@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.skilldistillery.destinations.data.UserDAO;
+import com.skilldistillery.destinations.entities.User;
 
 @Controller
 public class UserController {
@@ -38,7 +39,11 @@ public class UserController {
 	
 	@RequestMapping(path= {"showUserProfile.do"})
 	public String showUserProfile(Model model) {
-		model.addAttribute("user", userDao.findUserById(1));
+		User user = userDao.findUserById(1);
+		boolean isAdmin = user.getRole().equals("admin");
+		model.addAttribute("user", user);
+		model.addAttribute("isAdmin", isAdmin);
+		
 		return "showUserProfile";
 	}
 	
