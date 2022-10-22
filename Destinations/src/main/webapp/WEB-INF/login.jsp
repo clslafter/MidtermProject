@@ -12,8 +12,8 @@
 
 <form action="login.do" method="POST">
 
-	<label for="userName">User Name:</label>
- 	<input type="text" id="userName" name="userName" required><br>
+	<label for="username">User Name:</label>
+ 	<input type="text" id="username" name="username" required><br>
 
 	<label for="password">Password:</label>
  	<input type="password" id="password" name="password" required><br>
