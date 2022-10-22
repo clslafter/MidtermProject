@@ -46,8 +46,22 @@ class ReviewReactionTest {
 	@Test
 	void test_reaction_entity_mapping() {
 		assertNotNull(reaction);
-	
 		assertEquals(2022, reaction.getReactionDate().getYear());
 	}
+	
+	@Test
+	void test_ReviewReaction_MTO_User_association() {
+		assertNotNull(reaction);
+		assertEquals("Normal", reaction.getUser().getFirstName());
+		
+		
+	}
+	@Test
+	void test_ReviewReaction_MTO_Review_association() {
+		assertNotNull(reaction);
+		assertEquals("This is a Review: The Grand Canyon is great!", reaction.getReview().getComment());
+		
+	}
+	
 
 }
