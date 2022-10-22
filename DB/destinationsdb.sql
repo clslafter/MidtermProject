@@ -401,6 +401,12 @@ INSERT INTO `address` (`id`, `street`, `city`, `state_province`, `zip`, `country
 INSERT INTO `address` (`id`, `street`, `city`, `state_province`, `zip`, `country`, `latitude`, `longitude`) VALUES (4, '2000 Elitch Cir', 'Denver', 'CO', '80204', 'USA', NULL, NULL);
 INSERT INTO `address` (`id`, `street`, `city`, `state_province`, `zip`, `country`, `latitude`, `longitude`) VALUES (1, '123 Main', 'Parker', 'CO', '80134', 'USA', NULL, NULL);
 INSERT INTO `address` (`id`, `street`, `city`, `state_province`, `zip`, `country`, `latitude`, `longitude`) VALUES (5, '456 Maple', 'New Orleans', 'LA', '70032', 'USA', NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state_province`, `zip`, `country`, `latitude`, `longitude`) VALUES (6, '200 E Colfax Ave', 'Denver', 'CO', '80203', 'USA', NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state_province`, `zip`, `country`, `latitude`, `longitude`) VALUES (7, '1300 Perdido St', 'New Orleans', 'LA', '70112', 'USA', NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state_province`, `zip`, `country`, `latitude`, `longitude`) VALUES (8, '20120 Mainstreet', 'Parker', 'CO', '80138', 'USA', NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state_province`, `zip`, `country`, `latitude`, `longitude`) VALUES (9, ' 6715 W Colfax Ave', 'Lakewood ', 'CO', '80214', 'USA', NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state_province`, `zip`, `country`, `latitude`, `longitude`) VALUES (10, '900 E 11th St', 'Austin', 'TX', '78792', 'USA', NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state_province`, `zip`, `country`, `latitude`, `longitude`) VALUES (11, '597 NM-597', 'Teec Nos Pos', 'AZ', '86514', 'USA', NULL, NULL);
 
 COMMIT;
 
@@ -411,7 +417,10 @@ COMMIT;
 START TRANSACTION;
 USE `destinationsdb`;
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (1, 'admin', 'dire', 'admin@server.com', 'Dire', 'Cannibal', 'admin', 1, 1, NULL, NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (2, 'normaluser', '1234', 'user@server.com', 'Normal', 'User', 'normal', 1, 5, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (2, 'normaluser', '1234', 'jdoe@server.com', 'John', 'Doe', 'normal', 1, 5, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (3, 'anewman', 'Aspen', 'fake@server.com', 'Aspen', 'Newman', 'admin', 1, 6, '2022-10-20 12:00:00', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (4, 'cslafter', 'Celicia', 'notreal@server.com', 'Celicia', 'Slafter', 'admin', 1, 7, '2022-10-20 12:00:00', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (5, 'jingram', 'Josh', 'words@host.com', 'Josh', 'Ingram', 'admin', 1, 8, '2022-10-20 12:00:00', NULL, NULL);
 
 COMMIT;
 
@@ -424,6 +433,9 @@ USE `destinationsdb`;
 INSERT INTO `destination` (`id`, `name`, `description`, `website_url`, `user_id`, `address_id`, `create_date`, `last_edited`, `image_url`, `enabled`) VALUES (1, 'Grand Canyon', 'Grand Canyon National Park, in Arizona, is home to much of the immense Grand Canyon, with its layered bands of red rock revealing millions of years of geological history.', 'https://www.nps.gov/grca/index.htm', 1, 2, '2022-10-20 14:00:00', NULL, 'https://cdn1.coolworks.com/production/clients/6184/pictures/23635/content/Grand_Canyon_resize.png', 1);
 INSERT INTO `destination` (`id`, `name`, `description`, `website_url`, `user_id`, `address_id`, `create_date`, `last_edited`, `image_url`, `enabled`) VALUES (2, 'Machu Picchu', 'Incan citadel set high in the Andes Mountains in Peru', 'https://www.machupicchu.org/', 1, 3, '2022-10-20 14:01:00', NULL, 'https://images.ctfassets.net/cnu0m8re1exe/6Xf1pu8Tv0tPTAiPjOs0es/13b2238fd3ea11fd658ad71596d28abd/shutterstock_1387848629.jpg?fm=jpg&fl=progressive&w=660&h=433&fit=fill', 1);
 INSERT INTO `destination` (`id`, `name`, `description`, `website_url`, `user_id`, `address_id`, `create_date`, `last_edited`, `image_url`, `enabled`) VALUES (3, 'Elitch Gardens', 'Big fun in Denver with roller coasters, water park, and more!', 'https://www.elitchgardens.com/', 2, 4, '2022-10-20 14:02:00', NULL, 'https://media.9news.com/assets/KUSA/images/7845f8f6-e43f-4181-8470-2a9ce52aa8f5/7845f8f6-e43f-4181-8470-2a9ce52aa8f5_1140x641.jpg', 1);
+INSERT INTO `destination` (`id`, `name`, `description`, `website_url`, `user_id`, `address_id`, `create_date`, `last_edited`, `image_url`, `enabled`) VALUES (4, 'Casa Bonita', 'Mex eats & pageantry such as divers plunging into a pool below a 30-ft. waterfall & puppet shows', 'https://www.casabonitadenver.com/', 3, 9, '2022-10-22-11:30:00', '2022-10-22 11:32:00', 'https://d.newsweek.com/en/full/1775673/colorado-casa-bonita-restaurant.webp?w=790&f=084db42ee07f3a2b3eab9e5b33a1b675', 1);
+INSERT INTO `destination` (`id`, `name`, `description`, `website_url`, `user_id`, `address_id`, `create_date`, `last_edited`, `image_url`, `enabled`) VALUES (5, 'Franklin Barbecue', 'Can a restaurant be a tourist attraction?  Absolutely.  Long lines form early for brisket, pulled pork & other smoked meats at this bustling spot.', 'https://franklinbbq.com/', 5, 10, '2022-10-22 11:33:00', '2022-10-22 11:35:00', 'https://media.bizj.us/view/img/4591511/franklinbarbecue-2*750xx5760-3246-0-592.jpg', 1);
+INSERT INTO `destination` (`id`, `name`, `description`, `website_url`, `user_id`, `address_id`, `create_date`, `last_edited`, `image_url`, `enabled`) VALUES (6, 'Four Corners', 'The intersection of four US states; Arizona, Colorado, New Mexico and Utah.', 'https://navajonationparks.org/tribal-parks/four-corners-monument/', 4, 11, '2022-10-22 11:45:00', '2022-10-22 11:46:00', 'https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_635,q_60,w_1060/v1/clients/utahddm/52ab002618_d66704e7-fcb8-446a-a97e-8f9ca6b5f9a3.jpg', 1);
 
 COMMIT;
 
@@ -436,6 +448,11 @@ USE `destinationsdb`;
 INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: The Grand Canyon is great!', 5, 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Canyon_River_Tree_%28165872763%29.jpeg/576px-Canyon_River_Tree_%28165872763%29.jpeg', 1, 1, '2022-10-20 14:00:00', DEFAULT);
 INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: Machu Picchu is super cool', 4, 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Before_Machu_Picchu.jpg/600px-Before_Machu_Picchu.jpg', 2, 1, '2022-10-20 14:01:00', DEFAULT);
 INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: Filler text for Elitch Gardens review', 3, NULL, 3, 2, '2022-10-20 14:02:00', DEFAULT);
+INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: It was too hot, I generally prefer indoor destinations. ', 2, NULL, 1, 2, '2022-10-22 11:00:00', DEFAULT);
+INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: Simply amazing, be sure to give yourself enough time to really explore.', 4, NULL, 1, 5, '2022-10-22 12:00:00', DEFAULT);
+INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: Looks like this Colorado icon is temporarily closed.  Was a lot of fun last time I went.  The cliff divers are really cool.', 4, NULL, 4, 3, '2022-10-22 12:25:00', DEFAULT);
+INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Reveiw: Simply the best BBQ in Texas, and therefore, the world.  Don\'t let the long lines scare you away.  Arrive early and bring a chair.  ', 5, NULL, 5, 5, '2022-10-22 11:34:00', DEFAULT);
+INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: The four corners is a really unique place.  I could simultaneously stand in four states.', 4, NULL, 6, 4, '2022-10-22 11:45:30', DEFAULT);
 
 COMMIT;
 
@@ -479,6 +496,11 @@ INSERT INTO `destination_category` (`destination_id`, `category_id`) VALUES (2, 
 INSERT INTO `destination_category` (`destination_id`, `category_id`) VALUES (3, 3);
 INSERT INTO `destination_category` (`destination_id`, `category_id`) VALUES (3, 5);
 INSERT INTO `destination_category` (`destination_id`, `category_id`) VALUES (3, 8);
+INSERT INTO `destination_category` (`destination_id`, `category_id`) VALUES (4, 8);
+INSERT INTO `destination_category` (`destination_id`, `category_id`) VALUES (4, 5);
+INSERT INTO `destination_category` (`destination_id`, `category_id`) VALUES (5, 8);
+INSERT INTO `destination_category` (`destination_id`, `category_id`) VALUES (6, 1);
+INSERT INTO `destination_category` (`destination_id`, `category_id`) VALUES (6, 2);
 
 COMMIT;
 
@@ -489,6 +511,7 @@ COMMIT;
 START TRANSACTION;
 USE `destinationsdb`;
 INSERT INTO `review_reaction` (`user_id`, `reaction`, `reaction_date`, `review_destination_id`, `review_user_id`) VALUES (2, 1, '2022-10-20 14:02:03', 1, 1);
+INSERT INTO `review_reaction` (`user_id`, `reaction`, `reaction_date`, `review_destination_id`, `review_user_id`) VALUES (5, 0, '2022-10-22-11:15:00', 1, 2);
 
 COMMIT;
 
@@ -500,6 +523,8 @@ START TRANSACTION;
 USE `destinationsdb`;
 INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (1, 'This is a Review Comment - Thanks for the review of the Grand Canyon.  I can\'t wait to go there.', '2022-10-20 14:01:30', 2, NULL, 1, 1, 1);
 INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (2, 'This is a Reply to Review Comment, lots of words', '2022-10-20 14:05:00', 1, 1, 1, 1, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (3, 'This ia a review comment: Were you surprised that it was hot?', NULL, 5, NULL, 1, 2, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (DEFAULT, 'This is a reply to review comment:  No, I just didn\'t think it would be as hot as it was.', NULL, 2, 3, 1, 2, 1);
 
 COMMIT;
 
@@ -509,8 +534,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `destinationsdb`;
-INSERT INTO `destination_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `destination_id`, `enabled`) VALUES (1, 'This is a Destination Comment:  Blah from user 2', '2022-10-20 14:01:00', 2, NULL, 1, 1);
-INSERT INTO `destination_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `destination_id`, `enabled`) VALUES (2, 'This is a sample Reply to Destination Comment:  Blah blah from user 1', '2022-10-20 14:01:15', 1, 1, 1, 1);
+INSERT INTO `destination_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `destination_id`, `enabled`) VALUES (1, 'This is a Destination Comment:  OMG, This place looks amazing!', '2022-10-20 14:01:00', 2, NULL, 1, 1);
+INSERT INTO `destination_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `destination_id`, `enabled`) VALUES (2, 'This is a sample Reply to Destination Comment:  It is, you should really try to go if you can.', '2022-10-20 14:01:15', 1, 1, 1, 1);
 
 COMMIT;
 
@@ -522,6 +547,10 @@ START TRANSACTION;
 USE `destinationsdb`;
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (1, 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.britannica.com%2Fplace%2FGrand-Canyon-National-Park&psig=AOvVaw1jfHWlh84MCffrFsGkwuCW&ust=1666404017001000&source=images&cd=vfe&ved=0CAkQjRxqFwoTCOD0tvCc8PoCFQAAAAAdAAAAABAD', 'This is the Grand Canyon', NULL, 1, 1);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (2, 'https://content.r9cdn.net/rimg/dimg/4c/ac/7e6077e1-city-45618-165ce416a23.jpg?crop=true&width=1020&height=498', 'Check out this llama', NULL, 2, 2);
+INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (3, 'https://media.9news.com/assets/KUSA/images/e4c5b3a9-cd33-4e3c-92ca-7d953c78b300/e4c5b3a9-cd33-4e3c-92ca-7d953c78b300_1140x641.jpg', 'The waterpark is a lot of fun!', NULL, 3, 2);
+INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (4, 'https://media.9news.com/assets/KUSA/images/699a150f-eb1f-47ef-a5ff-84210d8f25c1/699a150f-eb1f-47ef-a5ff-84210d8f25c1_1140x641.jpg', 'Wee!', NULL, 3, 2);
+INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (5, 'https://gray-kktv-prod.cdn.arcpublishing.com/resizer/01MD7WB3VRaDDHaSoV-CbKlb7wc=/1200x675/smart/filters:quality(85)/cloudfront-us-east-1.images.arcpublishing.com/gray/3DROCPT4FNHUZJSKPJ737PTMKM.jpg', 'Tables with a view.', NULL, 4, 2);
+INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (6, 'https://www.femalefoodie.com/wp-content/uploads/2018/05/franklin-bbq-7.jpg', 'Sample plate', NULL, 5, 5);
 
 COMMIT;
 
@@ -547,6 +576,12 @@ INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (1, 1)
 INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (2, 1);
 INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (1, 3);
 INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (2, 3);
+INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (1, 4);
+INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (2, 4);
+INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (1, 5);
+INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (2, 5);
+INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (1, 6);
+INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (2, 6);
 
 COMMIT;
 
@@ -571,7 +606,8 @@ COMMIT;
 START TRANSACTION;
 USE `destinationsdb`;
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (1, 49.99, 3, 4, 1, NULL);
-INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (2, 154, 2, 4, 2, NULL);
+INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (2, 154.00, 2, 4, 2, NULL);
+INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (3, 8.00, 6, 4, 1, 'flat fee for all guests, National Park Passes do not apply');
 
 COMMIT;
 

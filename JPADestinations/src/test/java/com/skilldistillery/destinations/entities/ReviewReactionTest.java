@@ -52,7 +52,7 @@ class ReviewReactionTest {
 	@Test
 	void test_ReviewReaction_MTO_User_association() {
 		assertNotNull(reaction);
-		assertEquals("Normal", reaction.getUser().getFirstName());
+		assertEquals("John", reaction.getUser().getFirstName());
 		
 		
 	}

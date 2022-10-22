@@ -45,13 +45,13 @@ class DestinationCommentTest {
 	@Test
 	void test_DestinationComment_entity_mapping() {
 		assertNotNull(comment);
-		assertEquals("This is a Destination Comment:  Blah from user 2", comment.getComment());
+		assertEquals("This is a Destination Comment:  OMG, This place looks amazing!", comment.getComment());
 	}
 	
 	@Test
 	void test_DestinationComment_MTO_User_assocation() {
 		assertNotNull(comment);
-		assertEquals("Normal", comment.getUser().getFirstName());
+		assertEquals("John", comment.getUser().getFirstName());
 	}
 	@Test
 	void test_DestinationComment_MTO_Destination_assocation() {
@@ -62,7 +62,7 @@ class DestinationCommentTest {
 	void test_DestinationComment_MTO_DestinationComment_assocation() {
 		DestinationComment comment2 = em.find(DestinationComment.class, 2);
 		assertNotNull(comment2);
-		assertEquals("This is a Destination Comment:  Blah from user 2", comment2.getDestinationComment().getComment());
+		assertEquals("This is a Destination Comment:  OMG, This place looks amazing!", comment2.getDestinationComment().getComment());
 		
 	}
 	@Test
