@@ -23,4 +23,10 @@ public class UserController {
 		
 		return "login";
 	}
+	
+	@RequestMapping(path= {"createAccount.do"})
+	public String createAccount(Model model) {
+		
+		return "createAccount";
+	}
 }

@@ -14,5 +14,6 @@
 <!-- Insert Top Destination Teaser Here -->
 
 <a href="login.do">Log In</a>
+<a href="createAccount.do">Create Account</a>
 </body>
 </html>
