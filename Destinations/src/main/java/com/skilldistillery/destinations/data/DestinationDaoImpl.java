@@ -6,18 +6,19 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.destinations.entities.User;
+import com.skilldistillery.destinations.entities.Destination;
+
+
 
 @Service
 @Transactional
-public class UserDaoImpl implements UserDAO {
+public class DestinationDaoImpl implements DestinationDAO {
 	
 	@PersistenceContext
 	private EntityManager em;
 
 	@Override
-	public User findUserById(int userId) {
-		return em.find(User.class, userId);
+	public Destination findDestinationById(int destinatonId) {
+		return em.find(Destination.class, destinatonId);
 	}
-
 }

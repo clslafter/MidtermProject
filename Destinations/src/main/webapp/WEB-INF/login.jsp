@@ -22,6 +22,6 @@
 
 </form>
 
-
+Test only <a href="showUserProfile.do">Show user profile</a> Testing Only - bypasses login!
 </body>
 </html>

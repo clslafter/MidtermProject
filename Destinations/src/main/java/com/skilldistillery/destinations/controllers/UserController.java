@@ -15,7 +15,7 @@ public class UserController {
 	
 	@RequestMapping(path= {"/", "welcome.do"})
 	public String welcome(Model model) {
-		model.addAttribute("SMOKETEST", userDao.findById(1));
+		model.addAttribute("SMOKETEST", userDao.findUserById(1));
 		return "welcome";
 	}
 	@RequestMapping(path= {"login.do"})
@@ -28,5 +28,11 @@ public class UserController {
 	public String createAccount(Model model) {
 		
 		return "createAccount";
+	}
+	
+	@RequestMapping(path= {"showUserProfile.do"})
+	public String showUserProfile(Model model) {
+		model.addAttribute("user", userDao.findUserById(1));
+		return "showUserProfile";
 	}
 }
