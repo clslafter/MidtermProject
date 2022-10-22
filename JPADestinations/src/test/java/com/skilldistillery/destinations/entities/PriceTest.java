@@ -47,5 +47,24 @@ class PriceTest {
 		assertNotNull(price);
 		assertEquals(49.99, price.getAmount());
 	}
+	
+	@Test
+	void test_Price_to_PricingType_entity_mapping() {
+		assertNotNull(price);
+		assertEquals("Adult", price.getPricingType().getName());
+	}
+	
+	@Test
+	void test_Price_to_Currency_entity_mapping() {
+		assertNotNull(price);
+		assertEquals("USD", price.getCurrency().getName());
+	}
 
+	@Test
+	void test_Price_to_Destination_entity_mapping() {
+		assertNotNull(price);
+		assertEquals("Elitch Gardens", price.getDestination().getName());
+	}
+
+	
 }
