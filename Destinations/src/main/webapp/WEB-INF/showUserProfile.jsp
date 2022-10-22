@@ -18,6 +18,11 @@
 
 <a href="updateAccount.do?uid=${user.id}">Update profile</a><br>
 
+<form action="updateAccount.do" action="POST">
+<input type="hidden" name="id" value="${user.id}" /> <input
+	type="submit" value="Edit" class="btn btn-primary" />
+	</form> <br>
+
 <a href="home.do">Home</a>
 
 <a href="logout.do">Log Out</a>

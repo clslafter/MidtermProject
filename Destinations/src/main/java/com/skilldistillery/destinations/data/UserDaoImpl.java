@@ -48,11 +48,25 @@ public class UserDaoImpl implements UserDAO {
 		em.persist(user);
 		return user;
 	}
-	
+
 	@Override
 	public Address createUserAddress(Address address) {
 		em.persist(address);
 		return address;
+	}
+
+	@Override
+	public User updateUserAccount(int id, User user) {
+		User managed = em.find(User.class, id);
+		if (managed != null) {
+			managed.setFirstName(user.getFirstName());
+			managed.setLastName(user.getLastName());
+			managed.setEmail(user.getEmail());
+			managed.setUsername(user.getUsername());
+			managed.setPassword(user.getPassword());
+		}
+
+		return managed;
 	}
 
 }

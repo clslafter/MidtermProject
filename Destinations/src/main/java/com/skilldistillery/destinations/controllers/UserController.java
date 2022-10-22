@@ -128,6 +128,29 @@ public class UserController {
 		
 	}
 	
+	@RequestMapping(path="updateAccount.do", method = RequestMethod.GET)
+	public ModelAndView updateDetails(int id) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", userDao.findUserById(id));
+		mv.setViewName("updateAccount");
+		return mv;
+	}
+	
+	@RequestMapping(path="updateUserInfo.do", method = RequestMethod.POST)
+	public ModelAndView updateAccount(int id, User user, RedirectAttributes redir) {
+		ModelAndView mv = new ModelAndView();
+		user = userDao.updateUserAccount(id, user);
+		redir.addFlashAttribute("user", user);
+		mv.setViewName("redirect:userAccountUpdated.do");
+		return mv;
+	}
+	
+	@RequestMapping(path="userAccountUpdated.do", method = RequestMethod.GET)
+	public ModelAndView userAccountUpdated() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("showUserProfile");
+		return mv;
+	}
 	
 
 }

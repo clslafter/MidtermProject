@@ -15,4 +15,6 @@ public interface UserDAO {
 	User createUserAccount(User user);
 	
 	Address createUserAddress(Address address);
+	
+	User updateUserAccount(int id, User user);
 }
