@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,11 @@
 
 <!-- list of all destinations -->
 
-${destination}
+
+Current Destinations:
+	<c:forEach var="destination" items="${destinations}">
+	<li><a href="showDestination.do?did=${destination.id}">${destination.name}</a></li>
+	</c:forEach><br>
 
 <!-- search destinations and sort options -->
 

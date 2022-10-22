@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.skilldistillery.destinations.data.DestinationDAO;
+import com.skilldistillery.destinations.entities.Destination;
 
 @Controller
 public class DestinationController {
@@ -21,6 +22,15 @@ public class DestinationController {
 	@RequestMapping(path= {"home.do"})
 	public String home(Model model) {
 		model.addAttribute("destination", destinationDao.findDestinationById(1));
+		model.addAttribute("destinations", destinationDao.findAllDestinations());
 		return "home";
+	}
+	
+	@RequestMapping(path = "showDestination.do")
+	public String showDestination(Integer did, Model model) {
+		model.addAttribute("destination", destinationDao.findDestinationById(did));
+		//Destination destination = destinationDao.findDestinationById(did);
+		
+		return "showDestination";
 	}
 }
