@@ -14,7 +14,7 @@ import com.skilldistillery.destinations.entities.User;
 @Service
 @Transactional
 public class UserDaoImpl implements UserDAO {
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
@@ -27,6 +27,20 @@ public class UserDaoImpl implements UserDAO {
 	public List<User> findAllUsers() {
 		String jpql = "SELECT u FROM User u";
 		return em.createQuery(jpql, User.class).getResultList();
+	}
+
+	@Override
+	public User getUserByUserNameAndPassword(String userName, String password) {
+		User user = null;
+		System.out.println(userName);
+		String queryString = "SELECT u from User u WHERE u.username = :userName";
+		user = em.createQuery(queryString, User.class).setParameter("userName", userName).getSingleResult();
+
+		if (user.getPassword().equals(password)) {
+			return user;
+		} else {
+			return null;
+		}
 	}
 
 }

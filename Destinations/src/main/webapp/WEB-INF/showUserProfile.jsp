@@ -19,5 +19,7 @@
 <a href="updateAccount.do?uid=${user.id}">Update profile</a><br>
 
 <a href="home.do">Home</a>
+
+<a href="logout.do">Log Out</a>
 </body>
 </html>
