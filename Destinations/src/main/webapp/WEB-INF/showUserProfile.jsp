@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,9 @@
 
 <!-- more user profile fields go here -->
 
-!!Restrict access to this link later <a href="showAllUsers.do">Show all users</a> Testing purposing only!!<br>
+<c:if test="${isAdmin}">
+<a href="showAllUsers.do">Show all users</a><br>
+</c:if>
 
 <a href="updateAccount.do?uid=${user.id}">Update profile</a><br>
 
