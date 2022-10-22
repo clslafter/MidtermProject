@@ -10,10 +10,12 @@
 <H1>${destination.name}</H1>
 
 <p>${destination.description}</p>
-<a href="${destination.websiteUrl}" target="_blank">Destination's webpage</a><br>
+<a href="${destination.websiteUrl}" target="_blank">Destination's web page</a><br>
 <img src="${destination.imageUrl}"><br>
 
 <!-- insert other destination details here -->
+
+!!Restrict access to this link later!! <a href="updateDestination.do?did=${destination.id}">Update this destination</a><br>
 
 <a href="home.do">Home</a>
 

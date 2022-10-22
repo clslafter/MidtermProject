@@ -35,4 +35,10 @@ public class UserController {
 		model.addAttribute("user", userDao.findUserById(1));
 		return "showUserProfile";
 	}
+	
+	@RequestMapping(path= {"showAllUsers.do"})
+	public String showAllUsers(Model model) {
+		model.addAttribute("users", userDao.findAllUsers());
+		return "showAllUsers";
+	}
 }

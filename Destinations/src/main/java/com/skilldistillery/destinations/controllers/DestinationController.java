@@ -38,5 +38,11 @@ public class DestinationController {
 		return "createDestination";
 	}
 	
+	@RequestMapping(path = "updateDestination.do")
+	public String updateDestination(Integer did, Model model) {
+		model.addAttribute("destination", destinationDao.findDestinationById(did));
+		return "updateDestination";
+	}
+	
 	
 }
