@@ -48,5 +48,31 @@ class ReviewTest {
 		assertNotNull(review);
 		assertEquals("This is a Review: The Grand Canyon is great!", review.getComment());
 	}
+	
+	@Test
+	void test_Review_OTM_ReviewComment_association() {
+		assertNotNull(review);
+		assertTrue(review.getReviewComments().size() > 0);
+		
+	}
+	@Test
+	void test_Review_OTM_ReviewReaction_association() {
+		assertNotNull(review);
+		assertTrue(review.getReviewReactions().size() > 0);
+		
+	}
+	@Test
+	void test_Review_MTO_Destination_association() {
+		assertNotNull(review);
+		assertEquals("Grand Canyon", review.getDestination().getName());
+		
+	}
+	@Test
+	void test_Review_MTO_User_association() {
+		assertNotNull(review);
+		assertEquals(1, review.getUser().getId());
+		assertEquals("Dire", review.getUser().getFirstName());
+		
+	}
 
 }
