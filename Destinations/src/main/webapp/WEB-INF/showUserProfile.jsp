@@ -13,6 +13,8 @@
 
 !!Restrict access to this link later <a href="showAllUsers.do">Show all users</a> Testing purposing only!!<br>
 
+<a href="updateAccount.do?uid=${user.id}">Update profile</a><br>
+
 <a href="home.do">Home</a>
 </body>
 </html>

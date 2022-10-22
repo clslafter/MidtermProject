@@ -30,6 +30,12 @@ public class UserController {
 		return "createAccount";
 	}
 	
+	@RequestMapping(path= {"updateAccount.do"})
+	public String updateAccount(int uid, Model model) {
+		model.addAttribute("user", userDao.findUserById(uid));
+		return "updateAccount";
+	}
+	
 	@RequestMapping(path= {"showUserProfile.do"})
 	public String showUserProfile(Model model) {
 		model.addAttribute("user", userDao.findUserById(1));
