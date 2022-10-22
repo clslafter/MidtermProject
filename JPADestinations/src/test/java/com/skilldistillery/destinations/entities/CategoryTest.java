@@ -47,5 +47,11 @@ class CategoryTest {
 		assertNotNull(category);
 		assertEquals("natural", category.getName());
 	}
+	
+	@Test
+	void test_Cstegory_to_Destination_mapping() {
+		assertNotNull(category);
+		assertTrue(category.getDestinations().size() > 0);
+	}
 
 }
