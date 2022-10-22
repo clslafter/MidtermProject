@@ -19,7 +19,14 @@ public class UserController {
 
 	@Autowired
 	private UserDAO userDao;
-
+	
+	private User isUserInSession(HttpSession session) {
+		if(session.getAttribute("user") != null) {
+			return (User) session.getAttribute("user");			
+		}else {
+			return null;
+		}
+	}
 	@RequestMapping(path = { "/", "welcome.do" })
 	public String welcome(Model model) {
 		model.addAttribute("SMOKETEST", userDao.findUserById(1));
@@ -33,8 +40,11 @@ public class UserController {
 	}
 
 	@RequestMapping(path = { "showUserProfile.do" })
-	public String showUserProfile(Model model) {
-		User user = userDao.findUserById(1);
+	public String showUserProfile(Model model, HttpSession session) {
+		User user = this.isUserInSession(session);
+		if(user == null) {
+			return "welcome";
+		}
 		boolean isAdmin = user.getRole().equals("admin");
 		model.addAttribute("user", user);
 		model.addAttribute("isAdmin", isAdmin);
@@ -101,6 +111,8 @@ public class UserController {
 		
 		user.setEnabled(true);
 		
+		user.setRole("normal");
+		
 		user = userDao.createUserAccount(user);
 		redir.addFlashAttribute("user", user);
 		mv.setViewName("redirect:userCreated.do");
@@ -110,7 +122,7 @@ public class UserController {
 	@RequestMapping(path = "userCreated.do", method = RequestMethod.GET)
 	public ModelAndView userCreated() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("showUserProfile");
+		mv.setViewName("login");
 		return mv;
 		
 		
