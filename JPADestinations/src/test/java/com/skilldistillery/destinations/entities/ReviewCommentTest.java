@@ -51,7 +51,7 @@ class ReviewCommentTest {
 	@Test
 	void test_ReviewComment_MTO_User_assocation(){
 		assertNotNull(comment);
-		assertEquals("Normal", comment.getUser().getFirstName());
+		assertEquals("John", comment.getUser().getFirstName());
 	}
 	
 	@Test
