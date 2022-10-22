@@ -9,24 +9,24 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.destinations.entities.Destination;
-import com.skilldistillery.destinations.entities.User;
+
+
 
 @Service
 @Transactional
-public class UserDaoImpl implements UserDAO {
+public class DestinationDaoImpl implements DestinationDAO {
 	
 	@PersistenceContext
 	private EntityManager em;
 
 	@Override
-	public User findUserById(int userId) {
-		return em.find(User.class, userId);
+	public Destination findDestinationById(int destinatonId) {
+		return em.find(Destination.class, destinatonId);
 	}
 
 	@Override
-	public List<User> findAllUsers() {
-		String jpql = "SELECT u FROM User u";
-		return em.createQuery(jpql, User.class).getResultList();
+	public List<Destination> findAllDestinations() {
+		String jpql = "SELECT d FROM Destination d";
+		return em.createQuery(jpql, Destination.class).getResultList();
 	}
-
 }

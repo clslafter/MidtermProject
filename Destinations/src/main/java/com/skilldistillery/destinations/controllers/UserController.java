@@ -13,9 +13,38 @@ public class UserController {
 	@Autowired
 	private UserDAO userDao;
 	
-	@RequestMapping(path= {"/", "home.do"})
-	public String home(Model model) {
-		model.addAttribute("SMOKETEST", userDao.findById(1));
-		return "home";
+	@RequestMapping(path= {"/", "welcome.do"})
+	public String welcome(Model model) {
+		model.addAttribute("SMOKETEST", userDao.findUserById(1));
+		return "welcome";
+	}
+	@RequestMapping(path= {"login.do"})
+	public String login(Model model) {
+		
+		return "login";
+	}
+	
+	@RequestMapping(path= {"createAccount.do"})
+	public String createAccount(Model model) {
+		
+		return "createAccount";
+	}
+	
+	@RequestMapping(path= {"updateAccount.do"})
+	public String updateAccount(int uid, Model model) {
+		model.addAttribute("user", userDao.findUserById(uid));
+		return "updateAccount";
+	}
+	
+	@RequestMapping(path= {"showUserProfile.do"})
+	public String showUserProfile(Model model) {
+		model.addAttribute("user", userDao.findUserById(1));
+		return "showUserProfile";
+	}
+	
+	@RequestMapping(path= {"showAllUsers.do"})
+	public String showAllUsers(Model model) {
+		model.addAttribute("users", userDao.findAllUsers());
+		return "showAllUsers";
 	}
 }

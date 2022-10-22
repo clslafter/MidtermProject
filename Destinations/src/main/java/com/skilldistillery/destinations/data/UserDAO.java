@@ -1,8 +1,11 @@
 package com.skilldistillery.destinations.data;
 
+import java.util.List;
+
 import com.skilldistillery.destinations.entities.User;
 
 public interface UserDAO {
-	User findById(int userId);
+	User findUserById(int userId);
+	List <User> findAllUsers();
 
 }

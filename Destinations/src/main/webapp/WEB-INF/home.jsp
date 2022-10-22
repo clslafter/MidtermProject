@@ -1,16 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Home</title>
 </head>
 <body>
+<H1>Internal Home Page</H1>
 
-<h2>Destinations</h2>
+<!-- list of all destinations -->
 
-${SMOKETEST}
+
+Current Destinations:
+	<c:forEach var="destination" items="${destinations}">
+	<li><a href="showDestination.do?did=${destination.id}">${destination.name}</a></li>
+	</c:forEach><br>
+
+<!-- search destinations and sort options -->
+
+<a href="createDestination.do">Create a new destination</a>
+
+<a href="showUserProfile.do">My profile</a>
+
+<a href="logout">Log out</a>
 
 
 </body>
