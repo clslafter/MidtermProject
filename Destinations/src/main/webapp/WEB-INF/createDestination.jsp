@@ -23,7 +23,22 @@
 		<label for="imageUrl">URL for image:</label>
  		<input type="text" id="imageUrl" name="imageUrl"><br>
  		
- 		<!-- lots more fields go here -->
+
+ 		
+ 		<label for="street">Street:</label>
+ 		<input type="text" id="street" name="street"><br>
+  
+  		<label for="city">City:</label>
+  		<input type="text" id="city" name="city"><br>
+  		
+  		<label for="stateProvince">State/Province:</label>
+  		<input type="text" id="stateProvince" name="stateProvince"><br>
+ 		
+ 		<label for="zip">ZipCode:</label>
+  		<input type="text" id="zip" name="zip"><br>
+ 		
+ 		<label for="country">Country: </label>
+  		<input type="text" id="country" name="country"><br>
 
 		<input type="submit" value="Submit">
 

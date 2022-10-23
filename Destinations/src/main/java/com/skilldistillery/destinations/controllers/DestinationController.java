@@ -1,5 +1,7 @@
 package com.skilldistillery.destinations.controllers;
 
+import java.time.LocalDateTime;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,14 +51,17 @@ public class DestinationController {
 	}
 	
 	@RequestMapping(path = "createNewDestination.do", method = RequestMethod.POST)
-	public ModelAndView createNewDestination(Destination destination, HttpSession session, RedirectAttributes redir) {
+	public ModelAndView createNewDestination(Destination destination, Address address, HttpSession session, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		
-		destination.setAddress(destinationDao.createDestinationAddress(new Address()));
+		destination.setAddress(destinationDao.createDestinationAddress(address));
 		
 		destination.setEnabled(true);
+		
 		User user = this.isUserInSession(session);
 		destination.setUser(user);
+		
+		destination.setCreateDate(LocalDateTime.now());
 		
 		destination = destinationDao.createNewDestination(destination);
 		redir.addFlashAttribute("destination", destination);

@@ -13,5 +13,9 @@ public interface DestinationDAO {
 	Destination createNewDestination(Destination destination);
 	
 	Address createDestinationAddress(Address address);
+	
+	public Address getAddressIdByDestinationId(int id);
+	
+	public Address updateAddressInDestination(int addressId, Address address);
 
 }
