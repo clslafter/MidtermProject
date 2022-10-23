@@ -68,5 +68,27 @@ public class UserDaoImpl implements UserDAO {
 
 		return managed;
 	}
+	
+	@Override 
+	public Address getAddressIdByUserId(int id) {
+		
+		String queryString = "SELECT a FROM Address a JOIN User u ON u.address.id = a.id WHERE u.id = :id";
+		Address address = em.createQuery(queryString, Address.class).setParameter("id", id).getSingleResult();
+	
+		return address;
+	}
 
+	@Override
+	public Address updateAddressInUserAccount(int addressId, Address address) {
+		Address managed = em.find(Address.class, addressId);
+		if (managed != null) {
+			managed.setStreet(address.getStreet());
+			managed.setCity(address.getCity());
+			managed.setStateProvince(address.getStateProvince());
+			managed.setZip(address.getZip());
+			managed.setCountry(address.getCountry());
+		}
+
+		return managed;
+	}
 }

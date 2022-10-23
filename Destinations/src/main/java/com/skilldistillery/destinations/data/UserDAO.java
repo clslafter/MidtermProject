@@ -17,4 +17,8 @@ public interface UserDAO {
 	Address createUserAddress(Address address);
 	
 	User updateUserAccount(int id, User user);
+	
+	Address updateAddressInUserAccount(int id, Address address);
+	
+	Address getAddressIdByUserId(int id);
 }

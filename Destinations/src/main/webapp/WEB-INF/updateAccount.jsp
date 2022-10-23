@@ -31,12 +31,30 @@
   		<h2>Address(optional)</h2>
   		
   		
-  	
+  		<input name="id" value="${address.id}" type="hidden" />
   		
-  	<!-- 	lots more fields go here -->
-
+  		<label for="street">Street:</label>
+ 		<input type="text" id="street" name="street" value="${address.street}"><br>
+  
+  		<label for="city">City:</label>
+  		<input type="text" id="city" name="city" value="${address.city}"><br>
+  		
+  		<label for="stateProvince">State/Province:</label>
+  		<input type="text" id="stateProvince" name="stateProvince" value="${address.stateProvince}" ><br>
+ 		
+ 		<label for="zip">ZipCode:</label>
+  		<input type="text" id="zip" name="zip" value="${address.zip}"><br>
+ 		
+ 		<label for="country">Country: </label>
+  		<input type="text" id="country" name="country" value="${address.country}"><br>
+  		
+  		
+  	
 		<input type="submit" value="Submit">
 
 	</form>
+  		
+  	<!-- 	lots more fields go here -->
+
 </body>
 </html>

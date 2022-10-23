@@ -132,15 +132,20 @@ public class UserController {
 	public ModelAndView updateDetails(int id) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", userDao.findUserById(id));
+		mv.addObject("address", userDao.getAddressIdByUserId(id));
 		mv.setViewName("updateAccount");
 		return mv;
 	}
 	
 	@RequestMapping(path="updateUserInfo.do", method = RequestMethod.POST)
-	public ModelAndView updateAccount(int id, User user, RedirectAttributes redir) {
+	public ModelAndView updateAccount(int id, User user, Address address, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
+		int addressId  = userDao.getAddressIdByUserId(id).getId();
+		System.out.println(addressId);
 		user = userDao.updateUserAccount(id, user);
+		address = userDao.updateAddressInUserAccount(addressId, address);
 		redir.addFlashAttribute("user", user);
+		redir.addFlashAttribute("address", address);
 		mv.setViewName("redirect:userAccountUpdated.do");
 		return mv;
 	}
