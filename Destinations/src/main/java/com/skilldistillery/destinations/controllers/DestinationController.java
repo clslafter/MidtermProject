@@ -1,12 +1,21 @@
 package com.skilldistillery.destinations.controllers;
 
+import java.time.LocalDateTime;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.destinations.data.DestinationDAO;
+import com.skilldistillery.destinations.entities.Address;
 import com.skilldistillery.destinations.entities.Destination;
+import com.skilldistillery.destinations.entities.User;
 
 @Controller
 public class DestinationController {
@@ -14,11 +23,14 @@ public class DestinationController {
 	@Autowired
 	private DestinationDAO destinationDao;
 	
-//	@RequestMapping(path= {"/", "welcome.do"})
-//	public String welcome(Model model) {
-//		model.addAttribute("SMOKETEST", userDao.findById(1));
-//		return "welcome";
-//	}
+	private User isUserInSession(HttpSession session) {
+		if(session.getAttribute("user") != null) {
+			return (User) session.getAttribute("user");			
+		}else {
+			return null;
+		}
+	}
+	
 	@RequestMapping(path= {"home.do"})
 	public String home(Model model) {
 		model.addAttribute("destination", destinationDao.findDestinationById(1));
@@ -36,6 +48,32 @@ public class DestinationController {
 	@RequestMapping(path = "createDestination.do")
 	public String createDestination(Model model) {
 		return "createDestination";
+	}
+	
+	@RequestMapping(path = "createNewDestination.do", method = RequestMethod.POST)
+	public ModelAndView createNewDestination(Destination destination, Address address, HttpSession session, RedirectAttributes redir) {
+		ModelAndView mv = new ModelAndView();
+		
+		destination.setAddress(destinationDao.createDestinationAddress(address));
+		
+		destination.setEnabled(true);
+		
+		User user = this.isUserInSession(session);
+		destination.setUser(user);
+		
+		destination.setCreateDate(LocalDateTime.now());
+		
+		destination = destinationDao.createNewDestination(destination);
+		redir.addFlashAttribute("destination", destination);
+		mv.setViewName("redirect:destinationCreated.do"); 
+		return mv;
+	}
+	
+	@RequestMapping(path = "destinationCreated.do", method = RequestMethod.GET)
+	public ModelAndView destinationCreated() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("home");
+		return mv;
 	}
 	
 	@RequestMapping(path = "updateDestination.do")
