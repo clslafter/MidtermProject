@@ -8,6 +8,7 @@
 <title>Home</title>
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
 <H1>Internal Home Page</H1>
 
 <!-- list of all destinations -->
@@ -22,9 +23,6 @@ Current Destinations:
 
 <a href="createDestination.do">Create a new destination</a>
 
-<a href="showUserProfile.do">My profile</a>
-
-<a href="logout">Log out</a>
 
 
 </body>

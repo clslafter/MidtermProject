@@ -16,7 +16,12 @@
 <a href="showAllUsers.do">Show all users</a><br>
 </c:if>
 
-<a href="updateAccount.do?uid=${user.id}">Update profile</a><br>
+
+
+<form action="updateAccount.do" action="POST">
+<input type="hidden" name="id" value="${user.id}" /> <input
+	type="submit" value="Edit My Profile" class="btn btn-primary" />
+	</form> <br>
 
 <a href="home.do">Home</a>
 

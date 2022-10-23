@@ -8,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.destinations.data.UserDAO;
+import com.skilldistillery.destinations.entities.Address;
 import com.skilldistillery.destinations.entities.User;
 
 @Controller
@@ -17,17 +19,19 @@ public class UserController {
 
 	@Autowired
 	private UserDAO userDao;
-
+	
+	private User isUserInSession(HttpSession session) {
+		if(session.getAttribute("user") != null) {
+			return (User) session.getAttribute("user");			
+		}else {
+			return null;
+		}
+	}
+	
 	@RequestMapping(path = { "/", "welcome.do" })
 	public String welcome(Model model) {
 		model.addAttribute("SMOKETEST", userDao.findUserById(1));
 		return "welcome";
-	}
-
-	@RequestMapping(path = { "createAccount.do" })
-	public String createAccount(Model model) {
-
-		return "createAccount";
 	}
 
 	@RequestMapping(path = { "updateAccount.do" })
@@ -37,12 +41,15 @@ public class UserController {
 	}
 
 	@RequestMapping(path = { "showUserProfile.do" })
-	public String showUserProfile(Model model) {
-		User user = userDao.findUserById(1);
+	public String showUserProfile(Model model, HttpSession session) {
+		User user = this.isUserInSession(session);
+		if(user == null) {
+			return "welcome";
+		}
 		boolean isAdmin = user.getRole().equals("admin");
 		model.addAttribute("user", user);
 		model.addAttribute("isAdmin", isAdmin);
-		
+
 		return "showUserProfile";
 	}
 
@@ -90,5 +97,65 @@ public class UserController {
 		mv.setViewName("welcome");
 		return mv;
 	}
+
+	@RequestMapping(path = { "createAccount.do" })
+	public String createAccount(Model model, User user) {
+		model.addAttribute("user", user);
+		return "createAccount";
+	}
+
+	@RequestMapping(path = "createUserAccount.do", method = RequestMethod.POST)
+	public ModelAndView createUserAccount(User user, RedirectAttributes redir) {
+		ModelAndView mv = new ModelAndView();
+		
+		user.setAddress(userDao.createUserAddress(new Address()));
+		
+		user.setEnabled(true);
+		
+		user.setRole("normal");
+		
+		user = userDao.createUserAccount(user);
+		redir.addFlashAttribute("user", user);
+		mv.setViewName("redirect:userCreated.do");
+		return mv;
+	}
+
+	@RequestMapping(path = "userCreated.do", method = RequestMethod.GET)
+	public ModelAndView userCreated() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("login");
+		return mv;
+		
+	}
+	
+	@RequestMapping(path="updateAccount.do", method = RequestMethod.GET)
+	public ModelAndView updateDetails(int id) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", userDao.findUserById(id));
+		mv.addObject("address", userDao.getAddressIdByUserId(id));
+		mv.setViewName("updateAccount");
+		return mv;
+	}
+	
+	@RequestMapping(path="updateUserInfo.do", method = RequestMethod.POST)
+	public ModelAndView updateAccount(int id, User user, Address address, RedirectAttributes redir) {
+		ModelAndView mv = new ModelAndView();
+		int addressId  = userDao.getAddressIdByUserId(id).getId();
+		System.out.println(addressId);
+		user = userDao.updateUserAccount(id, user);
+		address = userDao.updateAddressInUserAccount(addressId, address);
+		redir.addFlashAttribute("user", user);
+		redir.addFlashAttribute("address", address);
+		mv.setViewName("redirect:userAccountUpdated.do");
+		return mv;
+	}
+	
+	@RequestMapping(path="userAccountUpdated.do", method = RequestMethod.GET)
+	public ModelAndView userAccountUpdated() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("showUserProfile");
+		return mv;
+	}
+	
 
 }
