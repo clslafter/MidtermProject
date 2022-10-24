@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Welcome Page</title>
+<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
 <jsp:include page="navbar.jsp" />
@@ -18,8 +19,6 @@
 	<c:if test = "${user.enabled == false}">
 		${user.username}, Your Account has been deleted!
 	</c:if>
-
-<a href="login.do">Log In</a>
-<a href="createAccount.do">Create Account</a>
+	<jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>

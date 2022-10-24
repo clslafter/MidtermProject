@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Home</title>
+<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
 <jsp:include page="navbar.jsp" />
@@ -23,6 +24,6 @@ Current Destinations:
 <a href="createDestination.do">Create a new destination</a>
 
 
-
+<jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>

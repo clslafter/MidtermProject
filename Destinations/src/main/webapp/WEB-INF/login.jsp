@@ -6,8 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Log in Page</title>
+<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
 
 <h1>Log In</h1>
 
@@ -27,7 +29,6 @@
  		<input type="submit" value="Log In">
 
 	</form>
-
-Test only <a href="showUserProfile.do">Show user profile</a> Testing Only - bypasses login!
+<jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>

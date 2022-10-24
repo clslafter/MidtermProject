@@ -6,8 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>User Profile</title>
+<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
 <H1>Welcome, ${user.firstName}</H1>
 
 <!-- more user profile fields go here -->
@@ -19,6 +21,8 @@
 	<h1>Manage My Destinations: </h1>
 	<c:forEach items="${user.destinations}" var="destination"> 
 		<ul>
+			
+			<li>${destination.id}</li>
 			<li>${destination.name}</li>
 			<li>${destination.description}</li>
 			<li>${destination.websiteUrl}</li>
@@ -37,9 +41,6 @@
 		<input type="hidden" name="id" value="${user.id}" /> 
 		<input type="submit" value="Delete My Account" class="btn btn-primary" />
 	</form> <br>
-	
-	<a href="home.do">Home</a>
-
-	<a href="logout.do">Log Out</a>
+<jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>

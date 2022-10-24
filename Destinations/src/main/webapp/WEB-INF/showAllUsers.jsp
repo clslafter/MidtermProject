@@ -6,8 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>All Users</title>
+<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
 <H1>List of all Users</H1>
 
 Current Users:
@@ -47,5 +49,6 @@ Current Users:
 			</tbody>
 		</c:forEach>
 	</table>
+	<jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>
