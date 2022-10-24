@@ -562,7 +562,7 @@ START TRANSACTION;
 USE `destinationsdb`;
 INSERT INTO `feature` (`id`, `name`, `description`) VALUES (1, 'Handicapped Parking', 'reserved, close-in parking for those with appropriate placards or plates');
 INSERT INTO `feature` (`id`, `name`, `description`) VALUES (2, 'Restrooms', NULL);
-INSERT INTO `feature` (`id`, `name`, `description`) VALUES (DEFAULT, NULL, NULL);
+INSERT INTO `feature` (`id`, `name`, `description`) VALUES (3, 'Air Conditioning', NULL);
 
 COMMIT;
 
@@ -582,6 +582,8 @@ INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (1, 5)
 INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (2, 5);
 INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (1, 6);
 INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (2, 6);
+INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (3, 4);
+INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (3, 5);
 
 COMMIT;
 
@@ -596,6 +598,8 @@ INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (2, 'Veteran', '
 INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (3, 'Senior', '65 and over');
 INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (4, 'Adult', NULL);
 INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (5, 'Child', NULL);
+INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (6, 'Carload', NULL);
+INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (7, 'Motorcycle ', NULL);
 
 COMMIT;
 
@@ -608,6 +612,10 @@ USE `destinationsdb`;
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (1, 49.99, 3, 4, 1, NULL);
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (2, 154.00, 2, 4, 2, NULL);
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (3, 8.00, 6, 4, 1, 'flat fee for all guests, National Park Passes do not apply');
+INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (4, 35.00, 1, 6, 1, NULL);
+INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (5, 20.00, 1, 4, 1, NULL);
+INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (6, NULL, 1 , 1, 1, 'For children 15 and under');
+INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (7, 30.00, 1, 7, 1, NULL);
 
 COMMIT;
 
