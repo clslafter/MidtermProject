@@ -342,7 +342,7 @@ DROP TABLE IF EXISTS `pricing_type` ;
 CREATE TABLE IF NOT EXISTS `pricing_type` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
-  `description` VARCHAR(1000) NULL,
+  `description` VARCHAR(200) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -545,12 +545,15 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `destinationsdb`;
-INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (1, 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.britannica.com%2Fplace%2FGrand-Canyon-National-Park&psig=AOvVaw1jfHWlh84MCffrFsGkwuCW&ust=1666404017001000&source=images&cd=vfe&ved=0CAkQjRxqFwoTCOD0tvCc8PoCFQAAAAAdAAAAABAD', 'This is the Grand Canyon', NULL, 1, 1);
+INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (1, 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.britannica.com%2Fplace%2FGrand-Canyon-National-Park&psig=AOvVaw1jfHWlh84MCffrFsGkwuCW&ust=1666404017001000&source=images&cd=vfe&ved=0CAkQjRxqFwoTCOD0tvCc8PoCFQAAAAAdAAAAABAD', 'This is the Grand Canyon', '2022-10-23- 12:00:00', 1, 1);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (2, 'https://content.r9cdn.net/rimg/dimg/4c/ac/7e6077e1-city-45618-165ce416a23.jpg?crop=true&width=1020&height=498', 'Check out this llama', NULL, 2, 2);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (3, 'https://media.9news.com/assets/KUSA/images/e4c5b3a9-cd33-4e3c-92ca-7d953c78b300/e4c5b3a9-cd33-4e3c-92ca-7d953c78b300_1140x641.jpg', 'The waterpark is a lot of fun!', NULL, 3, 2);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (4, 'https://media.9news.com/assets/KUSA/images/699a150f-eb1f-47ef-a5ff-84210d8f25c1/699a150f-eb1f-47ef-a5ff-84210d8f25c1_1140x641.jpg', 'Wee!', NULL, 3, 2);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (5, 'https://gray-kktv-prod.cdn.arcpublishing.com/resizer/01MD7WB3VRaDDHaSoV-CbKlb7wc=/1200x675/smart/filters:quality(85)/cloudfront-us-east-1.images.arcpublishing.com/gray/3DROCPT4FNHUZJSKPJ737PTMKM.jpg', 'Tables with a view.', NULL, 4, 2);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (6, 'https://www.femalefoodie.com/wp-content/uploads/2018/05/franklin-bbq-7.jpg', 'Sample plate', NULL, 5, 5);
+INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (7, 'https://d3qvqlc701gzhm.cloudfront.net/full/ce17039904255c80698351a2ffaefa9939f2e3092ca2ef980f09553cceb41c66.jpg', 'The Colorado River', '2022-10-24 12:45:00', 1, 5);
+INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (8, 'https://d3qvqlc701gzhm.cloudfront.net/full/e86f403fa75b4eaf902c1a292abcc3b173ad6889d62e6013bac82c1fa57bc025.jpg', 'What an overlook!', '2022-10-24 12:46:00', 1, 4);
+INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (9, 'https://d3qvqlc701gzhm.cloudfront.net/full/dddaccbbd2500a39a67c43b20f706ab97cd74a94ff3d8c420b7ddba068623b90.jpg', 'Beautiful!!!', '2022-10-24 12:47:00', 1, 3);
 
 COMMIT;
 
