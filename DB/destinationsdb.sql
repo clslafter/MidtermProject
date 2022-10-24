@@ -521,10 +521,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `destinationsdb`;
-INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (1, 'This is a Review Comment - Thanks for the review of the Grand Canyon.  I can\'t wait to go there.', '2022-10-20 14:01:30', 2, NULL, 1, 1, 1);
-INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (2, 'This is a Reply to Review Comment, lots of words', '2022-10-20 14:05:00', 1, 1, 1, 1, 1);
-INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (3, 'This ia a review comment: Were you surprised that it was hot?', NULL, 5, NULL, 1, 2, 1);
-INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (DEFAULT, 'This is a reply to review comment:  No, I just didn\'t think it would be as hot as it was.', NULL, 2, 3, 1, 2, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (1, '#1 This is a Review Comment - Thanks for the review of the Grand Canyon.  I can\'t wait to go there.', '2022-10-20 14:01:30', 2, NULL, 1, 1, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (2, '#2 This is a Reply to Review Comment #1, lots of words', '2022-10-20 14:05:00', 1, 1, 1, 1, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (3, '#3 This ia a review comment: Were you surprised that it was hot?', NULL, 5, NULL, 1, 2, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (4, '#4 This is a reply to review comment #3:  No, I just didn\'t think it would be as hot as it was.', NULL, 2, 3, 1, 2, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (5, '#5 This is a Reply to Review Comment #1', NULL, 3, 1, 1, 1, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (6, '#6 This is a Reply to Reply #2', NULL, 4, 2, 1, 1, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (7, '#7 This is a Reply to Reply #6', NULL, 1, 6, 1, 1, 1);
 
 COMMIT;
 
@@ -545,7 +548,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `destinationsdb`;
-INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (1, 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.britannica.com%2Fplace%2FGrand-Canyon-National-Park&psig=AOvVaw1jfHWlh84MCffrFsGkwuCW&ust=1666404017001000&source=images&cd=vfe&ved=0CAkQjRxqFwoTCOD0tvCc8PoCFQAAAAAdAAAAABAD', 'This is the Grand Canyon', '2022-10-23- 12:00:00', 1, 1);
+INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (1, 'https://cdn.britannica.com/86/94286-050-B15C8449/Moonrise-mesa-Grand-Canyon-National-Park-Arizona.jpg', 'This is the Grand Canyon', '2022-10-23- 12:00:00', 1, 1);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (2, 'https://content.r9cdn.net/rimg/dimg/4c/ac/7e6077e1-city-45618-165ce416a23.jpg?crop=true&width=1020&height=498', 'Check out this llama', NULL, 2, 2);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (3, 'https://media.9news.com/assets/KUSA/images/e4c5b3a9-cd33-4e3c-92ca-7d953c78b300/e4c5b3a9-cd33-4e3c-92ca-7d953c78b300_1140x641.jpg', 'The waterpark is a lot of fun!', NULL, 3, 2);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (4, 'https://media.9news.com/assets/KUSA/images/699a150f-eb1f-47ef-a5ff-84210d8f25c1/699a150f-eb1f-47ef-a5ff-84210d8f25c1_1140x641.jpg', 'Wee!', NULL, 3, 2);
