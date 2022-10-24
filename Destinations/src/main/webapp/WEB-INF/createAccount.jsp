@@ -5,8 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Create an account</title>
+<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
 
 <H1>Create an Account</H1>
 
@@ -31,5 +33,6 @@
  		<input type="submit" value="Create Account">
 
 	</form>
+	<jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>

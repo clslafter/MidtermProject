@@ -6,13 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Home</title>
+<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
 <jsp:include page="navbar.jsp" />
 <H1>Internal Home Page</H1>
+<H1>Hello, ${user.firstName}!</H1>
 
 <!-- list of all destinations -->
-
 
 Current Destinations:
 	<c:forEach var="destination" items="${destinations}">
@@ -24,6 +25,6 @@ Current Destinations:
 <a href="createDestination.do">Create a new destination</a>
 
 
-
+<jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>

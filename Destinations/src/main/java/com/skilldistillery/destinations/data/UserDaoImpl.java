@@ -33,7 +33,7 @@ public class UserDaoImpl implements UserDAO {
 	public User getUserByUserNameAndPassword(String userName, String password) {
 		User user = null;
 		System.out.println(userName);
-		String queryString = "SELECT u from User u WHERE u.username = :userName";
+		String queryString = "SELECT u from User u JOIN FETCH u.destinations WHERE u.username = :userName";
 		user = em.createQuery(queryString, User.class).setParameter("userName", userName).getSingleResult();
 
 		if (user.getPassword().equals(password)) {
@@ -64,17 +64,19 @@ public class UserDaoImpl implements UserDAO {
 			managed.setEmail(user.getEmail());
 			managed.setUsername(user.getUsername());
 			managed.setPassword(user.getPassword());
+			managed.setBio(user.getBio());
+			
 		}
 
 		return managed;
 	}
-	
-	@Override 
+
+	@Override
 	public Address getAddressIdByUserId(int id) {
-		
+
 		String queryString = "SELECT a FROM Address a JOIN User u ON u.address.id = a.id WHERE u.id = :id";
 		Address address = em.createQuery(queryString, Address.class).setParameter("id", id).getSingleResult();
-	
+
 		return address;
 	}
 
@@ -90,5 +92,25 @@ public class UserDaoImpl implements UserDAO {
 		}
 
 		return managed;
+	}
+
+	@Override
+	public User disableUserAccount(int id) {
+		User disabled = em.find(User.class, id);
+		if (disabled != null && disabled.getEnabled() == true) {
+			disabled.setEnabled(false);
+		}
+		return disabled;
+	}
+	
+	@Override
+	public User adminUpdateUserById(int id, User user) {
+		User managed = em.find(User.class, id);
+		if (managed != null) {
+			managed.setEnabled(user.getEnabled());
+		}
+		
+		return managed;
+		
 	}
 }

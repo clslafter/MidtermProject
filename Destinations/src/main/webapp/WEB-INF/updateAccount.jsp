@@ -6,7 +6,9 @@
 <meta charset="UTF-8">
 <title>Update User</title>
 </head>
+<jsp:include page="bootstrapHead.jsp" />
 <body>
+<jsp:include page="navbar.jsp" />
 <h1>Update ${user.username}'s profile</h1>
 
 	<form action="updateUserInfo.do" method="POST">
@@ -28,8 +30,13 @@
  		<label for="password">Password: </label>
   		<input type="text" id="password" name="password" value="${user.password}"><br>
   		
-  		<h2>Address(optional)</h2>
+  		<h2>Bio</h2>
   		
+  		
+		<textarea name="bio" class="form-control" rows="3" placeholder="${user.bio}"></textarea>
+		
+  		
+  		<h2>Address(optional)</h2>
   		
   		<input name="id" value="${address.id}" type="hidden" />
   		
@@ -55,6 +62,6 @@
 	</form>
   		
   	<!-- 	lots more fields go here -->
-
+<jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>
