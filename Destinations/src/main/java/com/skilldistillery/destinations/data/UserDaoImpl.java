@@ -65,6 +65,7 @@ public class UserDaoImpl implements UserDAO {
 			managed.setUsername(user.getUsername());
 			managed.setPassword(user.getPassword());
 			managed.setBio(user.getBio());
+			
 		}
 
 		return managed;
@@ -100,5 +101,16 @@ public class UserDaoImpl implements UserDAO {
 			disabled.setEnabled(false);
 		}
 		return disabled;
+	}
+	
+	@Override
+	public User adminUpdateUserById(int id, User user) {
+		User managed = em.find(User.class, id);
+		if (managed != null) {
+			managed.setEnabled(user.getEnabled());
+		}
+		
+		return managed;
+		
 	}
 }

@@ -13,7 +13,6 @@
 
 <!-- list of all destinations -->
 
-
 Current Destinations:
 	<c:forEach var="destination" items="${destinations}">
 	<li><a href="showDestination.do?did=${destination.id}">${destination.name}</a></li>

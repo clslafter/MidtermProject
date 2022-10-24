@@ -16,7 +16,17 @@
 		<a href="showAllUsers.do">Show all users</a><br>
 	</c:if>
 
-
+	<h1>Manage My Destinations: </h1>
+	<c:forEach items="${user.destinations}" var="destination"> 
+		<ul>
+			<li>${destination.name}</li>
+			<li>${destination.description}</li>
+			<li>${destination.websiteUrl}</li>
+			<li>${destination.imageUrl}</li>
+			<li>${destination.createDate}</li>
+			<li>${destination.lastEdited}</li>
+		</ul>
+	</c:forEach>
 
 	<form action="updateAccount.do" action="POST">
 		<input type="hidden" name="id" value="${user.id}" /> 

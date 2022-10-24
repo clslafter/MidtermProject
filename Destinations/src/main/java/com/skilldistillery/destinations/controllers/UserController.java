@@ -55,16 +55,16 @@ public class UserController {
 		return "showUserProfile";
 	}
 
-	@RequestMapping(path = { "showAllUsers.do" })
-	public String showAllUsers(Model model) {
+	@RequestMapping(path = "showAllUsers.do")
+	public String showAllUsers(Model model, HttpSession session) {
+		User user = this.isUserInSession(session);
+		if (user == null) {
+			return "welcome";
+		}
 		model.addAttribute("users", userDao.findAllUsers());
 		return "showAllUsers";
 	}
 
-//	@RequestMapping(path = "loginPage.do")
-//	public String login(Model model) {
-//		return "login";
-//	}
 
 	@RequestMapping(path = "login.do", method = RequestMethod.GET)
 	public ModelAndView getLogin(HttpSession session) {
@@ -93,7 +93,7 @@ public class UserController {
 			if (user.getEnabled() == true) {
 				session.setAttribute("user", user);
 				mv.addObject("user", user);
-				mv.setViewName("home");
+				mv.setViewName("showUserProfile");
 				return mv;
 			} else {
 				mv.addObject("userError",
@@ -191,5 +191,13 @@ public class UserController {
 		mv.setViewName("redirect:logout.do");
 		return mv;
 
+	}
+	
+	@RequestMapping(path = "adminEditEnable.do", method = RequestMethod.GET)
+	public ModelAndView adminUpdateUser(int id, User user) {
+		ModelAndView mv = new ModelAndView();
+		user = userDao.adminUpdateUserById(id, user);
+		mv.setViewName("redirect:showAllUsers.do");
+		return mv;
 	}
 }

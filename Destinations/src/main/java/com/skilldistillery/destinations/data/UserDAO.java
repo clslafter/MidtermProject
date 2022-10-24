@@ -23,4 +23,6 @@ public interface UserDAO {
 	Address getAddressIdByUserId(int id);
 	
 	User disableUserAccount(int id);
+	
+	User adminUpdateUserById(int id, User user);
 }
