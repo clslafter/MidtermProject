@@ -4,7 +4,11 @@ import java.util.List;
 
 import com.skilldistillery.destinations.entities.Address;
 import com.skilldistillery.destinations.entities.Category;
+import com.skilldistillery.destinations.entities.Currency;
 import com.skilldistillery.destinations.entities.Destination;
+import com.skilldistillery.destinations.entities.Feature;
+import com.skilldistillery.destinations.entities.Price;
+import com.skilldistillery.destinations.entities.PricingType;
 
 public interface DestinationDAO {
 	Destination findDestinationById(int destinatonId);
@@ -20,5 +24,15 @@ public interface DestinationDAO {
 	public Address updateAddressInDestination(int addressId, Address address);
 	
 	List <Category> findCategoriesByDestinationId(int destinationId);
+	
+	List <Feature> findFeaturesByDestinationId(int destinationId);
+	
+	List <Price> findPricesByDestinationId(int destinationId);
+	
+	PricingType findPricingTypeByPriceId(int priceId);
+	
+	Currency findCurrencyByPriceId(int priceId);
+	
+
 
 }

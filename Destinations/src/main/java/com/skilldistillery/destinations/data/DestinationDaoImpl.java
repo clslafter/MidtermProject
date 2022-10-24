@@ -10,7 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.destinations.entities.Address;
 import com.skilldistillery.destinations.entities.Category;
+import com.skilldistillery.destinations.entities.Currency;
 import com.skilldistillery.destinations.entities.Destination;
+import com.skilldistillery.destinations.entities.Feature;
+import com.skilldistillery.destinations.entities.Price;
+import com.skilldistillery.destinations.entities.PricingType;
 import com.skilldistillery.destinations.entities.User;
 
 
@@ -27,6 +31,17 @@ public class DestinationDaoImpl implements DestinationDAO {
 		Destination dest = em.find(Destination.class, destinatonId);
 				
 		dest.setCategories(findCategoriesByDestinationId(destinatonId));	
+		dest.setFeatures(findFeaturesByDestinationId(destinatonId));	
+		
+		List<Price> prices = findPricesByDestinationId(destinatonId);
+		
+		dest.setPrices(prices);	
+		
+		for (Price price : prices) {
+			price.setPricingType(findPricingTypeByPriceId(price.getId()));
+			price.setCurrency(findCurrencyByPriceId(price.getId()));
+		}
+		
 		
 		return dest;
 	}
@@ -76,5 +91,35 @@ public class DestinationDaoImpl implements DestinationDAO {
 		List <Category> categories = em.createQuery(queryString, Category.class).setParameter("id", destinationId).getResultList();
 		
 		return categories;
+	}
+
+	@Override
+	public List<Feature> findFeaturesByDestinationId(int destinationId) {
+		String queryString = "SELECT feat FROM Feature feat JOIN feat.destinations dest WHERE dest.id = :id";
+		List <Feature> features = em.createQuery(queryString, Feature.class).setParameter("id", destinationId).getResultList();
+		
+		return features;
+	}
+
+	@Override
+	public List<Price> findPricesByDestinationId(int destinationId) {
+		String queryString = "SELECT pr FROM Price pr JOIN pr.destination dest WHERE dest.id = :id";
+		List <Price> prices = em.createQuery(queryString, Price.class).setParameter("id", destinationId).getResultList();
+		
+		return prices;
+	}
+
+	@Override
+	public PricingType findPricingTypeByPriceId(int priceId) {
+		String queryString = "SELECT pt FROM PricingType pt JOIN Price price ON price.pricingType.id = pt.id WHERE price.id = :id";
+		PricingType pricingType = em.createQuery(queryString, PricingType.class).setParameter("id", priceId).getSingleResult();
+		return pricingType;
+	}
+
+	@Override
+	public Currency findCurrencyByPriceId(int priceId) {
+		String queryString = "SELECT curr FROM Currency curr JOIN Price price ON price.currency.id = curr.id WHERE price.id = :id";
+		Currency currency = em.createQuery(queryString, Currency.class).setParameter("id", priceId).getSingleResult();
+		return currency;
 	}
 }
