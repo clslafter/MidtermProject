@@ -15,7 +15,7 @@
  		<input type="text" id="name" name="name" required><br>
  		
 		<label for="description">Description:</label>
- 		<input type="text" id="description" name="description" required><br>
+ 		<input type="text" id="description" name="description" ><br>
  		
 		<label for="websiteUrl">URL for web site:</label>
  		<input type="text" id="websiteUrl" name="websiteUrl"><br>
