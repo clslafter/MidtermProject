@@ -12,9 +12,12 @@ import com.skilldistillery.destinations.entities.Address;
 import com.skilldistillery.destinations.entities.Category;
 import com.skilldistillery.destinations.entities.Currency;
 import com.skilldistillery.destinations.entities.Destination;
+import com.skilldistillery.destinations.entities.DestinationImage;
 import com.skilldistillery.destinations.entities.Feature;
 import com.skilldistillery.destinations.entities.Price;
 import com.skilldistillery.destinations.entities.PricingType;
+import com.skilldistillery.destinations.entities.Review;
+import com.skilldistillery.destinations.entities.ReviewId;
 import com.skilldistillery.destinations.entities.User;
 
 
@@ -27,13 +30,13 @@ public class DestinationDaoImpl implements DestinationDAO {
 	private EntityManager em;
 
 	@Override
-	public Destination findDestinationById(int destinatonId) {
-		Destination dest = em.find(Destination.class, destinatonId);
+	public Destination findDestinationById(int destinationId) {
+		Destination dest = em.find(Destination.class, destinationId);
 				
-		dest.setCategories(findCategoriesByDestinationId(destinatonId));	
-		dest.setFeatures(findFeaturesByDestinationId(destinatonId));	
+		dest.setCategories(findCategoriesByDestinationId(destinationId));	
+		dest.setFeatures(findFeaturesByDestinationId(destinationId));	
 		
-		List<Price> prices = findPricesByDestinationId(destinatonId);
+		List<Price> prices = findPricesByDestinationId(destinationId);
 		
 		dest.setPrices(prices);	
 		
@@ -42,7 +45,21 @@ public class DestinationDaoImpl implements DestinationDAO {
 			price.setCurrency(findCurrencyByPriceId(price.getId()));
 		}
 		
+		List <DestinationImage> images = findImagesByDestinationId(destinationId);
+				
+		dest.setImages(images);
 		
+		for (DestinationImage destImage : images) {
+			destImage.setUser(findUserByDestinationImageId(destImage.getId()));
+		}
+		
+		dest.setUser(findUserByDestinationId(destinationId));	
+		 
+		List <Review> reviews = findReviewsByDestinationId(destinationId);
+	
+		dest.setReviews(reviews);
+		
+
 		return dest;
 	}
 
@@ -122,4 +139,36 @@ public class DestinationDaoImpl implements DestinationDAO {
 		Currency currency = em.createQuery(queryString, Currency.class).setParameter("id", priceId).getSingleResult();
 		return currency;
 	}
+
+	@Override
+	public List<DestinationImage> findImagesByDestinationId(int destinationId) {
+		String queryString = "SELECT di FROM DestinationImage di JOIN di.destination dest WHERE dest.id = :id";
+		List <DestinationImage> images = em.createQuery(queryString, DestinationImage.class).setParameter("id", destinationId).getResultList();
+		
+		return images;
+	}
+
+	@Override
+	public User findUserByDestinationImageId(int destinationImageId) {
+		String queryString = "SELECT user FROM User user JOIN DestinationImage di ON di.user.id = user.id WHERE di.id = :id";
+		User user = em.createQuery(queryString, User.class).setParameter("id", destinationImageId).getSingleResult();
+		return user;
+	}
+
+	@Override
+	public User findUserByDestinationId(int destinationId) {
+		String queryString = "SELECT user FROM User user JOIN Destination dest ON dest.user.id = user.id WHERE dest.id = :id";
+		User user = em.createQuery(queryString, User.class).setParameter("id", destinationId).getSingleResult();
+		return user;
+	}
+
+	@Override
+	public List<Review> findReviewsByDestinationId(int destinationId) {
+		String queryString = "SELECT rev FROM Review rev JOIN rev.destination dest WHERE dest.id = :id ORDER BY rev.reviewDate DESC";
+		List <Review> reviews = em.createQuery(queryString, Review.class).setParameter("id", destinationId).getResultList();
+		
+		return reviews;
+		
+	}
+
 }

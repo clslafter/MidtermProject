@@ -42,7 +42,8 @@ public class DestinationController {
 	public String showDestination(Integer did, Model model) {
 		model.addAttribute("destination", destinationDao.findDestinationById(did));
 //		model.addAttribute("categories", destinationDao.findCategoriesByDestinationId(did));
-		
+//		First, find singular review of destination created by the user who created the destination.
+//		If review.destination.user = review.user then list this one first
 		//Destination destination = destinationDao.findDestinationById(did);
 		return "showDestination";
 	}

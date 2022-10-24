@@ -11,6 +11,28 @@
 </head>
 <body>
 	<H1>${destination.name}</H1>
+	<p>
+		Created by ${destination.user.username}
+
+		<c:choose>
+			<c:when test="${empty destination.createDate}">
+
+			</c:when>
+			<c:otherwise>
+			on ${destination.createDate}<br>
+			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when test="${empty destination.lastEdited}">
+
+			</c:when>
+			<c:otherwise>
+			Last edited on ${destination.lastEdited}
+	
+	</p>
+	</c:otherwise>
+	</c:choose>
+
 
 	<c:choose>
 		<c:when test="${empty destination.description}">
@@ -125,7 +147,8 @@
 			<ul>
 				<lh>Prices</lh>
 				<c:forEach var="price" items="${destination.prices}">
-					<li>${price.pricingType.name}: ${price.amount} ${price.currency.name}</li>
+					<li>${price.pricingType.name}:${price.amount}
+						${price.currency.name}</li>
 					<c:choose>
 						<c:when test="${empty price.pricingType.description}">
 
@@ -152,6 +175,84 @@
 		</c:otherwise>
 	</c:choose>
 
+
+	<c:choose>
+		<c:when test="${empty destination.images}">
+			<p>There are no extra images entered for this destination</p>
+		</c:when>
+		<c:otherwise>
+			<ul>
+				<lh>More Images</lh>
+				<c:forEach var="image" items="${destination.images}">
+					<li><img src="${image.imageUrl}" height="100" width="130" /></li>
+					<c:choose>
+						<c:when test="${empty image.caption}">
+
+						</c:when>
+						<c:otherwise>
+							<ul>
+								<li>${image.caption}</li>
+							</ul>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${empty image.imageDate}">
+
+						</c:when>
+						<c:otherwise>
+							<ul>
+								<li>Posted by ${image.user.username}</li>
+								<li>${image.imageDate}</li>
+							</ul>
+						</c:otherwise>
+					</c:choose>
+
+				</c:forEach>
+			</ul>
+		</c:otherwise>
+	</c:choose>
+
+	<c:choose>
+		<c:when test="${empty destination.reviews}">
+			<p>There are no reviews entered for this destination</p>
+		</c:when>
+		<c:otherwise>
+
+			<ul>
+				<lh>Destination Author's Review</lh>
+				<c:forEach var="review" items="${destination.reviews}">
+					
+						<c:if test="${review.destination.user == review.user}">
+							<li>By ${review.user.username} on ${review.reviewDate}</li>
+							<ul>
+								<li>${review.comment}</li>
+							</ul>
+						</c:if>
+				</c:forEach>
+			</ul>
+		</c:otherwise>
+	</c:choose>
+
+
+	<c:choose>
+		<c:when test="${empty destination.reviews}">
+			<p>There are no reviews entered for this destination</p>
+		</c:when>
+		<c:otherwise>
+
+			<ul>
+				<lh>Reviews</lh>
+				<c:forEach var="review" items="${destination.reviews}">
+				<c:if test="${review.destination.user != review.user}">
+					<li>By ${review.user.username} on ${review.reviewDate}</li>
+					<ul>
+						<li>${review.comment}</li>
+					</ul>
+					</c:if>
+				</c:forEach>
+			</ul>
+		</c:otherwise>
+	</c:choose>
 
 
 	!!Restrict access to this link later!!
