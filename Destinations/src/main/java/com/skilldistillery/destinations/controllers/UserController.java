@@ -1,5 +1,7 @@
 package com.skilldistillery.destinations.controllers;
 
+import java.time.LocalDateTime;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,7 +93,7 @@ public class UserController {
 			if (user.getEnabled() == true) {
 				session.setAttribute("user", user);
 				mv.addObject("user", user);
-				mv.setViewName("showUserProfile");
+				mv.setViewName("home");
 				return mv;
 			} else {
 				mv.addObject("userError",
@@ -126,6 +128,8 @@ public class UserController {
 		user.setEnabled(true);
 
 		user.setRole("normal");
+		
+		user.setCreatedDate(LocalDateTime.now());
 
 		user = userDao.createUserAccount(user);
 		redir.addFlashAttribute("user", user);

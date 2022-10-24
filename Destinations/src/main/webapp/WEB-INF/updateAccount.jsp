@@ -28,8 +28,13 @@
  		<label for="password">Password: </label>
   		<input type="text" id="password" name="password" value="${user.password}"><br>
   		
-  		<h2>Address(optional)</h2>
+  		<h2>Bio</h2>
   		
+  		
+		<textarea name="bio" class="form-control" rows="3" placeholder="${user.bio}"></textarea>
+		
+  		
+  		<h2>Address(optional)</h2>
   		
   		<input name="id" value="${address.id}" type="hidden" />
   		
