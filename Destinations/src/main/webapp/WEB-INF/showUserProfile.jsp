@@ -10,7 +10,7 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp" />
-<H1>Welcome, ${user.firstName}</H1>
+<H1>${user.firstName}'s Profile</H1>
 
 <!-- more user profile fields go here -->
 
@@ -19,18 +19,28 @@
 	</c:if>
 
 	<h1>Manage My Destinations: </h1>
-	<c:forEach items="${user.destinations}" var="destination"> 
-		<ul>
-			
-			<li>${destination.id}</li>
-			<li>${destination.name}</li>
-			<li>${destination.description}</li>
-			<li>${destination.websiteUrl}</li>
-			<li>${destination.imageUrl}</li>
-			<li>${destination.createDate}</li>
-			<li>${destination.lastEdited}</li>
-		</ul>
-	</c:forEach>
+	<div class ="col">
+		<div class = "row row-cols-1 row-cols-md-3 g-4">
+			<c:forEach items="${user.destinations}" var="destination"> 
+				<div class="card" style="width: 18rem;">
+		 			<img src="${destination.imageUrl}" class="card-img-top" alt="...">
+		  			<div class="card-body">
+		    			<h5 class="card-title">${destination.name}</h5>
+		    			<p class="card-text">${destination.description}</p>
+		  			</div>
+		  			<ul class="list-group list-group-flush">
+		   				<li class="list-group-item">Date Created: ${destination.createDate}</li>
+		    			<li class="list-group-item">Last Edited: ${destination.lastEdited}</li>
+		    			<li class="list-group-item">Enabled: ${destination.enabled}</li>
+		  			</ul>
+		  			<div class="card-body">
+		    			<a href="updateDestination.do?did=${destination.id}" class="card-link">Edit</a>
+		    			<a href="showDestination.do?did=${destination.id}" class="card-link">View on Home Page</a>
+		  			</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
 
 	<form action="updateAccount.do" action="POST">
 		<input type="hidden" name="id" value="${user.id}" /> 

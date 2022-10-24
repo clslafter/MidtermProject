@@ -33,7 +33,7 @@ public class UserDaoImpl implements UserDAO {
 	public User getUserByUserNameAndPassword(String userName, String password) {
 		User user = null;
 		System.out.println(userName);
-		String queryString = "SELECT u from User u WHERE u.username = :userName";
+		String queryString = "SELECT u from User u JOIN FETCH u.destinations WHERE u.username = :userName";
 		user = em.createQuery(queryString, User.class).setParameter("userName", userName).getSingleResult();
 
 		if (user.getPassword().equals(password)) {

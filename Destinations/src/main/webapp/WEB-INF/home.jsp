@@ -11,6 +11,7 @@
 <body>
 <jsp:include page="navbar.jsp" />
 <H1>Internal Home Page</H1>
+<H1>Hello, ${user.firstName}!</H1>
 
 <!-- list of all destinations -->
 

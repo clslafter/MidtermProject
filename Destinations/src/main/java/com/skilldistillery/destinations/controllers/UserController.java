@@ -93,7 +93,7 @@ public class UserController {
 			if (user.getEnabled() == true) {
 				session.setAttribute("user", user);
 				mv.addObject("user", user);
-				mv.setViewName("showUserProfile");
+				mv.setViewName("redirect:home.do");
 				return mv;
 			} else {
 				mv.addObject("userError",
