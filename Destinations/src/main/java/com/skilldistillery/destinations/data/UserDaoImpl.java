@@ -68,13 +68,13 @@ public class UserDaoImpl implements UserDAO {
 
 		return managed;
 	}
-	
-	@Override 
+
+	@Override
 	public Address getAddressIdByUserId(int id) {
-		
+
 		String queryString = "SELECT a FROM Address a JOIN User u ON u.address.id = a.id WHERE u.id = :id";
 		Address address = em.createQuery(queryString, Address.class).setParameter("id", id).getSingleResult();
-	
+
 		return address;
 	}
 
@@ -90,5 +90,14 @@ public class UserDaoImpl implements UserDAO {
 		}
 
 		return managed;
+	}
+
+	@Override
+	public User disableUserAccount(int id) {
+		User disabled = em.find(User.class, id);
+		if (disabled != null && disabled.getEnabled() == true) {
+			disabled.setEnabled(false);
+		}
+		return disabled;
 	}
 }

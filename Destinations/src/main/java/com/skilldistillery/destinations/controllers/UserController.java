@@ -69,6 +69,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		if (session.getAttribute("user") != null) {
 			mv.setViewName("welcome");
+			return mv;
 		}
 		mv.setViewName("login");
 		return mv;
@@ -157,5 +158,22 @@ public class UserController {
 		return mv;
 	}
 	
-
+	@RequestMapping(path="deleteAccount.do", method = RequestMethod.GET)
+	public ModelAndView deleteDetails(int id) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", userDao.findUserById(id));
+		mv.setViewName("deleteAccount");
+		return mv;
+	}
+	
+	@RequestMapping(path="accountDeleted.do", method = RequestMethod.GET)
+	public ModelAndView accountDeleted(int id, RedirectAttributes redir) {
+		ModelAndView mv = new ModelAndView();
+		User disabled = userDao.disableUserAccount(id);
+		
+		redir.addFlashAttribute("user", disabled);
+		mv.setViewName("redirect:logout.do");
+		return mv;
+		
+	}
 }

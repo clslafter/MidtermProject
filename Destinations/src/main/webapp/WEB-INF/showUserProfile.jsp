@@ -12,19 +12,24 @@
 
 <!-- more user profile fields go here -->
 
-<c:if test="${isAdmin}">
-<a href="showAllUsers.do">Show all users</a><br>
-</c:if>
+	<c:if test="${isAdmin}">
+		<a href="showAllUsers.do">Show all users</a><br>
+	</c:if>
 
 
 
-<form action="updateAccount.do" action="POST">
-<input type="hidden" name="id" value="${user.id}" /> <input
-	type="submit" value="Edit My Profile" class="btn btn-primary" />
+	<form action="updateAccount.do" action="POST">
+		<input type="hidden" name="id" value="${user.id}" /> 
+		<input type="submit" value="Edit My Profile" class="btn btn-primary" />
 	</form> <br>
+	
+	<form action="deleteAccount.do" action="POST">
+		<input type="hidden" name="id" value="${user.id}" /> 
+		<input type="submit" value="Delete My Account" class="btn btn-primary" />
+	</form> <br>
+	
+	<a href="home.do">Home</a>
 
-<a href="home.do">Home</a>
-
-<a href="logout.do">Log Out</a>
+	<a href="logout.do">Log Out</a>
 </body>
 </html>
