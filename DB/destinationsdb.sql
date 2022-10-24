@@ -342,7 +342,7 @@ DROP TABLE IF EXISTS `pricing_type` ;
 CREATE TABLE IF NOT EXISTS `pricing_type` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
-  `description` VARCHAR(200) NULL,
+  `description` VARCHAR(1000) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -598,8 +598,8 @@ INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (2, 'Veteran', '
 INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (3, 'Senior', '65 and over');
 INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (4, 'Adult', NULL);
 INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (5, 'Child', NULL);
-INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (6, 'Carload', NULL);
-INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (7, 'Motorcycle ', NULL);
+INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (6, 'Carload', 'Admits one single, private, non-commercial vehicle and all its passengers, up to a 15 person passenger van.');
+INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (7, 'Motorcycle ', 'Admits one single, private, non-commercial motorcycle and its passenger(s).');
 
 COMMIT;
 
