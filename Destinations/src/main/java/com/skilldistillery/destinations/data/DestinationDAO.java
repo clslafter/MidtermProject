@@ -3,6 +3,7 @@ package com.skilldistillery.destinations.data;
 import java.util.List;
 
 import com.skilldistillery.destinations.entities.Address;
+import com.skilldistillery.destinations.entities.Category;
 import com.skilldistillery.destinations.entities.Destination;
 
 public interface DestinationDAO {
@@ -17,5 +18,7 @@ public interface DestinationDAO {
 	public Address getAddressIdByDestinationId(int id);
 	
 	public Address updateAddressInDestination(int addressId, Address address);
+	
+	List <Category> findCategoriesByDestinationId(int destinationId);
 
 }

@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.destinations.entities.Address;
+import com.skilldistillery.destinations.entities.Category;
 import com.skilldistillery.destinations.entities.Destination;
 import com.skilldistillery.destinations.entities.User;
 
@@ -23,7 +24,11 @@ public class DestinationDaoImpl implements DestinationDAO {
 
 	@Override
 	public Destination findDestinationById(int destinatonId) {
-		return em.find(Destination.class, destinatonId);
+		Destination dest = em.find(Destination.class, destinatonId);
+				
+		dest.setCategories(findCategoriesByDestinationId(destinatonId));	
+		
+		return dest;
 	}
 
 	@Override
@@ -63,5 +68,13 @@ public class DestinationDaoImpl implements DestinationDAO {
 		}
 
 		return managed;
+	}
+
+	@Override
+	public List<Category> findCategoriesByDestinationId(int destinationId) {
+		String queryString = "SELECT cat FROM Category cat JOIN cat.destinations dest WHERE dest.id = :id";
+		List <Category> categories = em.createQuery(queryString, Category.class).setParameter("id", destinationId).getResultList();
+		
+		return categories;
 	}
 }

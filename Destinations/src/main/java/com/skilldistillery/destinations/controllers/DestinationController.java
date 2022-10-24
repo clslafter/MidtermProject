@@ -41,6 +41,8 @@ public class DestinationController {
 	@RequestMapping(path = "showDestination.do")
 	public String showDestination(Integer did, Model model) {
 		model.addAttribute("destination", destinationDao.findDestinationById(did));
+//		model.addAttribute("categories", destinationDao.findCategoriesByDestinationId(did));
+		
 		//Destination destination = destinationDao.findDestinationById(did);
 		return "showDestination";
 	}
