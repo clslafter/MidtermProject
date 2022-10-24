@@ -28,11 +28,7 @@
 			</c:when>
 			<c:otherwise>
 			Last edited on ${destination.lastEdited}
-	
-	
-	
-	
-	
+
 	</p>
 	</c:otherwise>
 	</c:choose>
@@ -235,7 +231,7 @@
 								<c:if test="${empty reviewComments.reviewComments}">
 									<ul>
 										<li>${reviewComments.reviewComment.comment}</li>
-									
+										
 										<c:if test="${!empty reviewComments.comment}">
 											<ul>
 												<li>${reviewComments.comment}</li>
