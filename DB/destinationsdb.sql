@@ -545,12 +545,15 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `destinationsdb`;
-INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (1, 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.britannica.com%2Fplace%2FGrand-Canyon-National-Park&psig=AOvVaw1jfHWlh84MCffrFsGkwuCW&ust=1666404017001000&source=images&cd=vfe&ved=0CAkQjRxqFwoTCOD0tvCc8PoCFQAAAAAdAAAAABAD', 'This is the Grand Canyon', NULL, 1, 1);
+INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (1, 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.britannica.com%2Fplace%2FGrand-Canyon-National-Park&psig=AOvVaw1jfHWlh84MCffrFsGkwuCW&ust=1666404017001000&source=images&cd=vfe&ved=0CAkQjRxqFwoTCOD0tvCc8PoCFQAAAAAdAAAAABAD', 'This is the Grand Canyon', '2022-10-23- 12:00:00', 1, 1);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (2, 'https://content.r9cdn.net/rimg/dimg/4c/ac/7e6077e1-city-45618-165ce416a23.jpg?crop=true&width=1020&height=498', 'Check out this llama', NULL, 2, 2);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (3, 'https://media.9news.com/assets/KUSA/images/e4c5b3a9-cd33-4e3c-92ca-7d953c78b300/e4c5b3a9-cd33-4e3c-92ca-7d953c78b300_1140x641.jpg', 'The waterpark is a lot of fun!', NULL, 3, 2);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (4, 'https://media.9news.com/assets/KUSA/images/699a150f-eb1f-47ef-a5ff-84210d8f25c1/699a150f-eb1f-47ef-a5ff-84210d8f25c1_1140x641.jpg', 'Wee!', NULL, 3, 2);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (5, 'https://gray-kktv-prod.cdn.arcpublishing.com/resizer/01MD7WB3VRaDDHaSoV-CbKlb7wc=/1200x675/smart/filters:quality(85)/cloudfront-us-east-1.images.arcpublishing.com/gray/3DROCPT4FNHUZJSKPJ737PTMKM.jpg', 'Tables with a view.', NULL, 4, 2);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (6, 'https://www.femalefoodie.com/wp-content/uploads/2018/05/franklin-bbq-7.jpg', 'Sample plate', NULL, 5, 5);
+INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (7, 'https://d3qvqlc701gzhm.cloudfront.net/full/ce17039904255c80698351a2ffaefa9939f2e3092ca2ef980f09553cceb41c66.jpg', 'The Colorado River', '2022-10-24 12:45:00', 1, 5);
+INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (8, 'https://d3qvqlc701gzhm.cloudfront.net/full/e86f403fa75b4eaf902c1a292abcc3b173ad6889d62e6013bac82c1fa57bc025.jpg', 'What an overlook!', '2022-10-24 12:46:00', 1, 4);
+INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (9, 'https://d3qvqlc701gzhm.cloudfront.net/full/dddaccbbd2500a39a67c43b20f706ab97cd74a94ff3d8c420b7ddba068623b90.jpg', 'Beautiful!!!', '2022-10-24 12:47:00', 1, 3);
 
 COMMIT;
 
@@ -562,7 +565,7 @@ START TRANSACTION;
 USE `destinationsdb`;
 INSERT INTO `feature` (`id`, `name`, `description`) VALUES (1, 'Handicapped Parking', 'reserved, close-in parking for those with appropriate placards or plates');
 INSERT INTO `feature` (`id`, `name`, `description`) VALUES (2, 'Restrooms', NULL);
-INSERT INTO `feature` (`id`, `name`, `description`) VALUES (DEFAULT, NULL, NULL);
+INSERT INTO `feature` (`id`, `name`, `description`) VALUES (3, 'Air Conditioning', NULL);
 
 COMMIT;
 
@@ -582,6 +585,8 @@ INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (1, 5)
 INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (2, 5);
 INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (1, 6);
 INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (2, 6);
+INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (3, 4);
+INSERT INTO `feature_destination` (`feature_id`, `destination_id`) VALUES (3, 5);
 
 COMMIT;
 
@@ -596,6 +601,8 @@ INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (2, 'Veteran', '
 INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (3, 'Senior', '65 and over');
 INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (4, 'Adult', NULL);
 INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (5, 'Child', NULL);
+INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (6, 'Carload', 'Admits one single, private, non-commercial vehicle and all its passengers, up to a 15 person passenger van.');
+INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (7, 'Motorcycle ', 'Admits one single, private, non-commercial motorcycle and its passenger(s).');
 
 COMMIT;
 
@@ -608,6 +615,10 @@ USE `destinationsdb`;
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (1, 49.99, 3, 4, 1, NULL);
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (2, 154.00, 2, 4, 2, NULL);
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (3, 8.00, 6, 4, 1, 'flat fee for all guests, National Park Passes do not apply');
+INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (4, 35.00, 1, 6, 1, NULL);
+INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (5, 20.00, 1, 4, 1, NULL);
+INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (6, NULL, 1 , 1, 1, 'For children 15 and under');
+INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (7, 30.00, 1, 7, 1, NULL);
 
 COMMIT;
 
