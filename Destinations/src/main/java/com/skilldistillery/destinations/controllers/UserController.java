@@ -19,15 +19,15 @@ public class UserController {
 
 	@Autowired
 	private UserDAO userDao;
-	
+
 	private User isUserInSession(HttpSession session) {
-		if(session.getAttribute("user") != null) {
-			return (User) session.getAttribute("user");			
-		}else {
+		if (session.getAttribute("user") != null) {
+			return (User) session.getAttribute("user");
+		} else {
 			return null;
 		}
 	}
-	
+
 	@RequestMapping(path = { "/", "welcome.do" })
 	public String welcome(Model model) {
 		model.addAttribute("SMOKETEST", userDao.findUserById(1));
@@ -43,7 +43,7 @@ public class UserController {
 	@RequestMapping(path = { "showUserProfile.do" })
 	public String showUserProfile(Model model, HttpSession session) {
 		User user = this.isUserInSession(session);
-		if(user == null) {
+		if (user == null) {
 			return "welcome";
 		}
 		boolean isAdmin = user.getRole().equals("admin");
@@ -67,9 +67,15 @@ public class UserController {
 	@RequestMapping(path = "login.do", method = RequestMethod.GET)
 	public ModelAndView getLogin(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		if (session.getAttribute("user") != null) {
-			mv.setViewName("welcome");
-			return mv;
+		User user = this.isUserInSession(session);
+		if (user != null) {
+			if (user.getEnabled() == true) {
+				mv.setViewName("welcome");
+				return mv;
+			} else {
+				mv.addObject("userError",
+						"This account: " + user.getUsername() + " is disabled, please contact an admin.");
+			}
 		}
 		mv.setViewName("login");
 		return mv;
@@ -82,9 +88,15 @@ public class UserController {
 		if (session.getAttribute("user") != null) {
 			mv.setViewName("welcome");
 		} else if (user != null) {
-			session.setAttribute("user", user);
-			mv.addObject("user", user);
-			mv.setViewName("showUserProfile");
+			if (user.getEnabled() == true) {
+				session.setAttribute("user", user);
+				mv.addObject("user", user);
+				mv.setViewName("showUserProfile");
+				return mv;
+			} else {
+				mv.addObject("userError",
+						"This account: " + user.getUsername() + " is disabled, please contact an admin.");
+			}
 		} else {
 			mv.setViewName("login");
 		}
@@ -108,13 +120,13 @@ public class UserController {
 	@RequestMapping(path = "createUserAccount.do", method = RequestMethod.POST)
 	public ModelAndView createUserAccount(User user, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
-		
+
 		user.setAddress(userDao.createUserAddress(new Address()));
-		
+
 		user.setEnabled(true);
-		
+
 		user.setRole("normal");
-		
+
 		user = userDao.createUserAccount(user);
 		redir.addFlashAttribute("user", user);
 		mv.setViewName("redirect:userCreated.do");
@@ -126,10 +138,10 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("login");
 		return mv;
-		
+
 	}
-	
-	@RequestMapping(path="updateAccount.do", method = RequestMethod.GET)
+
+	@RequestMapping(path = "updateAccount.do", method = RequestMethod.GET)
 	public ModelAndView updateDetails(int id) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", userDao.findUserById(id));
@@ -137,11 +149,11 @@ public class UserController {
 		mv.setViewName("updateAccount");
 		return mv;
 	}
-	
-	@RequestMapping(path="updateUserInfo.do", method = RequestMethod.POST)
+
+	@RequestMapping(path = "updateUserInfo.do", method = RequestMethod.POST)
 	public ModelAndView updateAccount(int id, User user, Address address, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
-		int addressId  = userDao.getAddressIdByUserId(id).getId();
+		int addressId = userDao.getAddressIdByUserId(id).getId();
 		System.out.println(addressId);
 		user = userDao.updateUserAccount(id, user);
 		address = userDao.updateAddressInUserAccount(addressId, address);
@@ -150,30 +162,30 @@ public class UserController {
 		mv.setViewName("redirect:userAccountUpdated.do");
 		return mv;
 	}
-	
-	@RequestMapping(path="userAccountUpdated.do", method = RequestMethod.GET)
+
+	@RequestMapping(path = "userAccountUpdated.do", method = RequestMethod.GET)
 	public ModelAndView userAccountUpdated() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("showUserProfile");
 		return mv;
 	}
-	
-	@RequestMapping(path="deleteAccount.do", method = RequestMethod.GET)
+
+	@RequestMapping(path = "deleteAccount.do", method = RequestMethod.GET)
 	public ModelAndView deleteDetails(int id) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user", userDao.findUserById(id));
 		mv.setViewName("deleteAccount");
 		return mv;
 	}
-	
-	@RequestMapping(path="accountDeleted.do", method = RequestMethod.GET)
+
+	@RequestMapping(path = "accountDeleted.do", method = RequestMethod.GET)
 	public ModelAndView accountDeleted(int id, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		User disabled = userDao.disableUserAccount(id);
-		
+
 		redir.addFlashAttribute("user", disabled);
 		mv.setViewName("redirect:logout.do");
 		return mv;
-		
+
 	}
 }
