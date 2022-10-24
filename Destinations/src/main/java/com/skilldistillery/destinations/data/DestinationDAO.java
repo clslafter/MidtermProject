@@ -11,6 +11,7 @@ import com.skilldistillery.destinations.entities.Feature;
 import com.skilldistillery.destinations.entities.Price;
 import com.skilldistillery.destinations.entities.PricingType;
 import com.skilldistillery.destinations.entities.Review;
+import com.skilldistillery.destinations.entities.ReviewComment;
 import com.skilldistillery.destinations.entities.ReviewId;
 import com.skilldistillery.destinations.entities.User;
 
@@ -47,6 +48,8 @@ public interface DestinationDAO {
 //	Then, find list of all reviews created for the destination ordered by review Date
 
 	List <Review> findReviewsByDestinationId(int destinationId);
+	
+	
 	
 
 

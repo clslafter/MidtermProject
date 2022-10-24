@@ -17,6 +17,7 @@ import com.skilldistillery.destinations.entities.Feature;
 import com.skilldistillery.destinations.entities.Price;
 import com.skilldistillery.destinations.entities.PricingType;
 import com.skilldistillery.destinations.entities.Review;
+import com.skilldistillery.destinations.entities.ReviewComment;
 import com.skilldistillery.destinations.entities.ReviewId;
 import com.skilldistillery.destinations.entities.User;
 
@@ -167,8 +168,17 @@ public class DestinationDaoImpl implements DestinationDAO {
 		String queryString = "SELECT rev FROM Review rev JOIN rev.destination dest WHERE dest.id = :id ORDER BY rev.reviewDate DESC";
 		List <Review> reviews = em.createQuery(queryString, Review.class).setParameter("id", destinationId).getResultList();
 		
+		for (Review review : reviews) {
+			String queryString2 = "SELECT rev FROM Review rev JOIN FETCH rev.reviewComments WHERE rev.id = :id";
+			
+			
+			em.createQuery(queryString2, Review.class).setParameter("id", review.getId()).getResultList();
+		}
+		
 		return reviews;
 		
 	}
+
+	
 
 }

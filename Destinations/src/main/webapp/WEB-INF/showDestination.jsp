@@ -29,6 +29,10 @@
 			<c:otherwise>
 			Last edited on ${destination.lastEdited}
 	
+	
+	
+	
+	
 	</p>
 	</c:otherwise>
 	</c:choose>
@@ -221,13 +225,29 @@
 			<ul>
 				<lh>Destination Author's Review</lh>
 				<c:forEach var="review" items="${destination.reviews}">
-					
-						<c:if test="${review.destination.user == review.user}">
-							<li>By ${review.user.username} on ${review.reviewDate}</li>
-							<ul>
-								<li>${review.comment}</li>
-							</ul>
-						</c:if>
+
+					<c:if test="${review.destination.user == review.user}">
+						<li>By ${review.user.username} on ${review.reviewDate}</li>
+						<ul>
+							<li>${review.comment}</li>
+
+							<c:forEach var="reviewComments" items="${review.reviewComments}">
+								<c:if test="${empty reviewComments.reviewComments}">
+									<ul>
+										<li>${reviewComments.reviewComment.comment}</li>
+									
+										<c:if test="${!empty reviewComments.comment}">
+											<ul>
+												<li>${reviewComments.comment}</li>
+											</ul>
+										</c:if>
+									</ul>
+								</c:if>
+							</c:forEach>
+
+
+						</ul>
+					</c:if>
 				</c:forEach>
 			</ul>
 		</c:otherwise>
@@ -243,11 +263,25 @@
 			<ul>
 				<lh>Reviews</lh>
 				<c:forEach var="review" items="${destination.reviews}">
-				<c:if test="${review.destination.user != review.user}">
-					<li>By ${review.user.username} on ${review.reviewDate}</li>
-					<ul>
-						<li>${review.comment}</li>
-					</ul>
+					<c:if test="${review.destination.user != review.user}">
+						<li>By ${review.user.username} on ${review.reviewDate}</li>
+						<ul>
+							<li>${review.comment}</li>
+							<c:forEach var="reviewComments" items="${review.reviewComments}">
+								<c:if test="${empty reviewComments.reviewComments}">
+									<ul>
+									<li>By ${reviewComments.reviewComment.user.username} on ${reviewComments.reviewComment.createdDate}</li>
+										<li>${reviewComments.reviewComment.comment}</li>
+										<c:if test="${!empty reviewComments.comment}">
+											<ul>
+											<li>By </li>
+												<li>${reviewComments.comment}</li>
+											</ul>
+										</c:if>
+									</ul>
+								</c:if>
+							</c:forEach>
+						</ul>
 					</c:if>
 				</c:forEach>
 			</ul>
