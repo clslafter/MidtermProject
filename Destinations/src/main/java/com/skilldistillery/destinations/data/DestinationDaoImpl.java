@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.destinations.entities.Address;
 import com.skilldistillery.destinations.entities.Category;
@@ -43,6 +44,8 @@ public class DestinationDaoImpl implements DestinationDAO {
 //		return destination;
 //		
 //	}
+
+	/***************** CRUD *******************/
 
 	@Override
 	public Destination findDestinationById(int destinationId) {
@@ -84,7 +87,7 @@ public class DestinationDaoImpl implements DestinationDAO {
 	}
 
 	@Override
-	public Destination createNewDestination(Destination destination, int[] featureIds, int[] categoryIds) {
+	public Destination createNewDestination(Destination destination, Integer[] featureIds, int[] categoryIds) {
 		destination.setFeatures(findFeaturesByIdList(destination, featureIds));
 		destination.setCategories(findCategoriesByIdList(destination, categoryIds));
 		em.persist(destination);
@@ -106,7 +109,7 @@ public class DestinationDaoImpl implements DestinationDAO {
 	}
 
 	@Override
-	public Destination updateDestination(int destinationId, Destination destination) {
+	public Destination updateDestination(int destinationId, Destination destination, Integer[] featureIds, Integer[] categoryIds) {
 		Destination managed = em.find(Destination.class, destinationId);
 		if (managed != null) {
 			managed.setName(destination.getName());
@@ -114,6 +117,34 @@ public class DestinationDaoImpl implements DestinationDAO {
 			managed.setWebsiteUrl(destination.getWebsiteUrl());
 			managed.setLastEdited(LocalDateTime.now());
 			managed.setImageUrl(destination.getImageUrl());
+			
+			List<Feature> existingFeatures = new ArrayList<>(managed.getFeatures());
+			for(Feature f : existingFeatures) {
+				managed.removeFeature(f);
+			}
+			if (featureIds != null) {
+				for (Integer i : featureIds) {
+					Feature f = em.find(Feature.class, i);
+					if (f != null) {
+						managed.addFeature(f);
+					}
+				}
+			}
+			
+			List<Category> existingCategories = new ArrayList<>(managed.getCategories());
+			for(Category c : existingCategories) {
+				managed.removeCategory(c);
+			}
+			if (categoryIds != null) {
+				for (Integer i : categoryIds) {
+					Category c = em.find(Category.class, i);
+					if (c != null) {
+						managed.addCategory(c);
+					}
+				}
+			}
+			em.flush();
+
 		}
 		return managed;
 	}
@@ -140,6 +171,8 @@ public class DestinationDaoImpl implements DestinationDAO {
 		}
 		return disabled;
 	}
+
+	// Find Methods for Certain Id's
 
 	@Override
 	public List<Category> findCategoriesByDestinationId(int destinationId) {
@@ -222,7 +255,7 @@ public class DestinationDaoImpl implements DestinationDAO {
 	}
 
 	@Override
-	public List<Feature> findFeaturesByIdList(Destination destination, int[] ids) {
+	public List<Feature> findFeaturesByIdList(Destination destination, Integer[] ids) {
 		List<Feature> features = new ArrayList<>();
 		if (ids != null) {
 			for (Integer i : ids) {
@@ -246,6 +279,8 @@ public class DestinationDaoImpl implements DestinationDAO {
 		}
 		return categories;
 	}
+
+	// Find All
 
 	@Override
 	public List<Feature> findAllFeatures() {

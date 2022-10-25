@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +26,43 @@
  		
 		<label for="imageUrl">Destination Main image URL:</label>
  		<input type="text" id="name" name="imageUrl" value="${destination.imageUrl}" ><br>
+ 		
+ 		Update Features:
+  		<br>
+  		<c:forEach items="${features}" var="feature"> 
+  			<c:choose>
+  				 <c:when test ="${destination.features.contains(feature)}">
+  					<input type="checkbox" name="featureIds" value="${feature.id}" checked>
+					<label for="${feature.name}">${feature.name}</label><br>
+				</c:when>
+				<c:otherwise>
+  					<input type="checkbox" name="featureIds" value="${feature.id}">
+					<label for="${feature.name}">${feature.name}</label><br>
+				</c:otherwise>
+  			</c:choose>
+		</c:forEach>
+		
+ 		Update Categories:
+  		<br>
+  		<c:forEach items="${categories}" var="category"> 
+  			<c:choose>
+  				 <c:when test ="${destination.categories.contains(category)}">
+  					<input type="checkbox" id="${category.id}" name="categoryIds" value="${cateogory.id}" checked>
+					<label for="${category.name}">${category.name}</label><br>
+				</c:when>
+				<c:otherwise>
+  					<input type="checkbox" id="${category.id}" name="categoryIds" value="${category.id}">
+					<label for="${category.name}">${category.name}</label><br>
+				</c:otherwise>
+  			</c:choose>
+		</c:forEach>
+		
+		Add Price:
+		<br>
+  		<c:forEach items="${prices}" var="price"> 
+  			<input type="checkbox" id="${price.id}" name="priceIds" value="${price.id}">
+			<label for="${price.amount}">${price.amount}</label><br>
+		</c:forEach>
  		
  		<h2>Address(optional)</h2>
   		

@@ -1,6 +1,7 @@
 package com.skilldistillery.destinations.controllers;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -56,7 +57,7 @@ public class DestinationController {
 	}
 	
 	@RequestMapping(path = "createNewDestination.do", method = RequestMethod.POST)
-	public ModelAndView createNewDestination(Destination destination, Address address,@RequestParam(required = false) int [] featureIds,  @RequestParam(required = false) int [] categoryIds, HttpSession session, RedirectAttributes redir) {
+	public ModelAndView createNewDestination(Destination destination, Address address,@RequestParam(required = false) Integer [] featureIds,  @RequestParam(required = false) int [] categoryIds, HttpSession session, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		
 		destination.setAddress(destinationDao.createDestinationAddress(address));
@@ -84,29 +85,41 @@ public class DestinationController {
 	@RequestMapping(path = "updateDestination.do", method = RequestMethod.GET)
 	public ModelAndView updateDeatils(int id) {
 		ModelAndView mv = new ModelAndView();
+		
 		mv.addObject("destination", destinationDao.findDestinationById(id));
 		mv.addObject("address", destinationDao.getAddressIdByDestinationId(id));
+		mv.addObject("features", destinationDao.findAllFeatures());
+		mv.addObject("categories", destinationDao.findAllCategories());
+		mv.addObject("prices", destinationDao.findAllPrices());
+		
 		mv.setViewName("updateDestination");
 		return mv;
 	}
 	
 	@RequestMapping(path="updateDestinationInfo.do", method = RequestMethod.POST)
-	public ModelAndView updateDestination(int id, Destination destination, Address address, RedirectAttributes redir) {
+	public ModelAndView updateDestination(int id, Destination destination, Address address, @RequestParam(required = false) Integer [] featureIds, @RequestParam(required = false) Integer [] categoryIds, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		int addressId = destinationDao.getAddressIdByDestinationId(id).getId();
-		destinationDao.updateDestination(id, destination);
+		System.out.println("==========================");
+		System.out.println(Arrays.deepToString(featureIds));
+		
+		destinationDao.updateDestination(id, destination, featureIds, categoryIds);
+		
 		destination = destinationDao.findDestinationById(id);
+		
 		address = destinationDao.updateAddressInDestination(addressId, address);
+		
 		redir.addFlashAttribute("destination", destination );
 		redir.addFlashAttribute("address", address);
-		mv.setViewName("redirect:destinationUpdated.do");
+		
+		mv.setViewName("redirect:showDestination.do?did=" + destination.getId());
 		return mv;
 	}
 	
 	@RequestMapping(path="destinationUpdated.do", method = RequestMethod.GET)
 	public ModelAndView destinationUpdated() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("showDestination");
+		mv.setViewName("redirect:showDestination.do");
 		return mv;
 	}
 	
