@@ -34,7 +34,11 @@ Java, MySQL, HTML, CSS, MySQL Workbench, Atom, Bootstrap, Unix Terminal, Spring,
 Pair programming, Agile, Kanban, git collaboration
 
 ## Lessons Learned:
-
+-communicate openly and honestly
+  a. to ensure alignment on goals/features
+  b. to prevent merge conflicts
+  c. to encourage teammates and provide feedback
+-Keep priorities straight and track in Kanban:  core functions, then minimum viable product, then stretch goals. Distinguish between stretch goals and mvp early.  
 ## Stretch Goals Implemented:
 
 ## How to Download and Run
