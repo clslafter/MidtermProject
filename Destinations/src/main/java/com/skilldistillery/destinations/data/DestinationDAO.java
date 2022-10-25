@@ -61,9 +61,17 @@ public interface DestinationDAO {
 	
 	List<Price> findAllPrices();
 	
-	Destination updateDestination(int destinationId, Destination destination, Integer[] featureIds, Integer[] categoryIds);
+	List<Currency> findAllCurrencies();
 	
-	 Destination disableDestination(int id);
+	List<PricingType> findAllPricingTypes();
+	
+	Destination updateDestination(int destinationId, Destination destination, Integer[] featureIds, Integer[] categoryIds, Integer priceId, Integer currencyId, Integer typeId, Double amount, String description);
+	
+	Destination disableDestination(int id);
+	 
+	Currency findCurrencyByCurrencyId(int id);
+	
+	PricingType findPricingTypeByPricingTypeId(int id);
 	
 	
 	

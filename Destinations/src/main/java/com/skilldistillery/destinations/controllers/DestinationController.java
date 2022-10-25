@@ -91,19 +91,30 @@ public class DestinationController {
 		mv.addObject("features", destinationDao.findAllFeatures());
 		mv.addObject("categories", destinationDao.findAllCategories());
 		mv.addObject("prices", destinationDao.findAllPrices());
+		mv.addObject("pricingTypes", destinationDao.findAllPricingTypes());
+		mv.addObject("currencies", destinationDao.findAllCurrencies());
 		
 		mv.setViewName("updateDestination");
 		return mv;
 	}
 	
 	@RequestMapping(path="updateDestinationInfo.do", method = RequestMethod.POST)
-	public ModelAndView updateDestination(int id, Destination destination, Address address, @RequestParam(required = false) Integer [] featureIds, @RequestParam(required = false) Integer [] categoryIds, RedirectAttributes redir) {
+	public ModelAndView updateDestination(int id, 
+										Destination destination, 
+										Address address, 
+										@RequestParam(required = false) Integer [] featureIds, 
+										@RequestParam(required = false) Integer [] categoryIds, 
+										@RequestParam(required = false) Integer priceId,
+										@RequestParam(required = false) Integer currencyId,
+										@RequestParam(required = false) Integer typeId,
+										@RequestParam(required = false) Double amount,
+										@RequestParam(required = false) String description,
+										RedirectAttributes redir) {
+		
 		ModelAndView mv = new ModelAndView();
 		int addressId = destinationDao.getAddressIdByDestinationId(id).getId();
-		System.out.println("==========================");
-		System.out.println(Arrays.deepToString(featureIds));
 		
-		destinationDao.updateDestination(id, destination, featureIds, categoryIds);
+		destinationDao.updateDestination(id, destination, featureIds, categoryIds, priceId, currencyId, typeId, amount, description);
 		
 		destination = destinationDao.findDestinationById(id);
 		

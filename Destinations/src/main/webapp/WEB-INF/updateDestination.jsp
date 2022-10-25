@@ -57,11 +57,21 @@
   			</c:choose>
 		</c:forEach>
 		
-		Add Price:
+		<h2>Add A Price</h2>
+ 		Amount: <input type="number" name = "amount" >
+		Description: <input type="text" name = "description" >
+		
 		<br>
-  		<c:forEach items="${prices}" var="price"> 
-  			<input type="checkbox" id="${price.id}" name="priceIds" value="${price.id}">
-			<label for="${price.amount}">${price.amount}</label><br>
+		<h4>Choose Currency Type</h4>
+  		<c:forEach items="${currencies}" var="currency"> 
+  			<input type="checkbox" id="${currency.id}" name="currencyId" value="${currency.id}">
+			<label for="${currency.name}">${currency.name}</label><br>
+		</c:forEach>
+		
+		<h4>Choose Pricing Type</h4>
+		<c:forEach items="${pricingTypes}" var="type"> 
+  			<input type="checkbox" id="${type.id}" name="typeId" value="${type.id}">
+			<label for="${type.name}">${type.name}</label><br>
 		</c:forEach>
  		
  		<h2>Address(optional)</h2>
