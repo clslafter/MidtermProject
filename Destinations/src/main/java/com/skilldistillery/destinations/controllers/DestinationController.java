@@ -1,6 +1,7 @@
 package com.skilldistillery.destinations.controllers;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,12 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.destinations.data.DestinationDAO;
 import com.skilldistillery.destinations.entities.Address;
 import com.skilldistillery.destinations.entities.Destination;
+import com.skilldistillery.destinations.entities.Feature;
 import com.skilldistillery.destinations.entities.User;
 
 @Controller
@@ -33,7 +36,7 @@ public class DestinationController {
 	
 	@RequestMapping(path= {"home.do"})
 	public String home(Model model) {
-		model.addAttribute("destination", destinationDao.findDestinationById(1));
+//		model.addAttribute("destination", destinationDao.findDestinationById2(1));
 		model.addAttribute("destinations", destinationDao.findAllDestinations());
 		return "home";
 	}
@@ -55,12 +58,14 @@ public class DestinationController {
 	}
 	
 	@RequestMapping(path = "createNewDestination.do", method = RequestMethod.POST)
-	public ModelAndView createNewDestination(Destination destination, Address address, HttpSession session, RedirectAttributes redir) {
+	public ModelAndView createNewDestination(Destination destination, Address address, @RequestParam("featureIds") List<Integer> ids, HttpSession session, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		
 		destination.setAddress(destinationDao.createDestinationAddress(address));
-		
-		destination.setFeatures(null);
+		List<Feature> features = destinationDao.findFeaturesByIdList(ids);
+		for(Feature feature: features) {
+			destination.addFeature(feature);
+		}
 		
 		destination.setEnabled(true);
 		

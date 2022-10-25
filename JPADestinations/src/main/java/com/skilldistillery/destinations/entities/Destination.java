@@ -49,6 +49,7 @@ public class Destination {
 	@JoinColumn(name="address_id")
 	private Address address;
 	
+	
 	@ManyToMany(mappedBy="destinations")
 	private List <Category> categories;
 	
