@@ -50,6 +50,7 @@ public class DestinationController {
 	
 	@RequestMapping(path = "createDestination.do")
 	public String createDestination(Model model) {
+		model.addAttribute("features", destinationDao.findAllFeatures());
 		return "createDestination";
 	}
 	
@@ -58,6 +59,8 @@ public class DestinationController {
 		ModelAndView mv = new ModelAndView();
 		
 		destination.setAddress(destinationDao.createDestinationAddress(address));
+		
+		destination.setFeatures(null);
 		
 		destination.setEnabled(true);
 		
@@ -75,7 +78,7 @@ public class DestinationController {
 	@RequestMapping(path = "destinationCreated.do", method = RequestMethod.GET)
 	public ModelAndView destinationCreated() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("home");
+		mv.setViewName("redirect:home.do");
 		return mv;
 	}
 	

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,6 +40,14 @@
  		
  		<label for="country">Country: </label>
   		<input type="text" id="country" name="country"><br>
+  		
+  		Add Features:
+  		<c:forEach items="${features}" var="feature"> 
+  		<input type="checkbox" id="${feature.name}" name="${feature.name}" value="${feature.name}">
+		<label for="${feature.name}">${feature.name}</label><br>
+		</c:forEach>
+		
+		
 
 		<input type="submit" value="Submit">
 
