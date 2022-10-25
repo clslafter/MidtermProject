@@ -49,6 +49,8 @@ public interface DestinationDAO {
 
 	List <Review> findReviewsByDestinationId(int destinationId);
 	
+	public List<Feature> findAllFeatures();
+	
 	
 	
 
