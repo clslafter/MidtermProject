@@ -42,10 +42,18 @@
   		<input type="text" id="country" name="country"><br>
   		
   		Add Features:
+  		<br>
   		<c:forEach items="${features}" var="feature"> 
   		
   		<input type="checkbox" id="${feature.id}" name="featureIds" value="${feature.id}">
 		<label for="${feature.name}">${feature.name}</label><br>
+		</c:forEach>
+		
+		Add Categories:
+		<br>
+  		<c:forEach items="${categories}" var="category"> 
+  		<input type="checkbox" id="${category.id}" name="categoryIds" value="${category.id}">
+		<label for="${category.name}">${category.name}</label><br>
 		</c:forEach>
 		
 		

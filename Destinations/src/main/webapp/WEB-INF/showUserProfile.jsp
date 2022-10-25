@@ -34,8 +34,14 @@
 		    			<li class="list-group-item">Enabled: ${destination.enabled}</li>
 		  			</ul>
 		  			<div class="card-body">
-		    			<a href="updateDestination.do?did=${destination.id}" class="card-link">Edit</a>
-		    			<a href="showDestination.do?did=${destination.id}" class="card-link">View on Home Page</a>
+		  			
+		  				<form action="updateDestination.do" action="POST">
+							<input type="hidden" name="id" value="${destination.id}" /> 
+							<input type="submit" value="Edit Destination" class="btn btn-primary" />
+						</form> <br>
+		  			
+		    			<a href="updateDestination.do?id=${destination.id}" class="card-link">Edit</a>
+		    			<a href="showDestination.do?id=${destination.id}" class="card-link">View on Home Page</a>
 		  			</div>
 				</div>
 			</c:forEach>
