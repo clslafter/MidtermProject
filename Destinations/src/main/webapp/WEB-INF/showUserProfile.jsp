@@ -22,6 +22,7 @@
 	<div class ="col">
 		<div class = "row row-cols-1 row-cols-md-3 g-4">
 			<c:forEach items="${user.destinations}" var="destination"> 
+			<c:if test = "${destination.enabled == true }">
 				<div class="card" style="width: 18rem;">
 		 			<img src="${destination.imageUrl}" class="card-img-top" alt="...">
 		  			<div class="card-body">
@@ -44,6 +45,7 @@
 		    			<a href="showDestination.do?id=${destination.id}" class="card-link">View on Home Page</a>
 		  			</div>
 				</div>
+				</c:if>
 			</c:forEach>
 		</div>
 	</div>

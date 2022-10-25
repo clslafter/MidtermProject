@@ -45,10 +45,6 @@ public class DestinationController {
 	@RequestMapping(path = "showDestination.do")
 	public String showDestination(int did, Model model) {
 		model.addAttribute("destination", destinationDao.findDestinationById(did));
-//		model.addAttribute("categories", destinationDao.findCategoriesByDestinationId(did));
-//		First, find singular review of destination created by the user who created the destination.
-//		If review.destination.user = review.user then list this one first
-		//Destination destination = destinationDao.findDestinationById(did);
 		return "showDestination";
 	}
 	
@@ -114,5 +110,22 @@ public class DestinationController {
 		return mv;
 	}
 	
+	@RequestMapping(path="deleteDestination.do", method = RequestMethod.GET)
+	public ModelAndView deleteDetails(int id) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("destination", destinationDao.findDestinationById(id));
+		mv.setViewName("deleteDestination");
+		return mv;		
+	}
+	
+	@RequestMapping(path="destinationDeleted.do", method = RequestMethod.GET)
+	public ModelAndView destinationDeleted(int id) {
+		ModelAndView mv = new ModelAndView();
+		Destination disabled = destinationDao.disableDestination(id);
+		mv.addObject("destination", disabled);
+		mv.setViewName("redirect:home.do");
+		return mv;
+		
+	}
 	
 }

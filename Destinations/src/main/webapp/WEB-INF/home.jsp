@@ -17,7 +17,9 @@
 
 Current Destinations:
 	<c:forEach var="destination" items="${destinations}">
+	<c:if test = "${destination.enabled == true }">
 	<li><a href="showDestination.do?did=${destination.id}">${destination.name}</a></li>
+	</c:if>
 	</c:forEach><br>
 
 <!-- search destinations and sort options -->
