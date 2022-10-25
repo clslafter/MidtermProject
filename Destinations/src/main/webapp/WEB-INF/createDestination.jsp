@@ -43,7 +43,8 @@
   		
   		Add Features:
   		<c:forEach items="${features}" var="feature"> 
-  		<input type="checkbox" id="${feature.name}" name="${feature.name}" value="${feature.name}">
+  		
+  		<input type="checkbox" id="${feature.id}" name="featureIds" value="${feature.id}">
 		<label for="${feature.name}">${feature.name}</label><br>
 		</c:forEach>
 		

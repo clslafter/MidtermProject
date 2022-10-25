@@ -51,6 +51,10 @@ public interface DestinationDAO {
 	
 	public List<Feature> findAllFeatures();
 	
+//	Destination findDestinationById2(int id);
+	
+	List<Feature> findFeaturesByIdList(List<Integer> id);
+	
 	
 	
 

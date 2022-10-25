@@ -27,6 +27,22 @@ public class DestinationDaoImpl implements DestinationDAO {
 	
 	@PersistenceContext
 	private EntityManager em;
+	
+//	@Override 
+//	public Destination findDestinationById2(int id) {
+//		String queryString = "SELECT d FROM Destination d "
+//				+ "JOIN d.categories "
+//				+ "JOIN d.features "
+//				+ "JOIN d.images "
+//				+ "JOIN d.prices "
+//				+ "JOIN d.destinationComments "
+//				+ "JOIN d.reviews "
+//				+ "WHERE d.id = :id";
+//		System.out.println(id);
+//		Destination destination = em.createQuery(queryString, Destination.class).setParameter("id", id).getSingleResult();
+//		return destination;
+//		
+//	}
 
 	@Override
 	public Destination findDestinationById(int destinationId) {
@@ -71,6 +87,7 @@ public class DestinationDaoImpl implements DestinationDAO {
 	@Override
 	public Destination createNewDestination(Destination destination) {
 		em.persist(destination);
+
 		return destination;
 	}
 	
@@ -175,6 +192,13 @@ public class DestinationDaoImpl implements DestinationDAO {
 		
 		return reviews;
 		
+	}
+	
+	@Override
+	public List<Feature> findFeaturesByIdList(List<Integer> ids) {
+		String jpql = "SELECT f from Feature f WHERE f.id IN :ids";
+		List<Feature> features = em.createQuery(jpql, Feature.class).setParameter("ids", ids).getResultList();
+		return features;
 	}
 	@Override
 	public List<Feature> findAllFeatures() {
