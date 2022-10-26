@@ -9,7 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.destinations.entities.Address;
 import com.skilldistillery.destinations.entities.Category;
@@ -20,6 +19,7 @@ import com.skilldistillery.destinations.entities.Feature;
 import com.skilldistillery.destinations.entities.Price;
 import com.skilldistillery.destinations.entities.PricingType;
 import com.skilldistillery.destinations.entities.Review;
+import com.skilldistillery.destinations.entities.ReviewId;
 import com.skilldistillery.destinations.entities.User;
 
 @Service
@@ -99,6 +99,74 @@ public class DestinationDaoImpl implements DestinationDAO {
 	public Address createDestinationAddress(Address address) {
 		em.persist(address);
 		return address;
+	}
+	
+	@Override 
+	public Review createNewReviewForDestination(int destinationId, Review review, int userId) {
+		Destination destination = findDestinationById(destinationId);
+		User user = em.find(User.class, userId);
+		
+		ReviewId reviewId = new ReviewId(destinationId, userId);
+		
+		review.setUser(user);
+		review.setDestination(destination);
+		review.setEnabled(true);
+		review.setReviewDate(LocalDateTime.now());
+		review.setId(reviewId);
+		
+		if(review != null) {
+			destination.addReview(review);
+			
+			em.persist(review);
+		}
+		
+		return review;
+	}
+	
+	@Override
+	public Review updateReviewForDestination(int destinationId, int userId, Review review) {
+		ReviewId reviewId = new ReviewId(destinationId, userId);
+		
+		Review managed = em.find(Review.class, reviewId);
+		if(managed != null) {
+			managed.setComment(review.getComment());
+		}
+		
+		return managed;
+	}
+	
+	@Override
+	public boolean deleteReviewForDestination(int destinationId, int userId, Review review) {
+		ReviewId reviewId = new ReviewId(destinationId, userId);
+		Destination destination = findDestinationById(destinationId);
+		
+		Review deleted = em.find(Review.class, reviewId);
+		if(deleted != null) {
+			destination.removeReview(review);
+			em.remove(deleted);
+			return true;
+		}
+		
+		return false;
+	}
+	
+	@Override
+	public Review findReviewByUserAndDestination(int userId, int destinationId) {
+		Review review = null;
+		String jpql = "SELECT r FROM Review r WHERE r.user.id = :userId "
+					+ "AND r.destination.id = :destinationId";
+		
+		try {
+			review = em.createQuery(jpql, Review.class).
+					setParameter("userId", userId).
+					setParameter("destinationId", destinationId).
+					getSingleResult();
+		} catch (Exception e) {
+			System.err.println("Review Not Found");
+		}
+		
+		return review;
+		
 	}
 
 	@Override
@@ -181,6 +249,7 @@ public class DestinationDaoImpl implements DestinationDAO {
 
 		return managed;
 	}
+	
 
 	@Override
 	public Destination disableDestination(int id) {
@@ -355,7 +424,6 @@ public class DestinationDaoImpl implements DestinationDAO {
 			return true;
 		}
 		return false;
-
 	}
 
 }

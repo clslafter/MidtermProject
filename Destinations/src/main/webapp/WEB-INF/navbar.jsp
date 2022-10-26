@@ -5,7 +5,7 @@
 
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
   <div class="container-fluid">
-   <!--   <a class="navbar-brand" href="home.do"><img src="https://cdn1.iconfinder.com/data/icons/food-color-line-vol-1/134/Food-28-512.png" style="width: 50px;  height: 50px;" ></a>-->
+    <a class="navbar-brand" href="home.do"><img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" style="width: 50px;  height: 50px;" ></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

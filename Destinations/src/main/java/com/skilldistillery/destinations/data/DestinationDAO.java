@@ -75,7 +75,13 @@ public interface DestinationDAO {
 	
 	boolean removePriceById(int priceId, int destinationId);
 	
+	Review createNewReviewForDestination(int destinationId, Review review, int userId);
 	
+	Review updateReviewForDestination(int destinationId, int userId, Review review);
+	
+	boolean deleteReviewForDestination(int destinationId, int userId, Review review);
+	
+	Review findReviewByUserAndDestination(int userId, int destinationId);
 	
 
 

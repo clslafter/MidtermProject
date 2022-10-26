@@ -252,12 +252,34 @@
 		</c:when>
 		<c:otherwise>
 
-			<ul>
-				<lh>Reviews</lh>
+			<h6>Reviews</h6>
+				<ul>
+					<c:if test="${userReview == null}">
+						<li>
+							<form action="createDestinationReview.do" method="POST">
+								<input type="hidden" value="${destination.id }" name="destinationId">
+								<input type = "text" name = "comment" >
+								<input type = "submit" value = "Add Review">
+							</form>
+						</li>
+					</c:if>
 				<c:forEach var="review" items="${destination.reviews}">
 					<c:if test="${review.destination.user != review.user}">
 						<li>By ${review.user.username} on ${review.reviewDate}:
 							${review.comment}</li>
+							<c:if test="${review.user.id == user.id }">
+								<li>
+									<form action="updateDestinationReview.do" method="POST">
+										<input type="hidden" value="${destination.id }" name="destinationId">
+										<input type = "text" name = "comment" value = "${review.comment}">
+										<input type = "submit" value = "Edit Review">
+									</form>
+									<form action="deleteDestinationReview.do" method="POST">
+										<input type="hidden" value="${destination.id}" name="destinationId">
+										<input type = "submit" value = "Remove Review">
+									</form>
+								</li>
+							</c:if>
 						<ul>
 							<c:forEach var="reviewComment" items="${review.reviewComments}">
 								<c:choose>

@@ -9,7 +9,9 @@
 <jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
+
 <jsp:include page="navbar.jsp" />
+<jsp:include page="imageSlider.jsp"/>
 
 <h1>Welcome to Travel Destinations</h1>
 <h3>Where travelers discover and share exciting destinations</h3>
