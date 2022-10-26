@@ -239,6 +239,17 @@
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
+					<ul>
+						<li>Leave a comment</li>
+						<li>
+							<form action="createReviewComment.do" method="POST">
+								<input type="hidden" value="${destination.id}" name="destinationId">
+								<input type="hidden" value="${review.user.id}" name="reviewUserId">
+								<input type = "text" name = "reviewComment" >
+								<input type = "submit" value = "Add Comment">
+							</form>
+						</li>					
+					</ul>
 					</c:if>
 				</c:forEach>
 			</ul>
@@ -288,9 +299,19 @@
 									<c:otherwise>
 											<li>By ${reviewComment.user.username} on
 												${reviewComment.createdDate}: ${reviewComment.comment}</li>
+											<li>Edit and Remove</li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
+						<li>Leave a comment</li>
+						<li>
+							<form action="createReviewComment.do" method="POST">
+								<input type="hidden" value="${destination.id}" name="destinationId">
+								<input type="hidden" value="${review.user.id}" name="reviewUserId">
+								<input type = "text" name = "reviewComment" >
+								<input type = "submit" value = "Add Comment">
+							</form>
+						</li>
 						</ul>
 					</c:if>
 				</c:forEach>

@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.destinations.data.DestinationDAO;
 import com.skilldistillery.destinations.entities.Review;
+import com.skilldistillery.destinations.entities.ReviewComment;
+import com.skilldistillery.destinations.entities.ReviewId;
 import com.skilldistillery.destinations.entities.User;
 
 @Controller
@@ -37,6 +39,22 @@ public class ReviewAndCommentController {
 		destinationDao.createNewReviewForDestination(destinationId, review, user.getId());
 		
 		mv.setViewName("redirect:showDestination.do?did=" + destinationId);
+		
+		return mv;
+	}
+	
+	@RequestMapping(path="createReviewComment.do", method = RequestMethod.POST)
+	public ModelAndView createReviewComment(int destinationId, int reviewUserId, String reviewComment, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
+		User user = this.isUserInSession(session);
+		
+		mv.addObject("user", user);
+		ReviewId reviewId = new ReviewId(destinationId, reviewUserId);
+		System.out.println(reviewId);
+		destinationDao.createNewReviewCommentForReview(reviewId, reviewComment, user.getId());
+		
+		mv.setViewName("redirect:showDestination.do?did=" + reviewId.getDestinationId());
 		
 		return mv;
 	}
