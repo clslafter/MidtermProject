@@ -11,7 +11,7 @@
 <jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
-<jsp:include page="navbar.jsp" />
+	<jsp:include page="navbar.jsp" />
 	<H1>${destination.name}</H1>
 	<p>
 		Created by ${destination.user.username}
@@ -31,6 +31,7 @@
 			<c:otherwise>
 			Last edited on ${destination.lastEdited}
 
+	
 	</p>
 	</c:otherwise>
 	</c:choose>
@@ -223,28 +224,21 @@
 			<ul>
 				<lh>Destination Author's Review</lh>
 				<c:forEach var="review" items="${destination.reviews}">
-
 					<c:if test="${review.destination.user == review.user}">
-						<li>By ${review.user.username} on ${review.reviewDate}</li>
-						<ul>
-							<li>${review.comment}</li>
-
-							<c:forEach var="reviewComments" items="${review.reviewComments}">
-								<c:if test="${empty reviewComments.reviewComments}">
+						<li>By ${review.user.username} on ${review.reviewDate}:
+							${review.comment}</li>
+						<c:forEach var="reviewComment" items="${review.reviewComments}">
+							<c:choose>
+								<c:when test="${empty review.reviewComments}">
+								</c:when>
+								<c:otherwise>
 									<ul>
-										<li>${reviewComments.reviewComment.comment}</li>
-										
-										<c:if test="${!empty reviewComments.comment}">
-											<ul>
-												<li>${reviewComments.comment}</li>
-											</ul>
-										</c:if>
+										<li>By ${reviewComment.user.username} on
+											${reviewComment.createdDate}: ${reviewComment.comment}</li>
 									</ul>
-								</c:if>
-							</c:forEach>
-
-
-						</ul>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
 					</c:if>
 				</c:forEach>
 			</ul>
@@ -262,22 +256,18 @@
 				<lh>Reviews</lh>
 				<c:forEach var="review" items="${destination.reviews}">
 					<c:if test="${review.destination.user != review.user}">
-						<li>By ${review.user.username} on ${review.reviewDate}</li>
+						<li>By ${review.user.username} on ${review.reviewDate}:
+							${review.comment}</li>
 						<ul>
-							<li>${review.comment}</li>
-							<c:forEach var="reviewComments" items="${review.reviewComments}">
-								<c:if test="${empty reviewComments.reviewComments}">
-									<ul>
-									<li>By ${reviewComments.reviewComment.user.username} on ${reviewComments.reviewComment.createdDate}</li>
-										<li>${reviewComments.reviewComment.comment}</li>
-										<c:if test="${!empty reviewComments.comment}">
-											<ul>
-											<li>By </li>
-												<li>${reviewComments.comment}</li>
-											</ul>
-										</c:if>
-									</ul>
-								</c:if>
+							<c:forEach var="reviewComment" items="${review.reviewComments}">
+								<c:choose>
+									<c:when test="${empty review.reviewComments}">
+									</c:when>
+									<c:otherwise>
+											<li>By ${reviewComment.user.username} on
+												${reviewComment.createdDate}: ${reviewComment.comment}</li>
+									</c:otherwise>
+								</c:choose>
 							</c:forEach>
 						</ul>
 					</c:if>
@@ -291,20 +281,22 @@
 	<a href="updateDestination.do?id=${destination.id}">Update this
 		destination</a>
 	<br>
-	
+
 	<form action="updateDestination.do" action="POST">
-		<input type="hidden" name="id" value="${destination.id}" /> 
-		<input type="submit" value="Edit Destination" class="btn btn-primary" />
-	</form> <br>
-	
+		<input type="hidden" name="id" value="${destination.id}" /> <input
+			type="submit" value="Edit Destination" class="btn btn-primary" />
+	</form>
+	<br>
+
 	<form action="deleteDestination.do" action="POST">
-		<input type="hidden" name="id" value="${destination.id}" /> 
-		<input type="submit" value="Delete Destination" class="btn btn-primary" />
-	</form> <br>
+		<input type="hidden" name="id" value="${destination.id}" /> <input
+			type="submit" value="Delete Destination" class="btn btn-primary" />
+	</form>
+	<br>
 
 	<a href="home.do">Home</a>
 
 
-<jsp:include page="bootstrapFoot.jsp" />
+	<jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>
