@@ -52,7 +52,7 @@ public class DestinationController {
 			review = destinationDao.findReviewByUserAndDestination(user.getId(), did);
 		}
 		model.addAttribute("userReview", review);
-		System.out.println(review);
+		
 		return "showDestination";
 	}
 	
