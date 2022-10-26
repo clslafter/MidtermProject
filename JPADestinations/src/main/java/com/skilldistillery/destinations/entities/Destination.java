@@ -218,7 +218,7 @@ public class Destination {
 		if (!images.contains(image)) {
 			images.add(image);
 			if (image.getDestination() != null) {
-				image.getDestination().getImages().remove(image);
+				image.getDestination().getImages().add(image);
 			}
 			image.setDestination(this);
 		}
@@ -245,7 +245,7 @@ public class Destination {
 		if (!prices.contains(price)) {
 			prices.add(price);
 			if (price.getDestination() != null) {
-				price.getDestination().getPrices().remove(price);
+				price.getDestination().getPrices().add(price);
 			}
 			price.setDestination(this);
 		}
@@ -299,7 +299,7 @@ public class Destination {
 		if (!reviews.contains(review)) {
 			reviews.add(review);
 			if (review.getDestination() != null) {
-				review.getDestination().getReviews().remove(review);
+				review.getDestination().getReviews().add(review);
 			}
 			review.setDestination(this);
 		}

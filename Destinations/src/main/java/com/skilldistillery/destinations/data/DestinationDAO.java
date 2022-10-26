@@ -20,7 +20,7 @@ public interface DestinationDAO {
 	
 	List <Destination> findAllDestinations();
 	
-	Destination createNewDestination(Destination destination);
+	Destination createNewDestination(Destination destination, Integer [] featureIds, int [] categoryIds);
 	
 	Address createDestinationAddress(Address address);
 	
@@ -53,7 +53,27 @@ public interface DestinationDAO {
 	
 //	Destination findDestinationById2(int id);
 	
-	List<Feature> findFeaturesByIdList(List<Integer> id);
+	List<Feature> findFeaturesByIdList(Destination destination, Integer[] ids);
+	
+	List<Category> findCategoriesByIdList(Destination destination, int[]ids);
+	
+	List<Category> findAllCategories();
+	
+	List<Price> findAllPrices();
+	
+	List<Currency> findAllCurrencies();
+	
+	List<PricingType> findAllPricingTypes();
+	
+	Destination updateDestination(int destinationId, Destination destination, Integer[] featureIds, Integer[] categoryIds, Integer priceId, Integer currencyId, Integer typeId, Double amount, String description);
+	
+	Destination disableDestination(int id);
+	 
+	Currency findCurrencyByCurrencyId(int id);
+	
+	PricingType findPricingTypeByPricingTypeId(int id);
+	
+	boolean removePriceById(int priceId, int destinationId);
 	
 	
 	

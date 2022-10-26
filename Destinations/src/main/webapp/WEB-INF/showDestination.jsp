@@ -286,9 +286,19 @@
 
 
 	!!Restrict access to this link later!!
-	<a href="updateDestination.do?did=${destination.id}">Update this
+	<a href="updateDestination.do?id=${destination.id}">Update this
 		destination</a>
 	<br>
+	
+	<form action="updateDestination.do" action="POST">
+		<input type="hidden" name="id" value="${destination.id}" /> 
+		<input type="submit" value="Edit Destination" class="btn btn-primary" />
+	</form> <br>
+	
+	<form action="deleteDestination.do" action="POST">
+		<input type="hidden" name="id" value="${destination.id}" /> 
+		<input type="submit" value="Delete Destination" class="btn btn-primary" />
+	</form> <br>
 
 	<a href="home.do">Home</a>
 
