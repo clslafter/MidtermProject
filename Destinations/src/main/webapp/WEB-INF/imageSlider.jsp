@@ -20,7 +20,7 @@
 				src="https://d3qvqlc701gzhm.cloudfront.net/full/dddaccbbd2500a39a67c43b20f706ab97cd74a94ff3d8c420b7ddba068623b90.jpg"
 				class="d-block w-100" style="height: 500px;">
 				<div class="carousel-caption">
-				<h1 class = "display-2">Tourist Book</h1>
+				<h1 class = "display-2">TouristBook</h1>
 				
 				</div>
 		</div>

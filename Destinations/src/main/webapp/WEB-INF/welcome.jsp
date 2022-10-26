@@ -13,6 +13,7 @@
 <jsp:include page="navbar.jsp" />
 <jsp:include page="imageSlider.jsp"/>
 <jsp:include page="welcomeMessage.jsp"/>
+<jsp:include page="threeColumns.jsp"/>
 
 
 
