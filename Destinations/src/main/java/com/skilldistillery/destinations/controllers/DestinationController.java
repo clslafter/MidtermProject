@@ -152,4 +152,12 @@ public class DestinationController {
 		
 	}
 	
+	@RequestMapping(path="deletePrice.do", method = RequestMethod.GET)
+	public ModelAndView deletePrice(int priceId, int id) {
+		ModelAndView mv = new ModelAndView();
+		destinationDao.removePriceById(priceId, id);
+		mv.setViewName("redirect:showDestination.do?did=" + id);
+		return mv;
+	}
+	
 }

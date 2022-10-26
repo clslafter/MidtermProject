@@ -98,6 +98,37 @@
 		<input type="submit" value="Submit">
 
 	</form>
+		
+		<table class="table table-dark table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Pricing Type</th>
+					<th scope="col">Amount</th>
+					<th scope="col">Currency Type</th>
+					<th scope="col">Description</th>
+					<th scope="col">Delete</th>
+				
+				</tr>
+		</thead>
+			<c:forEach items="${destination.prices}" var="price">
+				<tbody>
+					<tr>
+						<td scope="row">${price.pricingType.name}</td>
+						<td>${price.amount}</td>
+						<td>${price.currency.name}</td>
+						<td>${price.description}</td>
 
-</body>
+					
+						<td>
+							<form action="deletePrice.do" >
+								<input type= "hidden" name ="id" value ="${destination.id}">	
+								<input type="hidden" name="priceId" value="${price.id}" /> 
+								<input type="submit" value="Delete"/>
+							</form>
+						</td>
+					</tr>
+				</tbody>
+			</c:forEach>
+		</table>
+	</body>
 </html>

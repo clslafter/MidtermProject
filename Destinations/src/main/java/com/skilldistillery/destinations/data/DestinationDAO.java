@@ -73,6 +73,8 @@ public interface DestinationDAO {
 	
 	PricingType findPricingTypeByPricingTypeId(int id);
 	
+	boolean removePriceById(int priceId, int destinationId);
+	
 	
 	
 

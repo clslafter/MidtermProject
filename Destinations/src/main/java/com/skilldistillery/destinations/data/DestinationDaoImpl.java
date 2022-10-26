@@ -110,7 +110,8 @@ public class DestinationDaoImpl implements DestinationDAO {
 
 	@Override
 	public Destination updateDestination(int destinationId, Destination destination, Integer[] featureIds,
-			Integer[] categoryIds, Integer priceId, Integer currencyId, Integer typeId, Double amount, String description) {
+			Integer[] categoryIds, Integer priceId, Integer currencyId, Integer typeId, Double amount,
+			String description) {
 		Destination managed = em.find(Destination.class, destinationId);
 		if (managed != null) {
 			managed.setName(destination.getName());
@@ -126,9 +127,8 @@ public class DestinationDaoImpl implements DestinationDAO {
 			price.setDescription(description);
 
 			managed.addPrice(price);
-			
+
 			em.persist(price);
-			
 
 			List<Feature> existingFeatures = new ArrayList<>(managed.getFeatures());
 			for (Feature f : existingFeatures) {
@@ -339,6 +339,20 @@ public class DestinationDaoImpl implements DestinationDAO {
 	public List<PricingType> findAllPricingTypes() {
 		String jpql = "SELECT pt FROM PricingType pt";
 		return em.createQuery(jpql, PricingType.class).getResultList();
+	}
+
+	@Override
+	public boolean removePriceById(int priceId, int destinationId) {
+		Price price = em.find(Price.class, priceId);
+		Destination destination = em.find(Destination.class, destinationId);
+
+		if (destination != null && price != null) {
+			destination.removePrice(price);
+			em.remove(price);
+			return true;
+		}
+		return false;
+
 	}
 
 }
