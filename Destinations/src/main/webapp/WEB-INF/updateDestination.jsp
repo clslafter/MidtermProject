@@ -6,8 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Update Destination</title>
+<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
 <H1>Update a Destination</H1>
 
 	<form action="updateDestinationInfo.do" method="POST">
@@ -130,5 +132,6 @@
 				</tbody>
 			</c:forEach>
 		</table>
+		<jsp:include page="bootstrapFoot.jsp" />
 	</body>
 </html>

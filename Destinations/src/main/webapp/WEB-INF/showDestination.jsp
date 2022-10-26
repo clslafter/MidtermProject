@@ -8,8 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Destination Page</title>
+<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
 	<H1>${destination.name}</H1>
 	<p>
 		Created by ${destination.user.username}
@@ -303,6 +305,6 @@
 	<a href="home.do">Home</a>
 
 
-
+<jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>

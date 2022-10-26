@@ -119,16 +119,19 @@ public class DestinationDaoImpl implements DestinationDAO {
 			managed.setWebsiteUrl(destination.getWebsiteUrl());
 			managed.setLastEdited(LocalDateTime.now());
 			managed.setImageUrl(destination.getImageUrl());
+			
+			if (currencyId != null) {
+				Price price = new Price();
+				price.setCurrency(findCurrencyByCurrencyId(currencyId));
+				price.setPricingType(findPricingTypeByPricingTypeId(typeId));
+				price.setAmount(amount);
+				price.setDescription(description);
 
-			Price price = new Price();
-			price.setCurrency(findCurrencyByCurrencyId(currencyId));
-			price.setPricingType(findPricingTypeByPricingTypeId(typeId));
-			price.setAmount(amount);
-			price.setDescription(description);
+				managed.addPrice(price);
 
-			managed.addPrice(price);
+				em.persist(price);
 
-			em.persist(price);
+			}
 
 			List<Feature> existingFeatures = new ArrayList<>(managed.getFeatures());
 			for (Feature f : existingFeatures) {
