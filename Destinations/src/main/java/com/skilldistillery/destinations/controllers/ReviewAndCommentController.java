@@ -71,6 +71,22 @@ public class ReviewAndCommentController {
 		
 		return mv;
 	}
+	@RequestMapping(path="updateReviewComment.do", method = RequestMethod.POST)
+	public ModelAndView updateReviewComment(int destinationId, int reviewUserId, ReviewComment reviewComment, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		System.out.println(reviewComment);
+		User user = this.isUserInSession(session);
+		
+		mv.addObject("user", user);
+		ReviewId reviewId = new ReviewId(destinationId, reviewUserId);
+		System.out.println(reviewId);
+		
+		destinationDao.updateReviewCommentForReview(reviewId, reviewComment, user.getId());
+		
+		mv.setViewName("redirect:showDestination.do?did=" + destinationId);
+		
+		return mv;
+	}
 	
 	@RequestMapping(path="deleteDestinationReview.do", method = RequestMethod.POST)
 	public ModelAndView deleteDestinationReview(int destinationId, Review review, HttpSession session) {
@@ -79,6 +95,19 @@ public class ReviewAndCommentController {
 		User user = this.isUserInSession(session);
 		
 		destinationDao.deleteReviewForDestination(destinationId, user.getId(), review);
+		
+		mv.setViewName("redirect:showDestination.do?did=" + destinationId);
+		
+		return mv;
+	}
+	@RequestMapping(path="deleteReviewComment.do", method = RequestMethod.POST)
+	public ModelAndView deleteReviewComment(int destinationId, int reviewUserId, ReviewComment reviewComment, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
+		User user = this.isUserInSession(session);
+		
+		ReviewId reviewId = new ReviewId(destinationId, reviewUserId);
+		destinationDao.deleteReviewCommentForReview(reviewId, reviewComment, user.getId());
 		
 		mv.setViewName("redirect:showDestination.do?did=" + destinationId);
 		

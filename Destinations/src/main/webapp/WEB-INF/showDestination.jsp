@@ -235,12 +235,28 @@
 									<ul>
 										<li>By ${reviewComment.user.username} on
 											${reviewComment.createdDate}: ${reviewComment.comment}</li>
+										<c:if test="${reviewComment.user.id == user.id }">
+											<li>
+												<form action="updateReviewComment.do" method="POST">
+												<input type="hidden" value="${review.destination.id}" name="destinationId">
+												<input type="hidden" value="${review.user.id}" name="reviewUserId">
+												<input type="hidden" value="${reviewComment.id}" name="id">
+												<input type = "text" name = "comment" value = "${reviewComment.comment}">
+												<input type = "submit" value = "Edit Comment">
+												</form>
+											<form action="deleteReviewComment.do" method="POST">
+											<input type="hidden" value="${review.destination.id}" name="destinationId">
+											<input type="hidden" value="${review.user.id}" name="reviewUserId">
+											<input type="hidden" value="${reviewComment.id}" name="id">
+											<input type = "submit" value = "Remove Comment">
+											</form>
+								</li>
+							</c:if>
 									</ul>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 					<ul>
-						<li>Leave a comment</li>
 						<li>
 							<form action="createReviewComment.do" method="POST">
 								<input type="hidden" value="${destination.id}" name="destinationId">
@@ -299,11 +315,26 @@
 									<c:otherwise>
 											<li>By ${reviewComment.user.username} on
 												${reviewComment.createdDate}: ${reviewComment.comment}</li>
-											<li>Edit and Remove</li>
+											<c:if test="${reviewComment.user.id == user.id }">
+											<li>
+												<form action="updateReviewComment.do" method="POST">
+												<input type="hidden" value="${review.destination.id}" name="destinationId">
+												<input type="hidden" value="${review.user.id}" name="reviewUserId">
+												<input type="hidden" value="${reviewComment.id}" name="id">
+												<input type = "text" name = "comment" value = "${reviewComment.comment}">
+												<input type = "submit" value = "Edit Comment">
+												</form>
+											<form action="deleteReviewComment.do" method="POST">
+											<input type="hidden" value="${review.destination.id}" name="destinationId">
+											<input type="hidden" value="${review.user.id}" name="reviewUserId">
+											<input type="hidden" value="${reviewComment.id}" name="id">
+											<input type = "submit" value = "Remove Comment">
+											</form>
+								</li>
+							</c:if>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
-						<li>Leave a comment</li>
 						<li>
 							<form action="createReviewComment.do" method="POST">
 								<input type="hidden" value="${destination.id}" name="destinationId">

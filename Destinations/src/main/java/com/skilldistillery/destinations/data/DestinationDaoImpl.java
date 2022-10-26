@@ -168,6 +168,21 @@ public class DestinationDaoImpl implements DestinationDAO {
 		return managed;
 	}
 
+	
+	@Override
+	public ReviewComment updateReviewCommentForReview(ReviewId reviewId, ReviewComment reviewComment, int userId) {
+//		User user = em.find(User.class, userId);
+//
+//		Review review = findReviewByReviewId(reviewId);
+		
+		ReviewComment managed = em.find(ReviewComment.class, reviewComment.getId());
+		if (managed != null) {
+			managed.setComment(reviewComment.getComment());
+		}
+
+		return managed;
+		
+	}
 	@Override
 	public boolean deleteReviewForDestination(int destinationId, int userId, Review review) {
 		ReviewId reviewId = new ReviewId(destinationId, userId);
@@ -181,6 +196,22 @@ public class DestinationDaoImpl implements DestinationDAO {
 		}
 
 		return false;
+	}
+	
+	@Override
+	public boolean deleteReviewCommentForReview(ReviewId reviewId, ReviewComment reviewComment, int userId) {
+		Review review = findReviewByReviewId(reviewId);
+		
+		ReviewComment deleted = em.find(ReviewComment.class, reviewComment.getId());
+		if (deleted != null) {
+			review.removeReviewComment(reviewComment);
+			em.remove(deleted);
+			return true;
+		}
+
+		return false;
+				
+		
 	}
 
 	@Override
