@@ -75,7 +75,7 @@ public interface DestinationDAO {
 	
 	boolean removePriceById(int priceId, int destinationId);
 	
-	
+	Review createNewReviewForDestination(int destinationId, Review review, int userId);
 	
 
 

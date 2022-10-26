@@ -40,8 +40,10 @@ public class DestinationController {
 	public String home(Model model) {
 //		model.addAttribute("destination", destinationDao.findDestinationById2(1));
 		model.addAttribute("destinations", destinationDao.findAllDestinations());
-		return "home";
+		return "home" ;
+		
 	}
+	
 	
 	@RequestMapping(path = "showDestination.do")
 	public String showDestination(int did, Model model) {
@@ -159,5 +161,7 @@ public class DestinationController {
 		mv.setViewName("redirect:showDestination.do?did=" + id);
 		return mv;
 	}
+	
+	
 	
 }

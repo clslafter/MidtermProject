@@ -254,6 +254,11 @@
 
 			<ul>
 				<lh>Reviews</lh>
+				<li><form action="createDestinationReview.do" method="POST">
+					<input type="hidden" value="${destination.id }" name="destinationId">
+					<input type = "text" name = "comment" >
+					<input type = "submit" value = "Add Review">
+				</form></li>
 				<c:forEach var="review" items="${destination.reviews}">
 					<c:if test="${review.destination.user != review.user}">
 						<li>By ${review.user.username} on ${review.reviewDate}:

@@ -9,7 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.destinations.entities.Address;
 import com.skilldistillery.destinations.entities.Category;
@@ -20,6 +19,7 @@ import com.skilldistillery.destinations.entities.Feature;
 import com.skilldistillery.destinations.entities.Price;
 import com.skilldistillery.destinations.entities.PricingType;
 import com.skilldistillery.destinations.entities.Review;
+import com.skilldistillery.destinations.entities.ReviewId;
 import com.skilldistillery.destinations.entities.User;
 
 @Service
@@ -99,6 +99,28 @@ public class DestinationDaoImpl implements DestinationDAO {
 	public Address createDestinationAddress(Address address) {
 		em.persist(address);
 		return address;
+	}
+	
+	@Override 
+	public Review createNewReviewForDestination(int destinationId, Review review, int userId) {
+		Destination destination = findDestinationById(destinationId);
+		User user = em.find(User.class, userId);
+		
+		ReviewId reviewId = new ReviewId(destinationId, userId);
+		
+		review.setUser(user);
+		review.setDestination(destination);
+		review.setEnabled(true);
+		review.setReviewDate(LocalDateTime.now());
+		review.setId(reviewId);
+		
+		if(review != null) {
+			destination.addReview(review);
+			
+			em.persist(review);
+		}
+		
+		return review;
 	}
 
 	@Override
@@ -355,7 +377,6 @@ public class DestinationDaoImpl implements DestinationDAO {
 			return true;
 		}
 		return false;
-
 	}
 
 }
