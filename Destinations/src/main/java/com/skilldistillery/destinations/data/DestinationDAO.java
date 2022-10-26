@@ -77,6 +77,12 @@ public interface DestinationDAO {
 	
 	Review createNewReviewForDestination(int destinationId, Review review, int userId);
 	
+	Review updateReviewForDestination(int destinationId, int userId, Review review);
+	
+	boolean deleteReviewForDestination(int destinationId, int userId, Review review);
+	
+	Review findReviewByUserAndDestination(int userId, int destinationId);
+	
 
 
 }

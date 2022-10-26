@@ -32,11 +32,41 @@ public class ReviewAndCommentController {
 		
 		User user = this.isUserInSession(session);
 		
+		mv.addObject("user", user);
+		
 		destinationDao.createNewReviewForDestination(destinationId, review, user.getId());
 		
 		mv.setViewName("redirect:showDestination.do?did=" + destinationId);
 		
 		return mv;
 	}
+	
+	@RequestMapping(path="updateDestinationReview.do", method = RequestMethod.POST)
+	public ModelAndView updateDestinationReview(int destinationId, Review review, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
+		User user = this.isUserInSession(session);
+		
+		destinationDao.updateReviewForDestination(destinationId, user.getId(), review);
+		
+		mv.setViewName("redirect:showDestination.do?did=" + destinationId);
+		
+		return mv;
+	}
+	
+	@RequestMapping(path="deleteDestinationReview.do", method = RequestMethod.POST)
+	public ModelAndView deleteDestinationReview(int destinationId, Review review, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
+		User user = this.isUserInSession(session);
+		
+		destinationDao.deleteReviewForDestination(destinationId, user.getId(), review);
+		
+		mv.setViewName("redirect:showDestination.do?did=" + destinationId);
+		
+		return mv;
+	}
+	
+	
 	
 }

@@ -1,8 +1,6 @@
 package com.skilldistillery.destinations.controllers;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,9 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.destinations.data.DestinationDAO;
 import com.skilldistillery.destinations.entities.Address;
-import com.skilldistillery.destinations.entities.Category;
 import com.skilldistillery.destinations.entities.Destination;
-import com.skilldistillery.destinations.entities.Feature;
+import com.skilldistillery.destinations.entities.Review;
 import com.skilldistillery.destinations.entities.User;
 
 @Controller
@@ -46,8 +43,16 @@ public class DestinationController {
 	
 	
 	@RequestMapping(path = "showDestination.do")
-	public String showDestination(int did, Model model) {
+	public String showDestination(int did, Model model, HttpSession session) {
+		User user = isUserInSession(session);
+		
 		model.addAttribute("destination", destinationDao.findDestinationById(did));
+		Review review = null;
+		if(user != null) {
+			review = destinationDao.findReviewByUserAndDestination(user.getId(), did);
+		}
+		model.addAttribute("userReview", review);
+		System.out.println(review);
 		return "showDestination";
 	}
 	
