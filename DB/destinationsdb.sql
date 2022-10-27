@@ -70,7 +70,7 @@ DROP TABLE IF EXISTS `destination` ;
 CREATE TABLE IF NOT EXISTS `destination` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(200) NOT NULL,
-  `description` TEXT NULL,
+  `description` VARCHAR(2000) NULL,
   `website_url` VARCHAR(100) NULL,
   `user_id` INT NOT NULL,
   `address_id` INT NOT NULL,
