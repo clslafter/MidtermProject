@@ -170,7 +170,7 @@ public class UserController {
 	@RequestMapping(path = "userAccountUpdated.do", method = RequestMethod.GET)
 	public ModelAndView userAccountUpdated() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("showUserProfile");
+		mv.setViewName("redirect:showUserProfile.do");
 		return mv;
 	}
 

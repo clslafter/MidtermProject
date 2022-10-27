@@ -5,37 +5,24 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Destination Page</title>
-<jsp:include page="bootstrapHead.jsp" />
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title>Destination Page</title>
+		<jsp:include page="bootstrapHead.jsp" />
+	</head>
 <body>
 	<jsp:include page="navbar.jsp" />
 	<H1>${destination.name}</H1>
-	<p>
-		Created by ${destination.user.username}
-
+	<p>Created by ${destination.user.username}
 		<c:choose>
-			<c:when test="${empty destination.createDate}">
-
-			</c:when>
-			<c:otherwise>
-			on ${destination.createDate}<br>
-			</c:otherwise>
+			<c:when test="${empty destination.createDate}"></c:when>
+			<c:otherwise>on ${destination.createDate}<br></c:otherwise>
 		</c:choose>
 		<c:choose>
-			<c:when test="${empty destination.lastEdited}">
-
-			</c:when>
-			<c:otherwise>
-			Last edited on ${destination.lastEdited}
-
-	
+			<c:when test="${empty destination.lastEdited}"></c:when>
+			<c:otherwise>Last edited on ${destination.lastEdited}</c:otherwise>
+		</c:choose>
 	</p>
-	</c:otherwise>
-	</c:choose>
-
 
 	<c:choose>
 		<c:when test="${empty destination.description}">
@@ -50,8 +37,7 @@
 			<p>This destination does not yet have a web page</p>
 		</c:when>
 		<c:otherwise>
-			<a href="${destination.websiteUrl}" target="_blank">${destination.name}'s
-				web page</a>
+			<a href="${destination.websiteUrl}" target="_blank">${destination.name}'s web page</a>
 			<br>
 		</c:otherwise>
 	</c:choose>
@@ -64,11 +50,6 @@
 			<br>
 		</c:otherwise>
 	</c:choose>
-
-
-
-
-
 
 	<!-- insert other destination details here -->
 	<c:choose>
