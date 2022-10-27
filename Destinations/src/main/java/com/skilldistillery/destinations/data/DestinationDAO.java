@@ -97,6 +97,12 @@ public interface DestinationDAO {
 	
 	List<Destination> findByCity(String city);
 	
+	DestinationImage createDestinationImage(DestinationImage image, int userId, int destinationId);
+	
+	DestinationImage updateDestinationImage(DestinationImage image, int userId, int destinationId);
+	
+	boolean deleteDestinationImage(DestinationImage image, int destinationId, int userId);
+	
 	
 
 

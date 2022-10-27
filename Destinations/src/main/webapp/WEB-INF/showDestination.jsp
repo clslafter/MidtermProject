@@ -165,10 +165,22 @@
 			<p>There are no extra images entered for this destination</p>
 		</c:when>
 		<c:otherwise>
-			<ul>
-				<lh>More Images</lh>
+				<h5>More Images</h5>
+					<ul>
+				
+						<li>
+							<form action="createDestinationImage.do" method="POST">
+								<input type="hidden" value="${destination.id}" name="destinationId">
+								<input type = "text" name = "imageUrl" placeholder="Insert Image Url" >
+								<input type = "text" name = "caption" placeholder="Insert Image Caption">
+								<input type = "submit" value = "Add Image">
+							</form>
+						</li>
+			
+				
 				<c:forEach var="image" items="${destination.images}">
 					<li><img src="${image.imageUrl}" height="100" width="130" /></li>
+					
 					<c:choose>
 						<c:when test="${empty image.caption}">
 
@@ -190,7 +202,22 @@
 							</ul>
 						</c:otherwise>
 					</c:choose>
-
+						<c:if test="${isAdmin || image.user.id == user.id }">
+								<li>
+									<form action="updateDestinationImage.do" method="POST">
+										<input type="hidden" value="${destination.id }" name="destinationId">
+										<input type="hidden" value="${image.id}" name="id">
+										<input type = "text" name = "imageUrl" value = "${image.imageUrl}">
+										<input type = "text" name = "caption" value = "${image.caption}">
+										<input type = "submit" value = "Edit Image">
+									</form>
+									<form action="deleteDestinationImage.do" method="POST">
+										<input type="hidden" value="${destination.id}" name="destinationId">
+										<input type="hidden" value="${image.id}" name="id">
+										<input type = "submit" value = "Remove Image">
+									</form>
+								</li>
+							</c:if>
 				</c:forEach>
 			</ul>
 		</c:otherwise>
