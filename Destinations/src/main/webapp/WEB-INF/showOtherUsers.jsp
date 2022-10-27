@@ -10,6 +10,7 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp" />
+<div class="container-fluid">
 <H1>Welcome to ${user.firstName}'s Profile!</H1>
 
 <H4>Member since: ${user.createdDate}</H4>
@@ -41,7 +42,7 @@
 
 
 
-
+</div>
 <jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>

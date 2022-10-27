@@ -10,13 +10,14 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp" />
-<H1>Internal Home Page</H1>
+<div class="container-fluid">
 <H1>Hello, ${user.firstName}!</H1>
 
 <!-- list of all destinations -->
 
 
-	<table class="table table-warning">
+
+	<table class="table table" style="background-color: #7BC2BC; color: white;">
 		<thead>
 			<tr style="text-align: center; vertical-align: middle;">
 				<th scope="col">Name</th>
@@ -108,7 +109,8 @@
 
 <a href="createDestination.do">Create a new destination</a>
 
-
+</div>
+<jsp:include page="footer.jsp" />
 <jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>
