@@ -35,7 +35,7 @@
 					   class="form-control" required aria-label="Sizing example input"
 					   aria-describedby="inputGroup-sizing-lg">
 					   
-				<input name="password" placeholder="password" type="text"
+				<input name="password" placeholder="password" type="password"
 					   class="form-control" required aria-label="Sizing example input"
 					   aria-describedby="inputGroup-sizing-lg"><br>
 				

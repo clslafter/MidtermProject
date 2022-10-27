@@ -41,6 +41,8 @@ public class DestinationController {
 		
 	}
 	
+
+	
 	
 	@RequestMapping(path = "showDestination.do")
 	public String showDestination(int did, Model model, HttpSession session) {
