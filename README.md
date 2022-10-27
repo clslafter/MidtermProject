@@ -67,7 +67,7 @@ After the foundation was created, we alternated between splitting the work and s
 
 Once we had a minimum viable product in terms of functionality, we implemented a few stretch goals, then designed and styled the individual pages using CSS and Bootstrap.
 
-//ER DIAGRAM PNG GOES HERE//
+ER DIAGRAM:
 ![Photo of ER diagram](https://github.com/clslafter/MidtermProject/blob/main/DB/destinationsdb.png)
 
 ## Technologies and Methodologies Used:
