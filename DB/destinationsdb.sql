@@ -416,11 +416,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `destinationsdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (1, 'admin', 'dire', 'admin@server.com', 'Dire', 'Cannibal', 'admin', 1, 1, NULL, NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (2, 'normaluser', '1234', 'jdoe@server.com', 'John', 'Doe', 'normal', 1, 5, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (1, 'admin', 'dire', 'admin@server.com', 'Dire', 'Cannibal', 'admin', 1, 1, '2022-10-20 12:00:00', NULL, 'I really enjoy visiting sites of natural beauty.  As a life-long travel enthusiast, I created this web site to share my favorite destinations and find new places from other members.  Thanks for using the site.  ');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (2, 'normaluser', '1234', 'jdoe@server.com', 'John', 'Doe', 'normal', 1, 5, '2022-10-20 12:00:00', NULL, 'Just joined up, looking forward to exploring more.');
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (3, 'anewman', 'Aspen', 'fake@server.com', 'Aspen', 'Newman', 'admin', 1, 6, '2022-10-20 12:00:00', NULL, NULL);
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (4, 'cslafter', 'Celicia', 'notreal@server.com', 'Celicia', 'Slafter', 'admin', 1, 7, '2022-10-20 12:00:00', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (5, 'jingram', 'Josh', 'words@host.com', 'Josh', 'Ingram', 'admin', 1, 8, '2022-10-20 12:00:00', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (5, 'jingram', 'Josh', 'words@host.com', 'Josh', 'Ingram', 'admin', 1, 8, '2022-10-20 12:00:00', NULL, 'I enjoy travelling and exploring new places - particularly restaurants.  My favorite songs are \"On the Road Again\" and \"Ramblin\' Man.\"  ');
 
 COMMIT;
 
@@ -480,7 +480,13 @@ COMMIT;
 START TRANSACTION;
 USE `destinationsdb`;
 INSERT INTO `currency` (`id`, `name`) VALUES (1, 'USD');
-INSERT INTO `currency` (`id`, `name`) VALUES (2, 'Sol');
+INSERT INTO `currency` (`id`, `name`) VALUES (2, 'PEN');
+INSERT INTO `currency` (`id`, `name`) VALUES (3, 'CAD');
+INSERT INTO `currency` (`id`, `name`) VALUES (4, 'MXN');
+INSERT INTO `currency` (`id`, `name`) VALUES (5, 'GBP');
+INSERT INTO `currency` (`id`, `name`) VALUES (6, 'EUR');
+INSERT INTO `currency` (`id`, `name`) VALUES (7, 'AUD');
+INSERT INTO `currency` (`id`, `name`) VALUES (8, 'Other');
 
 COMMIT;
 
@@ -548,7 +554,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `destinationsdb`;
-INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (1, 'https://cdn.britannica.com/86/94286-050-B15C8449/Moonrise-mesa-Grand-Canyon-National-Park-Arizona.jpg', 'This is the Grand Canyon', '2022-10-23- 12:00:00', 1, 1);
+INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (1, 'https://cdn.britannica.com/86/94286-050-B15C8449/Moonrise-mesa-Grand-Canyon-National-Park-Arizona.jpg', 'This is the Grand Canyon', '2022-10-23 12:00:00', 1, 1);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (2, 'https://content.r9cdn.net/rimg/dimg/4c/ac/7e6077e1-city-45618-165ce416a23.jpg?crop=true&width=1020&height=498', 'Check out this llama', NULL, 2, 2);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (3, 'https://media.9news.com/assets/KUSA/images/e4c5b3a9-cd33-4e3c-92ca-7d953c78b300/e4c5b3a9-cd33-4e3c-92ca-7d953c78b300_1140x641.jpg', 'The waterpark is a lot of fun!', NULL, 3, 2);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (4, 'https://media.9news.com/assets/KUSA/images/699a150f-eb1f-47ef-a5ff-84210d8f25c1/699a150f-eb1f-47ef-a5ff-84210d8f25c1_1140x641.jpg', 'Wee!', NULL, 3, 2);
@@ -618,7 +624,7 @@ USE `destinationsdb`;
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (1, 49.99, 3, 4, 1, NULL);
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (2, 154.00, 2, 4, 2, NULL);
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (3, 8.00, 6, 4, 1, 'flat fee for all guests, National Park Passes do not apply');
-INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (4, 35.00, 1, 6, 1, 'dmits one single, private, non-commercial vehicle and all its passengers, up to a 15 person passenger van.');
+INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (4, 35.00, 1, 6, 1, 'Admits one single, private, non-commercial vehicle and all its passengers, up to a 15 person passenger van.');
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (5, 20.00, 1, 4, 1, NULL);
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (6, NULL, 1 , 1, 1, 'For children 15 and under');
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (7, 30.00, 1, 7, 1, 'Admits one single, private, non-commercial motorcycle and its passenger(s).');
