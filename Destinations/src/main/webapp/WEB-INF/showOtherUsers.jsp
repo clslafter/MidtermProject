@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Show Other Users</title>
 <jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
@@ -31,7 +31,7 @@
 		    			<p class="card-text">${destination.description}</p>
 		  			</div>
 		  			<ul class="list-group list-group-flush">
-		   				<li class="list-group-item">Date Created: ${destination.createDate}</li>
+		   				<li class="list-group-item">Date Created: ${destination.createDateFormatted}</li>
 		    			<li class="list-group-item">Last Edited: ${destination.lastEdited}</li>
 		  			</ul>
 				</div>

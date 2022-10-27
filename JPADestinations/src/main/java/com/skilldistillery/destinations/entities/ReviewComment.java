@@ -1,6 +1,7 @@
 package com.skilldistillery.destinations.entities;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +16,7 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "review_comment")
@@ -52,6 +54,11 @@ public class ReviewComment {
 	//METHODS
 
 	public ReviewComment() {
+	}
+	
+	@Transient
+	public String getCreatedDateFormatted() {
+		return createdDate.format(DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a"));
 	}
 
 	public int getId() {

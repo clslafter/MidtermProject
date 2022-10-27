@@ -31,8 +31,8 @@
 		    			<p class="card-text">${destination.description}</p>
 		  			</div>
 		  			<ul class="list-group list-group-flush">
-		   				<li class="list-group-item">Date Created: ${destination.createDate}</li>
-		    			<li class="list-group-item">Last Edited: ${destination.lastEdited}</li>
+		   				<li class="list-group-item">Date Created: ${destination.createDateFormatted}</li>
+		    			<li class="list-group-item">Last Edited: ${destination.editedDateFormatted}</li>
 		    			<li class="list-group-item">Enabled: ${destination.enabled}</li>
 		  			</ul>
 		  			<div class="card-body">

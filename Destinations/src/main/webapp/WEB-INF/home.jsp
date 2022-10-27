@@ -90,7 +90,7 @@
       <div class="card-body">
         <h5 class="card-title">${destination.name}</h5>
         <p class="card-text">${destination.description}</p>
-        <p class="card-text"><small class="text-muted">Posted On: ${destination.createDate}</small></p>
+        <p class="card-text"><small class="text-muted">Posted On: ${destination.createDateFormatted}</small></p>
         <p class="card-text"><small class="text-muted">Creator: ${destination.user.username}</small></p>
        <a href="showOtherUsers.do?uid=${destination.user.id}" >Creator</a>
        <a href="showDestination.do?did=${destination.id}" >View Destination</a>
