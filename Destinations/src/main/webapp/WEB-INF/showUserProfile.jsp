@@ -42,7 +42,7 @@
 						</form> <br>
 		  			
 		    			<a href="updateDestination.do?id=${destination.id}" class="card-link">Edit</a>
-		    			<a href="showDestination.do?id=${destination.id}" class="card-link">View on Home Page</a>
+		    			<a href="showDestination.do?did=${destination.id}" class="card-link">View on Home Page</a>
 		  			</div>
 				</div>
 				</c:if>
