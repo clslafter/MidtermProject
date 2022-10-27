@@ -58,6 +58,7 @@
     </div>
   </div>
 </div>
+<hr>
 	<jsp:include page="footer.jsp" />
 	<jsp:include page="bootstrapFoot.jsp" />
 </body>
