@@ -12,19 +12,8 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
        <c:choose>
-       <c:when test = "${user == null}">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="login.do">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="createAccount.do">Create Account</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="login.do">Login</a>
-        </li>
-       </c:when>
-       <c:otherwise>
-        <li class="nav-item">
+       <c:when test = "${user != null}">
+          <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="home.do">Home</a>
         </li>
         <li class="nav-item">
@@ -35,6 +24,17 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="logout.do">Logout</a>
+        </li>
+       </c:when>
+       <c:otherwise>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="login.do">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="createAccount.do">Create Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="login.do">Login</a>
         </li>
        </c:otherwise>
        </c:choose>
