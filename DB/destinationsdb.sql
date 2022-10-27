@@ -70,7 +70,7 @@ DROP TABLE IF EXISTS `destination` ;
 CREATE TABLE IF NOT EXISTS `destination` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(200) NOT NULL,
-  `description` VARCHAR(2000) NULL,
+  `description` TEXT NULL,
   `website_url` VARCHAR(100) NULL,
   `user_id` INT NOT NULL,
   `address_id` INT NOT NULL,
@@ -416,11 +416,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `destinationsdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (1, 'admin', 'dire', 'admin@server.com', 'Dire', 'Cannibal', 'admin', 1, 1, NULL, NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (2, 'normaluser', '1234', 'jdoe@server.com', 'John', 'Doe', 'normal', 1, 5, NULL, NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (3, 'anewman', 'Aspen', 'fake@server.com', 'Aspen', 'Newman', 'admin', 1, 6, '2022-10-20 12:00:00', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (4, 'cslafter', 'Celicia', 'notreal@server.com', 'Celicia', 'Slafter', 'admin', 1, 7, '2022-10-20 12:00:00', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (5, 'jingram', 'Josh', 'words@host.com', 'Josh', 'Ingram', 'admin', 1, 8, '2022-10-20 12:00:00', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (1, 'admin', 'dire', 'admin@server.com', 'Dire', 'Cannibal', 'admin', 1, 1, '2022-10-20 12:00:00', NULL, 'I really enjoy visiting sites of natural beauty.  As a life-long travel enthusiast, I created this web site to share my favorite destinations and find new places from other members.  Thanks for using the site.  ');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (2, 'normaluser', '1234', 'jdoe@server.com', 'John', 'Doe', 'normal', 1, 5, '2022-10-20 12:00:00', NULL, 'Just joined up, looking forward to exploring more.');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (3, 'anewman', 'Aspen', 'fake@server.com', 'Aspen', 'Newman', 'admin', 1, 6, '2022-10-20 12:00:00', NULL, 'Hello my name is Aspen! I enjoy exploring amazing new places and being able to share them with others!');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (4, 'cslafter', 'Celicia', 'notreal@server.com', 'Celicia', 'Slafter', 'admin', 1, 7, '2022-10-20 12:00:00', NULL, 'I love long road trips across the country and stopping in unique places along the way.');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `role`, `enabled`, `address_id`, `created_date`, `image_url`, `bio`) VALUES (5, 'jingram', 'Josh', 'words@host.com', 'Josh', 'Ingram', 'admin', 1, 8, '2022-10-20 12:00:00', NULL, 'I enjoy travelling and exploring new places - particularly restaurants.  My favorite songs are \"On the Road Again\" and \"Ramblin\' Man.\"  ');
 
 COMMIT;
 
@@ -445,14 +445,14 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `destinationsdb`;
-INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: The Grand Canyon is great!', 5, 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Canyon_River_Tree_%28165872763%29.jpeg/576px-Canyon_River_Tree_%28165872763%29.jpeg', 1, 1, '2022-10-20 14:00:00', DEFAULT);
-INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: Machu Picchu is super cool', 4, 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Before_Machu_Picchu.jpg/600px-Before_Machu_Picchu.jpg', 2, 1, '2022-10-20 14:01:00', DEFAULT);
-INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: Filler text for Elitch Gardens review', 3, NULL, 3, 2, '2022-10-20 14:02:00', DEFAULT);
-INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: It was too hot, I generally prefer indoor destinations. ', 2, NULL, 1, 2, '2022-10-22 11:00:00', DEFAULT);
-INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: Simply amazing, be sure to give yourself enough time to really explore.', 4, NULL, 1, 5, '2022-10-22 12:00:00', DEFAULT);
-INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: Looks like this Colorado icon is temporarily closed.  Was a lot of fun last time I went.  The cliff divers are really cool.', 4, NULL, 4, 3, '2022-10-22 12:25:00', DEFAULT);
-INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Reveiw: Simply the best BBQ in Texas, and therefore, the world.  Don\'t let the long lines scare you away.  Arrive early and bring a chair.  ', 5, NULL, 5, 5, '2022-10-22 11:34:00', DEFAULT);
-INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('This is a Review: The four corners is a really unique place.  I could simultaneously stand in four states.', 4, NULL, 6, 4, '2022-10-22 11:45:30', DEFAULT);
+INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('I recently went to The Grand Canyon.  It is great!  There are lots of great spots/overlooks for fantastic photos and plenty of selfie spots.  ', 5, 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Canyon_River_Tree_%28165872763%29.jpeg/576px-Canyon_River_Tree_%28165872763%29.jpeg', 1, 1, '2022-10-20 14:00:00', DEFAULT);
+INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('Machu Picchu is super cool.  On my recent visit, I found that it combines natural beauty with the intrigue of ancient history...and the opportunity for a cardio workout.  Highly recommend! ', 4, 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Before_Machu_Picchu.jpg/600px-Before_Machu_Picchu.jpg', 2, 1, '2022-10-20 14:01:00', DEFAULT);
+INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('While not as exotic as some other destinations, Elitch Gardens is a lot of fun for those with kids - or kids at heart.  Rollercoasters, waterparks, carnival food, what\'s not to like?', 3, NULL, 3, 2, '2022-10-20 14:02:00', DEFAULT);
+INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('It was too hot, I generally prefer indoor destinations. ', 2, NULL, 1, 2, '2022-10-22 11:00:00', DEFAULT);
+INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('Simply amazing, be sure to give yourself enough time to really explore.', 4, NULL, 1, 5, '2022-10-22 12:00:00', DEFAULT);
+INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('Looks like this Colorado icon is temporarily closed.  Was a lot of fun last time I went.  The cliff divers are really cool.', 4, NULL, 4, 3, '2022-10-22 12:25:00', DEFAULT);
+INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('Simply the best BBQ in Texas, and therefore, the world.  Don\'t let the long lines scare you away.  Arrive early and bring a chair.  ', 5, NULL, 5, 5, '2022-10-22 11:34:00', DEFAULT);
+INSERT INTO `review` (`comment`, `rating`, `image_url`, `destination_id`, `user_id`, `review_date`, `enabled`) VALUES ('The four corners is a really unique place.  I could simultaneously stand in four states.', 4, NULL, 6, 4, '2022-10-22 11:45:30', DEFAULT);
 
 COMMIT;
 
@@ -480,7 +480,13 @@ COMMIT;
 START TRANSACTION;
 USE `destinationsdb`;
 INSERT INTO `currency` (`id`, `name`) VALUES (1, 'USD');
-INSERT INTO `currency` (`id`, `name`) VALUES (2, 'Sol');
+INSERT INTO `currency` (`id`, `name`) VALUES (2, 'PEN');
+INSERT INTO `currency` (`id`, `name`) VALUES (3, 'CAD');
+INSERT INTO `currency` (`id`, `name`) VALUES (4, 'MXN');
+INSERT INTO `currency` (`id`, `name`) VALUES (5, 'GBP');
+INSERT INTO `currency` (`id`, `name`) VALUES (6, 'EUR');
+INSERT INTO `currency` (`id`, `name`) VALUES (7, 'AUD');
+INSERT INTO `currency` (`id`, `name`) VALUES (8, 'Other');
 
 COMMIT;
 
@@ -521,13 +527,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `destinationsdb`;
-INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (1, '#1 This is a Review Comment - Thanks for the review of the Grand Canyon.  I can\'t wait to go there.', '2022-10-20 14:01:30', 2, NULL, 1, 1, 1);
-INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (2, '#2 This is a Reply to Review Comment #1, lots of words', '2022-10-20 14:05:00', 1, 1, 1, 1, 1);
-INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (3, '#3 This ia a review comment: Were you surprised that it was hot?', '2022-10-22 11:05:00', 5, NULL, 1, 2, 1);
-INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (4, '#4 This is a reply to review comment #3:  No, I just didn\'t think it would be as hot as it was.', '2022-10-22 11:10:00', 2, 3, 1, 2, 1);
-INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (5, '#5 This is a Reply to Review Comment #1', '2022-10-20 14:30:30', 3, 1, 1, 1, 1);
-INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (6, '#6 This is a Reply to Reply #2', '2022-10-21 19:00:00', 4, 2, 1, 1, 1);
-INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (7, '#7 This is a Reply to Reply #6', '2022-10-21 22:00:00', 1, 6, 1, 1, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (1, 'Great review of the Grand Canyon.  Appreciate you posting this destination - can\'t wait to go there.', '2022-10-20 14:01:30', 2, NULL, 1, 1, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (2, '@normaluser Thanks!  ', '2022-10-20 14:05:00', 1, 1, 1, 1, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (3, 'Were you surprised that it was hot?', '2022-10-22 11:05:00', 5, NULL, 1, 2, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (4, '@jingram No, I just didn\'t think it would be as hot as it was.', '2022-10-22 11:10:00', 2, 3, 1, 2, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (5, '@normaluser - definitely check it out if you get a chance.', '2022-10-20 14:30:30', 3, 1, 1, 1, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (6, 'Looks really cool.', '2022-10-21 19:00:00', 4, 2, 1, 1, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (7, '@cslafter - Thanks!', '2022-10-21 22:00:00', 1, 6, 1, 1, 1);
 
 COMMIT;
 
@@ -548,7 +554,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `destinationsdb`;
-INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (1, 'https://cdn.britannica.com/86/94286-050-B15C8449/Moonrise-mesa-Grand-Canyon-National-Park-Arizona.jpg', 'This is the Grand Canyon', '2022-10-23- 12:00:00', 1, 1);
+INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (1, 'https://cdn.britannica.com/86/94286-050-B15C8449/Moonrise-mesa-Grand-Canyon-National-Park-Arizona.jpg', 'This is the Grand Canyon', '2022-10-23 12:00:00', 1, 1);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (2, 'https://content.r9cdn.net/rimg/dimg/4c/ac/7e6077e1-city-45618-165ce416a23.jpg?crop=true&width=1020&height=498', 'Check out this llama', NULL, 2, 2);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (3, 'https://media.9news.com/assets/KUSA/images/e4c5b3a9-cd33-4e3c-92ca-7d953c78b300/e4c5b3a9-cd33-4e3c-92ca-7d953c78b300_1140x641.jpg', 'The waterpark is a lot of fun!', NULL, 3, 2);
 INSERT INTO `destination_image` (`id`, `image_url`, `caption`, `image_date`, `destination_id`, `user_id`) VALUES (4, 'https://media.9news.com/assets/KUSA/images/699a150f-eb1f-47ef-a5ff-84210d8f25c1/699a150f-eb1f-47ef-a5ff-84210d8f25c1_1140x641.jpg', 'Wee!', NULL, 3, 2);
@@ -618,7 +624,7 @@ USE `destinationsdb`;
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (1, 49.99, 3, 4, 1, NULL);
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (2, 154.00, 2, 4, 2, NULL);
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (3, 8.00, 6, 4, 1, 'flat fee for all guests, National Park Passes do not apply');
-INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (4, 35.00, 1, 6, 1, 'dmits one single, private, non-commercial vehicle and all its passengers, up to a 15 person passenger van.');
+INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (4, 35.00, 1, 6, 1, 'Admits one single, private, non-commercial vehicle and all its passengers, up to a 15 person passenger van.');
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (5, 20.00, 1, 4, 1, NULL);
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (6, NULL, 1 , 1, 1, 'For children 15 and under');
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (7, 30.00, 1, 7, 1, 'Admits one single, private, non-commercial motorcycle and its passenger(s).');
