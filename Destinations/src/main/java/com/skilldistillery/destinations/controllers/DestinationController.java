@@ -33,7 +33,7 @@ public class DestinationController {
 		}
 	}
 	
-	@RequestMapping(path= {"home.do"})
+	@RequestMapping(path= "home.do")
 	public String home(Model model) {
 //		model.addAttribute("destination", destinationDao.findDestinationById2(1));
 		model.addAttribute("destinations", destinationDao.findAllDestinations());
@@ -167,6 +167,27 @@ public class DestinationController {
 		return mv;
 	}
 	
+	@RequestMapping(path="sortByName.do")
+	public ModelAndView sortByName(String name) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("destinations", destinationDao.findByName(name));
+		mv.setViewName("home");
+		return mv;
+	}
+	@RequestMapping(path="sortByDescription.do")
+	public ModelAndView sortByDescription(String description) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("destinations", destinationDao.findByDescription(description));
+		mv.setViewName("home");
+		return mv;
+	}
+	@RequestMapping(path="sortByCity.do")
+	public ModelAndView sortByCity(String city) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("destinations", destinationDao.findByCity(city));
+		mv.setViewName("home");
+		return mv;
+	}
 	
 	
 }

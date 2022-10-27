@@ -91,6 +91,13 @@ public interface DestinationDAO {
 	
 	Review findReviewByUserAndDestination(int userId, int destinationId);
 	
+	List<Destination> findByName(String name);
+	
+	List<Destination> findByDescription(String description);
+	
+	List<Destination> findByCity(String city);
+	
+	
 
 
 }

@@ -168,21 +168,21 @@ public class DestinationDaoImpl implements DestinationDAO {
 		return managed;
 	}
 
-	
 	@Override
 	public ReviewComment updateReviewCommentForReview(ReviewId reviewId, ReviewComment reviewComment, int userId) {
 //		User user = em.find(User.class, userId);
 //
 //		Review review = findReviewByReviewId(reviewId);
-		
+
 		ReviewComment managed = em.find(ReviewComment.class, reviewComment.getId());
 		if (managed != null) {
 			managed.setComment(reviewComment.getComment());
 		}
 
 		return managed;
-		
+
 	}
+
 	@Override
 	public boolean deleteReviewForDestination(int destinationId, int userId, Review review) {
 		ReviewId reviewId = new ReviewId(destinationId, userId);
@@ -197,11 +197,11 @@ public class DestinationDaoImpl implements DestinationDAO {
 
 		return false;
 	}
-	
+
 	@Override
 	public boolean deleteReviewCommentForReview(ReviewId reviewId, ReviewComment reviewComment, int userId) {
 		Review review = findReviewByReviewId(reviewId);
-		
+
 		ReviewComment deleted = em.find(ReviewComment.class, reviewComment.getId());
 		if (deleted != null) {
 			review.removeReviewComment(reviewComment);
@@ -210,8 +210,7 @@ public class DestinationDaoImpl implements DestinationDAO {
 		}
 
 		return false;
-				
-		
+
 	}
 
 	@Override
@@ -484,6 +483,28 @@ public class DestinationDaoImpl implements DestinationDAO {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public List<Destination> findByName(String name) {
+		String queryString = "SELECT d FROM Destination d WHERE d.name like :name";
+		List<Destination> destinations = em.createQuery(queryString, Destination.class)
+				.setParameter("name", "%" + name + "%").getResultList();
+		return destinations;
+	}
+
+	public List<Destination> findByDescription(String description) {
+		String queryString = "SELECT d FROM Destination d WHERE d.description like :description";
+		List<Destination> destinations = em.createQuery(queryString, Destination.class)
+				.setParameter("description", "%" + description + "%").getResultList();
+		return destinations;
+	}
+
+	public List<Destination> findByCity(String city) {
+		String queryString = "SELECT d FROM Destination d WHERE d.address.city like :city";
+		List<Destination> destinations = em.createQuery(queryString, Destination.class)
+				.setParameter("city", "%" + city + "%").getResultList();
+		return destinations;
 	}
 
 }
