@@ -12,9 +12,10 @@
 
 <jsp:include page="navbar.jsp" />
 <jsp:include page="imageSlider.jsp"/>
+<jsp:include page="welcomeMessage.jsp"/>
+<jsp:include page="threeColumns.jsp"/>
 
-<h1>Welcome to Travel Destinations</h1>
-<h3>Where travelers discover and share exciting destinations</h3>
+
 
 <!-- Insert Top Destination Teaser Here -->
 
