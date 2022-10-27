@@ -91,8 +91,8 @@
         <p class="card-text">${destination.description}</p>
         <p class="card-text"><small class="text-muted">Posted On: ${destination.createDate}</small></p>
         <p class="card-text"><small class="text-muted">Creator: ${destination.user.username}</small></p>
-       <a href="showDestination.do?did=${destination.id}" >View Destination
-		</a>
+       <a href="showOtherUsers.do?uid=${destination.user.id}" >Creator</a>
+       <a href="showDestination.do?did=${destination.id}" >View Destination</a>
       </div>
     </div>
   </div>

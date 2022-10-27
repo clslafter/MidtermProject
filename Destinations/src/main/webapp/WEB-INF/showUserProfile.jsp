@@ -10,6 +10,7 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp" />
+<div class="container-fluid">
 <H1>${user.firstName}'s Profile</H1>
 
 <!-- more user profile fields go here -->
@@ -59,6 +60,7 @@
 		<input type="hidden" name="id" value="${user.id}" /> 
 		<input type="submit" value="Delete My Account" class="btn btn-primary" />
 	</form> <br>
+</div>
 <jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>

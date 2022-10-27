@@ -200,4 +200,11 @@ public class UserController {
 		mv.setViewName("redirect:showAllUsers.do");
 		return mv;
 	}
+	
+	@RequestMapping(path="showOtherUsers.do")
+	public String showOtherUsers(Model model, int uid) {
+		model.addAttribute("user", userDao.findUserById(uid));
+
+		return "showOtherUsers";
+	}
 }
