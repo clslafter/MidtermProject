@@ -22,7 +22,6 @@
 	<div class ="col">
 		<div class = "row row-cols-1 row-cols-md-3 g-4">
 			<c:forEach items="${user.destinations}" var="destination"> 
-			<c:if test = "${destination.enabled == true }">
 				<div class="card" style="width: 18rem;">
 		 			<img src="${destination.imageUrl}" class="card-img-top" alt="...">
 		  			<div class="card-body">
@@ -35,17 +34,10 @@
 		    			<li class="list-group-item">Enabled: ${destination.enabled}</li>
 		  			</ul>
 		  			<div class="card-body">
-		  			
-		  				<form action="updateDestination.do" action="POST">
-							<input type="hidden" name="id" value="${destination.id}" /> 
-							<input type="submit" value="Edit Destination" class="btn btn-primary" />
-						</form> <br>
-		  			
-		    			<a href="updateDestination.do?id=${destination.id}" class="card-link">Edit</a>
-		    			<a href="showDestination.do?id=${destination.id}" class="card-link">View on Home Page</a>
+		    			<a href="updateDestination.do?did=${destination.id}" class="card-link">Edit</a>
+		    			<a href="showDestination.do?did=${destination.id}" class="card-link">View on Home Page</a>
 		  			</div>
 				</div>
-				</c:if>
 			</c:forEach>
 		</div>
 	</div>

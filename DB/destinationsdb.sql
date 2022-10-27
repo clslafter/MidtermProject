@@ -70,7 +70,7 @@ DROP TABLE IF EXISTS `destination` ;
 CREATE TABLE IF NOT EXISTS `destination` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(200) NOT NULL,
-  `description` VARCHAR(2000) NULL,
+  `description` TEXT NULL,
   `website_url` VARCHAR(100) NULL,
   `user_id` INT NOT NULL,
   `address_id` INT NOT NULL,
@@ -102,7 +102,7 @@ DROP TABLE IF EXISTS `review` ;
 
 CREATE TABLE IF NOT EXISTS `review` (
   `comment` TEXT NOT NULL,
-  `rating` INT NULL,
+  `rating` INT NOT NULL,
   `image_url` VARCHAR(300) NULL,
   `destination_id` INT NOT NULL,
   `user_id` INT NOT NULL,
@@ -523,11 +523,11 @@ START TRANSACTION;
 USE `destinationsdb`;
 INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (1, '#1 This is a Review Comment - Thanks for the review of the Grand Canyon.  I can\'t wait to go there.', '2022-10-20 14:01:30', 2, NULL, 1, 1, 1);
 INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (2, '#2 This is a Reply to Review Comment #1, lots of words', '2022-10-20 14:05:00', 1, 1, 1, 1, 1);
-INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (3, '#3 This ia a review comment: Were you surprised that it was hot?', '2022-10-22 11:05:00', 5, NULL, 1, 2, 1);
-INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (4, '#4 This is a reply to review comment #3:  No, I just didn\'t think it would be as hot as it was.', '2022-10-22 11:10:00', 2, 3, 1, 2, 1);
-INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (5, '#5 This is a Reply to Review Comment #1', '2022-10-20 14:30:30', 3, 1, 1, 1, 1);
-INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (6, '#6 This is a Reply to Reply #2', '2022-10-21 19:00:00', 4, 2, 1, 1, 1);
-INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (7, '#7 This is a Reply to Reply #6', '2022-10-21 22:00:00', 1, 6, 1, 1, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (3, '#3 This ia a review comment: Were you surprised that it was hot?', NULL, 5, NULL, 1, 2, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (4, '#4 This is a reply to review comment #3:  No, I just didn\'t think it would be as hot as it was.', NULL, 2, 3, 1, 2, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (5, '#5 This is a Reply to Review Comment #1', NULL, 3, 1, 1, 1, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (6, '#6 This is a Reply to Reply #2', NULL, 4, 2, 1, 1, 1);
+INSERT INTO `review_comment` (`id`, `comment`, `created_date`, `user_id`, `in_reply_to_id`, `review_destination_id`, `review_user_id`, `enabled`) VALUES (7, '#7 This is a Reply to Reply #6', NULL, 1, 6, 1, 1, 1);
 
 COMMIT;
 
@@ -600,12 +600,12 @@ COMMIT;
 START TRANSACTION;
 USE `destinationsdb`;
 INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (1, 'Free', NULL);
-INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (2, 'Veteran', '');
-INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (3, 'Senior', '');
+INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (2, 'Veteran', 'With vaild ID');
+INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (3, 'Senior', '65 and over');
 INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (4, 'Adult', NULL);
 INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (5, 'Child', NULL);
-INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (6, 'Carload', '');
-INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (7, 'Motorcycle ', '');
+INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (6, 'Carload', 'Admits one single, private, non-commercial vehicle and all its passengers, up to a 15 person passenger van.');
+INSERT INTO `pricing_type` (`id`, `name`, `description`) VALUES (7, 'Motorcycle ', 'Admits one single, private, non-commercial motorcycle and its passenger(s).');
 
 COMMIT;
 
@@ -618,10 +618,10 @@ USE `destinationsdb`;
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (1, 49.99, 3, 4, 1, NULL);
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (2, 154.00, 2, 4, 2, NULL);
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (3, 8.00, 6, 4, 1, 'flat fee for all guests, National Park Passes do not apply');
-INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (4, 35.00, 1, 6, 1, 'dmits one single, private, non-commercial vehicle and all its passengers, up to a 15 person passenger van.');
+INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (4, 35.00, 1, 6, 1, NULL);
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (5, 20.00, 1, 4, 1, NULL);
 INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (6, NULL, 1 , 1, 1, 'For children 15 and under');
-INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (7, 30.00, 1, 7, 1, 'Admits one single, private, non-commercial motorcycle and its passenger(s).');
+INSERT INTO `price` (`id`, `amount`, `destination_id`, `pricing_type_id`, `currency_id`, `description`) VALUES (7, 30.00, 1, 7, 1, NULL);
 
 COMMIT;
 

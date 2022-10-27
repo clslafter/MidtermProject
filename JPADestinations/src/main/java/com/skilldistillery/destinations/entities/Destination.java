@@ -49,7 +49,6 @@ public class Destination {
 	@JoinColumn(name="address_id")
 	private Address address;
 	
-	
 	@ManyToMany(mappedBy="destinations")
 	private List <Category> categories;
 	
@@ -218,7 +217,7 @@ public class Destination {
 		if (!images.contains(image)) {
 			images.add(image);
 			if (image.getDestination() != null) {
-				image.getDestination().getImages().add(image);
+				image.getDestination().getImages().remove(image);
 			}
 			image.setDestination(this);
 		}
@@ -245,7 +244,7 @@ public class Destination {
 		if (!prices.contains(price)) {
 			prices.add(price);
 			if (price.getDestination() != null) {
-				price.getDestination().getPrices().add(price);
+				price.getDestination().getPrices().remove(price);
 			}
 			price.setDestination(this);
 		}
@@ -299,7 +298,7 @@ public class Destination {
 		if (!reviews.contains(review)) {
 			reviews.add(review);
 			if (review.getDestination() != null) {
-				review.getDestination().getReviews().add(review);
+				review.getDestination().getReviews().remove(review);
 			}
 			review.setDestination(this);
 		}

@@ -15,7 +15,7 @@
 		
 		<label for="id">Are you want to delete you account? </label>
 		
-		 <input name="id" value="${user.id}" type = hidden/> 
+		 <input name="id" value="${removeRestaurant.id}" type = hidden/> 
 		 <input type="submit" value="Confirm" />
 	</form>
 	<jsp:include page="bootstrapFoot.jsp" />

@@ -19,8 +19,8 @@ Without logging in, the user is able to browse travel destinations submitted by 
 //LINK TO DEPLOYED PROJECT GOES HERE//
 
 Guests can log in as:
-* username: normaluser
-* password: 1234
+username: normaluser
+password: 1234
 
 ## Implementation
 
@@ -34,12 +34,11 @@ Java, MySQL, HTML, CSS, MySQL Workbench, Atom, Bootstrap, Unix Terminal, Spring,
 Pair programming, Agile, Kanban, git collaboration
 
 ## Lessons Learned:
-Communicate openly and honestly
-  * to ensure alignment on goals/features
-  * to prevent merge conflicts
-  * seek input and ask for help (early)
-  * to encourage teammates and provide feedback
-Keep priorities straight and track in Kanban:  core functions, then minimum viable product, then stretch goals. Set realistic goals - distinguish between stretch goals and mvp early.  
+-communicate openly and honestly
+  a. to ensure alignment on goals/features
+  b. to prevent merge conflicts
+  c. to encourage teammates and provide feedback
+-Keep priorities straight and track in Kanban:  core functions, then minimum viable product, then stretch goals. Distinguish between stretch goals and mvp early.  
 ## Stretch Goals Implemented:
 
 ## How to Download and Run

@@ -15,93 +15,9 @@
 
 <!-- list of all destinations -->
 
-
-	<table class="table table-warning">
-		<thead>
-			<tr style="text-align: center; vertical-align: middle;">
-				<th scope="col">Name</th>
-				<th scope="col">Description</th>
-				<th scope="col">City</th>
-				<th scope="col">Reset Sort</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr >
-				<td style="text-align: center; vertical-align: middle;">
-					<form action="sortByName.do">
-						<div class="input-group input-group-lg">
-							<span class="input-group-text">Name </span> <input name="name"
-								value="${destination.name}" placeholder="Insert Name" type="text"
-								class="form-control" aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-lg"> <input
-								name="submit" type="submit" value="Search" class="btn btn-light"/>
-						</div>
-
-					</form></td>
-
-				<td style="text-align: center; vertical-align: middle;">
-					<form action="sortByDescription.do">
-						<div class="input-group input-group-lg">
-							<span class="input-group-text">Description </span> <input
-								name="description" value="${destination.description}" placeholder="Insert Keyword" type="text"
-								class="form-control" aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-lg"> <input
-								name="submit" type="submit" value="Search" class="btn btn-light" />
-						</div>
-					</form>
-
-				</td>
-				
-				<td style="text-align: center; vertical-align: middle;">
-					<form action="sortByCity.do">
-						<div class="input-group input-group-lg">
-							<span class="input-group-text">City </span> <input
-								name="city" value="${destination.address.city}" placeholder="Insert City" type="text"
-								class="form-control" aria-label="Sizing example input"
-								aria-describedby="inputGroup-sizing-lg"> <input
-								name="submit" type="submit" value="Search" class="btn btn-light" />
-						</div>
-					</form>
-
-				</td>
-
-				
-				
-				<td style="text-align: center; vertical-align: middle;">
-				<form action="home.do">
-				<input class="btn btn-light" name="submit" type="submit" value="Reset" />
-				</form>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-
-
+Current Destinations:
 	<c:forEach var="destination" items="${destinations}">
-	<c:if test = "${destination.enabled == true }">
-	
-	<div class="card mb-3" style="max-width: 1000px;">
-  		<div class="row g-0">
-    	<div class="col-md-4">
-     	 <img src="${destination.imageUrl}" class="img-fluid rounded-start">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">${destination.name}</h5>
-        <p class="card-text">${destination.description}</p>
-        <p class="card-text"><small class="text-muted">Posted On: ${destination.createDate}</small></p>
-        <p class="card-text"><small class="text-muted">Creator: ${destination.user.username}</small></p>
-       <a href="showDestination.do?did=${destination.id}" >View Destination
-		</a>
-      </div>
-    </div>
-  </div>
-</div>
-	
-	
-	
-
-	</c:if>
+	<li><a href="showDestination.do?did=${destination.id}">${destination.name}</a></li>
 	</c:forEach><br>
 
 <!-- search destinations and sort options -->
