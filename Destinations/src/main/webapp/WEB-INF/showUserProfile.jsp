@@ -10,13 +10,28 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp" />
-<H1>${user.firstName}'s Profile</H1>
+<div class="container-fluid">
+
+<h1>${user.firstName}'s Profile</h1>
+
+	<form action="updateAccount.do" action="POST">
+		<input type="hidden" name="id" value="${user.id}" /> 
+		<input type="submit" value="Edit My Profile" class="btn btn" style="background-color: #7BC2BC; color: white;"/>
+	</form> 
+	<br>
+	<c:if test="${isAdmin}">
+	<form action="showAllUsers.do">
+		<input type="submit" value="Manage Users" class="btn btn" style="background-color: #7BC2BC; color: white;"/>
+	</form> <br>
+	</c:if>
+
+<hr>
+<H5>Member since: ${user.createdDate}</H5>
+<H4>About Me: ${user.bio}</H4>
+<hr>
 
 <!-- more user profile fields go here -->
 
-	<c:if test="${isAdmin}">
-		<a href="showAllUsers.do">Show all users</a><br>
-	</c:if>
 
 	<h1>Manage My Destinations: </h1>
 	<div class ="col">
@@ -30,19 +45,22 @@
 		    			<p class="card-text">${destination.description}</p>
 		  			</div>
 		  			<ul class="list-group list-group-flush">
-		   				<li class="list-group-item">Date Created: ${destination.createDate}</li>
-		    			<li class="list-group-item">Last Edited: ${destination.lastEdited}</li>
+		   				<li class="list-group-item">Date Created: ${destination.createDateFormatted}</li>
+		    			<li class="list-group-item">Last Edited: ${destination.editedDateFormatted}</li>
 		    			<li class="list-group-item">Enabled: ${destination.enabled}</li>
 		  			</ul>
 		  			<div class="card-body">
 		  			
 		  				<form action="updateDestination.do" action="POST">
 							<input type="hidden" name="id" value="${destination.id}" /> 
-							<input type="submit" value="Edit Destination" class="btn btn-primary" />
+							<input type="submit" value="Edit Destination" class="btn btn" style="background-color: #7BC2BC; color: white;" />
+						</form> <br>
+						
+		  				<form action="showDestination.do" action="POST">
+							<input type="hidden" name="id" value="${destination.id}" /> 
+							<input type="submit" value="View Destination" class="btn btn" style="background-color: #7BC2BC; color: white;" />
 						</form> <br>
 		  			
-		    			<a href="updateDestination.do?id=${destination.id}" class="card-link">Edit</a>
-		    			<a href="showDestination.do?id=${destination.id}" class="card-link">View on Home Page</a>
 		  			</div>
 				</div>
 				</c:if>
@@ -50,15 +68,8 @@
 		</div>
 	</div>
 
-	<form action="updateAccount.do" action="POST">
-		<input type="hidden" name="id" value="${user.id}" /> 
-		<input type="submit" value="Edit My Profile" class="btn btn-primary" />
-	</form> <br>
-	
-	<form action="deleteAccount.do" action="POST">
-		<input type="hidden" name="id" value="${user.id}" /> 
-		<input type="submit" value="Delete My Account" class="btn btn-primary" />
-	</form> <br>
+
+</div>
 <jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>

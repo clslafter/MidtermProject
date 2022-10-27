@@ -31,6 +31,9 @@
           <a class="nav-link" href="showUserProfile.do">My Profile</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="createDestination.do">Create New Destination</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="logout.do">Logout</a>
         </li>
        </c:otherwise>

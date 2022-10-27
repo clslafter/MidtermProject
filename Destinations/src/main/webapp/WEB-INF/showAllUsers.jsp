@@ -12,8 +12,8 @@
 <jsp:include page="navbar.jsp" />
 <H1>List of all Users</H1>
 
-Current Users:
-	<table class="table table-dark table-striped">
+
+	<table class="table table table-striped" style="background-color: #7BC2BC; color: white;">
 		<thead>
 			<tr>
 				<th scope="col">ID</th>

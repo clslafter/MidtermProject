@@ -48,6 +48,11 @@ public class DestinationController {
 	public String showDestination(int did, Model model, HttpSession session) {
 		User user = isUserInSession(session);
 		
+		boolean isAdmin = user.getRole().equals("admin");
+		model.addAttribute("isAdmin", isAdmin);
+		
+		System.out.println(isAdmin);
+		
 		model.addAttribute("destination", destinationDao.findDestinationById(did));
 		Review review = null;
 		if(user != null) {

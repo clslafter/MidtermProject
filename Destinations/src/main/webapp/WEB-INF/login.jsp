@@ -55,14 +55,12 @@
 						<input type="submit" value="Create Account" class="btn btn" style="background-color: #7BC2BC; color: white;"/>
 					</form> <br>
   				</div>
-  		</div>
-	</div>
-	
-	
-	
+	  		</div>
+		</div>
     </div>
   </div>
 </div>
+
 <jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>

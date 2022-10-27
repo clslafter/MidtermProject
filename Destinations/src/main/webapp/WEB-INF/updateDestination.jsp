@@ -60,7 +60,7 @@
 		</c:forEach>
 		
 		<h2>Add A Price</h2>
- 		Amount: <input type="number" name = "amount" >
+ 		Amount: <input type="number" step="0.01" name = "amount" >
 		Description: <input type="text" name = "description" >
 		
 		<br>
@@ -101,7 +101,7 @@
 
 	</form>
 		
-		<table class="table table-dark table-striped">
+		<table class="table table table-striped" style="background-color: #7BC2BC; color: white;">
 			<thead>
 				<tr>
 					<th scope="col">Pricing Type</th>

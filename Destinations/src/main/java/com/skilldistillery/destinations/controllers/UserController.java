@@ -170,7 +170,7 @@ public class UserController {
 	@RequestMapping(path = "userAccountUpdated.do", method = RequestMethod.GET)
 	public ModelAndView userAccountUpdated() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("showUserProfile");
+		mv.setViewName("redirect:showUserProfile.do");
 		return mv;
 	}
 
@@ -199,5 +199,12 @@ public class UserController {
 		user = userDao.adminUpdateUserById(id, user);
 		mv.setViewName("redirect:showAllUsers.do");
 		return mv;
+	}
+	
+	@RequestMapping(path="showOtherUsers.do")
+	public String showOtherUsers(Model model, int uid) {
+		model.addAttribute("user", userDao.findUserById(uid));
+
+		return "showOtherUsers";
 	}
 }

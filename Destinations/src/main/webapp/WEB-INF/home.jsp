@@ -10,13 +10,14 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp" />
-<H1>Internal Home Page</H1>
+<div class="container-fluid">
 <H1>Hello, ${user.firstName}!</H1>
 
 <!-- list of all destinations -->
 
 
-	<table class="table table-warning">
+
+	<table class="table table" style="background-color: #7BC2BC; color: white;">
 		<thead>
 			<tr style="text-align: center; vertical-align: middle;">
 				<th scope="col">Name</th>
@@ -89,10 +90,19 @@
       <div class="card-body">
         <h5 class="card-title">${destination.name}</h5>
         <p class="card-text">${destination.description}</p>
-        <p class="card-text"><small class="text-muted">Posted On: ${destination.createDate}</small></p>
+        <p class="card-text"><small class="text-muted">Posted On: ${destination.createDateFormatted}</small></p>
         <p class="card-text"><small class="text-muted">Creator: ${destination.user.username}</small></p>
-       <a href="showDestination.do?did=${destination.id}" >View Destination
-		</a>
+        
+        <form action="showOtherUsers.do">
+		<input type="hidden" name="uid" value="${destination.user.id}" /> 
+		<input type="submit" value="View Creators Account" class="btn btn" style="background-color: #7BC2BC; color: white;" />
+		</form>
+		<br>
+        <form action="showDestination.do">
+		<input type="hidden" name="uid" value="${destination.id}" /> 
+		<input type="submit" value="View Destination" class="btn btn" style="background-color: #7BC2BC; color: white;" />
+		</form>
+       
       </div>
     </div>
   </div>
@@ -106,9 +116,10 @@
 
 <!-- search destinations and sort options -->
 
-<a href="createDestination.do">Create a new destination</a>
 
 
+</div>
+<jsp:include page="footer.jsp" />
 <jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>

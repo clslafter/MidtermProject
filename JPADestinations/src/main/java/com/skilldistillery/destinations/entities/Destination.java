@@ -1,6 +1,7 @@
 package com.skilldistillery.destinations.entities;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Destination {
@@ -73,6 +75,16 @@ public class Destination {
 	public Destination() {
 	}
 
+	@Transient
+	public String getCreateDateFormatted() {
+		return createDate.format(DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a"));
+	}
+	
+	@Transient
+	public String getEditedDateFormatted() {
+		return lastEdited.format(DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a"));
+	}
+	
 	public int getId() {
 		return id;
 	}

@@ -60,6 +60,11 @@
 		<input type="submit" value="Submit">
 
 	</form>
+	
+	<form action="deleteAccount.do" action="POST">
+		<input type="hidden" name="id" value="${user.id}" /> 
+		<input type="submit" value="Delete My Account" class="btn btn" style="background-color: #7BC2BC; color: white;" />
+	</form> <br>
   		
   	<!-- 	lots more fields go here -->
 <jsp:include page="bootstrapFoot.jsp" />

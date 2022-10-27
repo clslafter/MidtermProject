@@ -123,6 +123,25 @@ public class DestinationDaoImpl implements DestinationDAO {
 
 		return review;
 	}
+	
+	@Override
+	public DestinationImage createDestinationImage(DestinationImage image, int userId, int destinationId) {		
+		Destination destination = findDestinationById(destinationId);
+		User user = em.find(User.class, userId);
+		
+		image.setDestination(destination);
+		image.setImageDate(LocalDateTime.now());
+		image.setUser(user);
+		
+		if(image != null) {
+			destination.addDestinationImage(image);
+			user.addDestinationImage(image);
+			
+			em.persist(image);
+		}
+		
+		return image;
+	}
 
 	@Override
 	public Review findReviewByReviewId(ReviewId reviewId) {
@@ -182,6 +201,22 @@ public class DestinationDaoImpl implements DestinationDAO {
 		return managed;
 
 	}
+	
+	@Override 
+	public DestinationImage updateDestinationImage(DestinationImage image, int userId, int destinationId) {
+		
+		User user = em.find(User.class, userId);
+		
+		DestinationImage managed = em.find(DestinationImage.class, image.getId());
+		
+		if(managed != null) {
+			managed.setCaption(image.getCaption());
+			managed.setImageUrl(image.getImageUrl());
+			
+		}
+		
+		return managed;
+	}
 
 	@Override
 	public boolean deleteReviewForDestination(int destinationId, int userId, Review review) {
@@ -211,6 +246,23 @@ public class DestinationDaoImpl implements DestinationDAO {
 
 		return false;
 
+	}
+	
+	@Override 
+	public boolean deleteDestinationImage(DestinationImage image, int destinationId, int userId) {
+		Destination destination = findDestinationById(destinationId);
+		User user = em.find(User.class, userId);
+		DestinationImage deleted = em.find(DestinationImage.class, image.getId());
+		
+		if(deleted != null) {
+			destination.removeDestinationImage(image);
+			user.removeDestinationImage(image);
+
+			em.remove(deleted);
+			return true;
+		}
+		
+		return false;
 	}
 
 	@Override
