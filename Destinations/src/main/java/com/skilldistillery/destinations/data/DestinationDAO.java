@@ -20,7 +20,7 @@ public interface DestinationDAO {
 	
 	List <Destination> findAllDestinations();
 	
-	Destination createNewDestination(Destination destination);
+	Destination createNewDestination(Destination destination, Integer [] featureIds, int [] categoryIds);
 	
 	Address createDestinationAddress(Address address);
 	
@@ -51,6 +51,51 @@ public interface DestinationDAO {
 	
 	public List<Feature> findAllFeatures();
 	
+//	Destination findDestinationById2(int id);
+	
+	List<Feature> findFeaturesByIdList(Destination destination, Integer[] ids);
+	
+	List<Category> findCategoriesByIdList(Destination destination, int[]ids);
+	
+	List<Category> findAllCategories();
+	
+	List<Price> findAllPrices();
+	
+	List<Currency> findAllCurrencies();
+	
+	List<PricingType> findAllPricingTypes();
+	
+	Destination updateDestination(int destinationId, Destination destination, Integer[] featureIds, Integer[] categoryIds, Integer priceId, Integer currencyId, Integer typeId, Double amount, String description);
+	
+	Destination disableDestination(int id);
+	 
+	Currency findCurrencyByCurrencyId(int id);
+	
+	PricingType findPricingTypeByPricingTypeId(int id);
+	
+	boolean removePriceById(int priceId, int destinationId);
+	
+	Review createNewReviewForDestination(int destinationId, Review review, int userId);
+	
+	Review findReviewByReviewId(ReviewId reviewId);
+	
+	ReviewComment createNewReviewCommentForReview(ReviewId reviewId, String reviewComment, int userId);
+	
+	Review updateReviewForDestination(int destinationId, int userId, Review review);
+	
+	ReviewComment updateReviewCommentForReview(ReviewId reviewId, ReviewComment reviewComment, int userId);
+	
+	boolean deleteReviewForDestination(int destinationId, int userId, Review review);
+	
+	boolean deleteReviewCommentForReview(ReviewId reviewId, ReviewComment reviewComment, int userId);
+	
+	Review findReviewByUserAndDestination(int userId, int destinationId);
+	
+	List<Destination> findByName(String name);
+	
+	List<Destination> findByDescription(String description);
+	
+	List<Destination> findByCity(String city);
 	
 	
 

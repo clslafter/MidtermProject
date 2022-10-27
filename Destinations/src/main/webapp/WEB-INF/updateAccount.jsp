@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Update User</title>
-</head>
 <jsp:include page="bootstrapHead.jsp" />
+</head>
 <body>
 <jsp:include page="navbar.jsp" />
 <h1>Update ${user.username}'s profile</h1>
