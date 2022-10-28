@@ -10,6 +10,7 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp" />
+<div class="container-fluid">
 <H1>List of all Users</H1>
 
 
@@ -49,6 +50,7 @@
 			</tbody>
 		</c:forEach>
 	</table>
+	</div>
 	<jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>

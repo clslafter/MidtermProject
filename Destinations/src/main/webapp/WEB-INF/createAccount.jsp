@@ -47,7 +47,7 @@
 			</form>
 		 		 <div class="list-group-item">
    					 <form action="login.do" >
-						<input type="submit" value="Login to Existin Account" class="btn btn" style="background-color: #7BC2BC; color: white;"/>
+						<input type="submit" value="Login to Existing Account" class="btn btn" style="background-color: #7BC2BC; color: white;"/>
 					</form> <br>
   				</div>
   		</div>

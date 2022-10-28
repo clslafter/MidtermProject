@@ -15,6 +15,11 @@ body {
 	background-attachment: fixed;
 	background-size: cover;
 	opacity: .8;
+	
+}
+
+.container-fluid{
+	padding: 20px;
 }
 
 .navbar {

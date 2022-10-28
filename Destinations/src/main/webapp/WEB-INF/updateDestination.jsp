@@ -10,27 +10,33 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp" />
+<div class="container-fluid">
 <H1>Update a Destination</H1>
 
 	<form action="updateDestinationInfo.do" method="POST">
 	
 		<input name="id" value="${destination.id}" type="hidden" />
 
-		<label for="name">Destination name:</label>
+		<h4>Destination name:</h4><!-- <label for="name"></label> -->
  		<input type="text" id="name" name="name" value="${destination.name}" required><br>
  		
-		<h3>Description:</h3>
- 		<textarea name="description" class="form-control" rows="3" placeholder="${destination.description}"></textarea>
+		<h4>Description:</h4>
+ 		<%-- <textarea name="description" class="form-control" rows="3" placeholder="${destination.description}"></textarea> --%>
+ 		<input type="text" id="description" name="description" value="${destination.description}" size="1000"><br>
  		<br>
  		
-		<label for="websiteUrl">Destination website URL:</label>
+ 		<div class="row">
+  		<div class="col">
+  
+ 		<h4>Destination web site URL:</h4>
+		<!-- <label for="websiteUrl">Destination website URL:</label> -->
  		<input type="text" id="name" name="websiteUrl" value="${destination.websiteUrl}"><br>
  		
-		<label for="imageUrl">Destination Main image URL:</label>
+		<h4>Destination main image URL:</h4>
+		<!-- <label for="imageUrl">Destination Main image URL:</label> -->
  		<input type="text" id="name" name="imageUrl" value="${destination.imageUrl}" ><br>
  		
- 		Update Features:
-  		<br>
+ 		<h4>Update Features:</h4>
   		<c:forEach items="${features}" var="feature"> 
   			<c:choose>
   				 <c:when test ="${destination.features.contains(feature)}">
@@ -44,8 +50,7 @@
   			</c:choose>
 		</c:forEach>
 		
- 		Update Categories:
-  		<br>
+ 		<h4>Update Categories:</h4>
   		<c:forEach items="${categories}" var="category"> 
   			<c:choose>
   				 <c:when test ="${destination.categories.contains(category)}">
@@ -58,25 +63,28 @@
 				</c:otherwise>
   			</c:choose>
 		</c:forEach>
+		</div>
 		
-		<h2>Add A Price</h2>
+		<div class="col">
+		<h4>Add A Price:</h4>
  		Amount: <input type="number" step="0.01" name = "amount" >
 		Description: <input type="text" name = "description" >
 		
 		<br>
-		<h4>Choose Currency Type</h4>
+		<h5>Choose Currency Type:</h5>
   		<c:forEach items="${currencies}" var="currency"> 
   			<input type="checkbox" id="${currency.id}" name="currencyId" value="${currency.id}">
 			<label for="${currency.name}">${currency.name}</label><br>
 		</c:forEach>
 		
-		<h4>Choose Pricing Type</h4>
+		<h5>Choose Pricing Type:</h5>
 		<c:forEach items="${pricingTypes}" var="type"> 
   			<input type="checkbox" id="${type.id}" name="typeId" value="${type.id}">
 			<label for="${type.name}">${type.name}</label><br>
 		</c:forEach>
- 		
- 		<h2>Address(optional)</h2>
+ 		</div>
+ 		<div class="col">
+ 		<h4>Address (optional):</h4>
   		
   		<input name="id" value="${address.id}" type="hidden" />
   		
@@ -94,10 +102,11 @@
  		
  		<label for="country">Country: </label>
   		<input type="text" id="country" name="country" value="${address.country}"><br>
- 		
- 		<!-- lots more fields go here -->
-
-		<input type="submit" value="Submit">
+		<br>
+		<input type="submit" value="Submit" class="btn btn-primary" />
+		<br>
+ 		</div>
+ 		</div>
 
 	</form>
 		
@@ -132,6 +141,7 @@
 				</tbody>
 			</c:forEach>
 		</table>
+		</div>
 		<jsp:include page="bootstrapFoot.jsp" />
 	</body>
 </html>

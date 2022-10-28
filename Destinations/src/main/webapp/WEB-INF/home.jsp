@@ -95,7 +95,7 @@
         
         <form action="showOtherUsers.do">
 		<input type="hidden" name="uid" value="${destination.user.id}" /> 
-		<input type="submit" value="View Creators Account" class="btn btn" style="background-color: #7BC2BC; color: white;" />
+		<input type="submit" value="View Creator's Profile" class="btn btn" style="background-color: #7BC2BC; color: white;" />
 		</form>
 		<br>
         <form action="showDestination.do">

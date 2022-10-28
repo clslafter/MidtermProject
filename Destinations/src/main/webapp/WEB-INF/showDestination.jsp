@@ -12,14 +12,14 @@
 	</head>
 <body>
 	<jsp:include page="navbar.jsp" />
-<div class="container-fluid">
+<div class="container-fluid1">
 	
 	<div class="container-fluid text-center">
 		<div class="row">
 		    <div class="col-md-8">
 		    
 		    
-		    <div class="card" style="background-color: #FAF4F0; color: E5E5E5;">
+		    <div class="card" style="background-color: #FFFFFF; color: E5E5E5;">
 		 		 <div class="card-body">
 		   		 <h5 class="card-title">${destination.name}</h5>
 		    	<p class="card-text">Created by <a href ="showOtherUsers.do?uid=${destination.user.id}">${destination.user.username}</a>
@@ -126,7 +126,7 @@
   			
 	 		<div class="col-6 col-md-4">
 	  
-	 			<div class="card" style="background-color: #FAF4F0; color: E5E5E5;">
+	 			<div class="card" style="background-color: #FFFFFF; color: E5E5E5;">
   					<div class="card-body">
    					<h3>Description</h3>
    					<c:choose>
@@ -140,7 +140,7 @@
 					</div>
   				</div>
   				
-  				<div class="card" style="background-color: #FAF4F0; color: E5E5E5;">
+  				<div class="card" style="background-color: #FFFFFF; color: E5E5E5;">
   					<div class="card-body">
   					 	<h3>Location</h3>
 	  					<c:choose>
@@ -167,7 +167,7 @@
 						</c:choose>
   					</div>
   				</div>
-  				<div class="card" style="background-color: #FAF4F0; color: E5E5E5;">
+  				<div class="card" style="background-color: #FFFFFF; color: E5E5E5;">
   					<div class="card-body">
   					<h3>Go To Website</h3>
   					<c:choose>
@@ -182,10 +182,7 @@
   					</div>
   				</div>
   				
-    		
-    
-	<!-- insert other destination details here -->
-		<div class="card" style="background-color: #FAF4F0; color: E5E5E5;">
+		<div class="card" style="background-color: #FFFFFF; color: E5E5E5;">
   			<div class="card-body">
   				<h3>Type Of Destination</h3>
 					<c:choose>
@@ -203,7 +200,7 @@
 				</div>
 			</div>
 
-		<div class="card" style="background-color: #FAF4F0; color: E5E5E5;">
+		<div class="card" style="background-color: #FFFFFF; color: E5E5E5;">
   			<div class="card-body">
   				<h3>Features</h3>
 					<c:choose>
@@ -220,7 +217,7 @@
 										</c:when>
 										<c:otherwise>
 											<ul>
-												<li class="list-group-item" style="background-color: #FAF4F0; color: E5E5E5;">${feature.description}</li>
+												<li class="list-group-item" style="background-color: #FFFFFF; color: E5E5E5;">${feature.description}</li>
 											</ul>
 										</c:otherwise>
 									</c:choose>
@@ -232,7 +229,7 @@
 			</div>
 		</div>
 
-		<div class="card" style="background-color: #FAF4F0; color: E5E5E5;">
+		<div class="card" style="background-color: #FFFFFF; color: E5E5E5;">
   			<div class="card-body">
   				<h3>Pricing</h3>
 					<c:choose>
@@ -261,7 +258,7 @@
 										</c:when>
 										<c:otherwise>
 											<ul>
-												<li class="list-group-item" style="background-color: #FAF4F0; color: E5E5E5;">${price.description}</li>
+												<li class="list-group-item" style="background-color: #FFFFFF; color: E5E5E5;">${price.description}</li>
 											</ul>
 										</c:otherwise>
 									</c:choose>
@@ -276,9 +273,9 @@
 		</div>
 	</div>
 
-
+</div>
 	
-	
+	<div class="container-fluid">
 
 	<c:choose>
 		<c:when test="${empty destination.reviews}">
