@@ -22,16 +22,16 @@
 		    <div class="card" style="background-color: #FAF4F0; color: E5E5E5;">
 		 		 <div class="card-body">
 		   		 <h5 class="card-title">${destination.name}</h5>
-		    	<p class="card-text">Created by ${destination.user.username}
+		    	<p class="card-text">Created by <a href ="showOtherUsers.do?uid=${destination.user.id}">${destination.user.username}</a>
 				<c:choose>
 					<c:when test="${empty destination.createDate}"></c:when>
 					<c:otherwise>on ${destination.createDateFormatted}<br></c:otherwise>
 				</c:choose>
 				<c:choose>
 					<c:when test="${empty destination.lastEdited}"></c:when>
-					<c:otherwise>Last edited on ${destination.lastEdited}</c:otherwise>
+					<c:otherwise>Last edited on ${destination.editedDateFormatted}</c:otherwise>
 				</c:choose></p>
-		    	<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+		    <!-- 	<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
 		 	</div>
 		 		<c:choose>
 				<c:when test="${empty destination.imageUrl}">
@@ -89,7 +89,7 @@
 										</c:when>
 										<c:otherwise>
 											<ul>
-												<li style="list-style: none;">Posted by ${image.user.username}</li>
+												<li style="list-style: none;">Posted by <a href ="showOtherUsers.do?uid=${image.user.id}">${image.user.username}</a></li>
 												<li style="list-style: none;">${image.imageDateFormatted}</li>
 											</ul>
 											<hr>
@@ -290,7 +290,7 @@
 			<ul>
 				<c:forEach var="review" items="${destination.reviews}">
 					<c:if test="${review.destination.user == review.user}">
-						<li>By ${review.user.username} on ${review.reviewDateFormatted}:
+						<li>By <a href ="showOtherUsers.do?uid=${review.user.id}">${review.user.username}</a> on ${review.reviewDateFormatted}:
 							${review.comment}</li>
 							<c:if test="${isAdmin || review.user.id == user.id}">
 								<li>
@@ -311,7 +311,7 @@
 								</c:when>
 								<c:otherwise>
 									<ul>
-										<li>By ${reviewComment.user.username} on
+										<li>By <a href ="showOtherUsers.do?uid=${reviewComment.user.id}">${reviewComment.user.username}</a> on
 											${reviewComment.createdDateFormatted}: ${reviewComment.comment}</li>
 											<c:if test="${isAdmin || reviewComment.user.id == user.id }">
 												<li>
@@ -370,7 +370,7 @@
 					</c:if>
 				<c:forEach var="review" items="${destination.reviews}">
 					<c:if test="${review.destination.user != review.user}">
-						<li>By ${review.user.username} on ${review.reviewDateFormatted}:
+						<li>By <a href ="showOtherUsers.do?uid=${review.user.id}">${review.user.username}</a> on ${review.reviewDateFormatted}:
 							${review.comment}</li>
 							<c:if test="${isAdmin || review.user.id == user.id }">
 								<li>
@@ -391,7 +391,7 @@
 									<c:when test="${empty review.reviewComments}">
 									</c:when>
 									<c:otherwise>
-											<li>By ${reviewComment.user.username} on
+											<li>By <a href ="showOtherUsers.do?uid=${reviewComment.user.id}">${reviewComment.user.username}</a> on
 												${reviewComment.createdDateFormatted}: ${reviewComment.comment}</li>
 											<c:if test="${isAdmin || reviewComment.user.id == user.id}">
 												<li>

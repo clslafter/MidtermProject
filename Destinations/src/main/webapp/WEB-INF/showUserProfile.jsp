@@ -26,7 +26,7 @@
 	</c:if>
 
 <hr>
-<H5>Member since: ${user.createdDate}</H5>
+<H5>Member since: ${user.createdDateFormatted}</H5>
 <H4>About Me: ${user.bio}</H4>
 <hr>
 
@@ -46,7 +46,9 @@
 		  			</div>
 		  			<ul class="list-group list-group-flush">
 		   				<li class="list-group-item">Date Created: ${destination.createDateFormatted}</li>
+		   				<c:if test="${!empty destination.lastEdited}">
 		    			<li class="list-group-item">Last Edited: ${destination.editedDateFormatted}</li>
+		    			</c:if>
 		    			<li class="list-group-item">Enabled: ${destination.enabled}</li>
 		  			</ul>
 		  			<div class="card-body">

@@ -1,6 +1,7 @@
 package com.skilldistillery.destinations.entities;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 
 
@@ -73,6 +75,11 @@ public class User {
 
 	public User() {
 		super();
+	}
+	
+	@Transient
+	public String getCreatedDateFormatted() {
+		return createdDate.format(DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a"));
 	}
 
 	public int getId() {

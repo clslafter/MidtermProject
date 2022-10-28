@@ -110,7 +110,7 @@ Keep priorities straight and track in Kanban -  core functions, then minimum via
 
 Set realistic goals - distinguish between stretch goals and mvp early.
 
-As the code gets more complicated, it gets more important to notice whether the input names in the jsp forms are exactly like the object fields in order to create a command line object.
+The importance of making sure the input names in the jsp forms are exactly like the object fields in order to create a command line object becomes more apparent as the code gets more complicated.
 
 Idea of pulling in a full object and populating it with its id
 
