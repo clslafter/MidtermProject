@@ -122,13 +122,13 @@ public class DestinationController {
 										@RequestParam(required = false) Integer currencyId,
 										@RequestParam(required = false) Integer typeId,
 										@RequestParam(required = false) Double amount,
-										@RequestParam(required = false) String description,
+										@RequestParam(required = false) String priceDescription,
 										RedirectAttributes redir) {
 		
 		ModelAndView mv = new ModelAndView();
 		int addressId = destinationDao.getAddressIdByDestinationId(id).getId();
 		
-		destinationDao.updateDestination(id, destination, featureIds, categoryIds, priceId, currencyId, typeId, amount, description);
+		destinationDao.updateDestination(id, destination, featureIds, categoryIds, priceId, currencyId, typeId, amount, priceDescription);
 		
 		destination = destinationDao.findDestinationById(id);
 		

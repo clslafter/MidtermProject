@@ -156,11 +156,12 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "updateUserInfo.do", method = RequestMethod.POST)
-	public ModelAndView updateAccount(int id, User user, Address address, RedirectAttributes redir) {
+	public ModelAndView updateAccount(int id, User user, Address address, RedirectAttributes redir, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		int addressId = userDao.getAddressIdByUserId(id).getId();
 		System.out.println(addressId);
 		user = userDao.updateUserAccount(id, user);
+		session.setAttribute("user", userDao.getUserByUserNameAndPassword(user.getUsername(), user.getPassword()));
 		address = userDao.updateAddressInUserAccount(addressId, address);
 		redir.addFlashAttribute("user", user);
 		System.out.println(user);

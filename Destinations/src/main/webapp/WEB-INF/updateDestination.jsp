@@ -21,8 +21,8 @@
  		<input type="text" id="name" name="name" value="${destination.name}" required><br>
  		
 		<h4>Description:</h4>
- 		<%-- <textarea name="description" class="form-control" rows="3" placeholder="${destination.description}"></textarea> --%>
- 		<input type="text" id="description" name="description" value="${destination.description}" size="1000"><br>
+ 		<textarea name="description" class="form-control" rows="3" placeholder="${destination.description}">${destination.description}</textarea>
+ 		<%-- <input type="text" id="description" name="description" value="${destination.description}" size="1000"><br> --%>
  		<br>
  		
  		<div class="row">
@@ -54,7 +54,7 @@
   		<c:forEach items="${categories}" var="category"> 
   			<c:choose>
   				 <c:when test ="${destination.categories.contains(category)}">
-  					<input type="checkbox" id="${category.id}" name="categoryIds" value="${cateogory.id}" checked>
+  					<input type="checkbox" id="${category.id}" name="categoryIds" value="${category.id}" checked>
 					<label for="${category.name}">${category.name}</label><br>
 				</c:when>
 				<c:otherwise>
@@ -68,7 +68,7 @@
 		<div class="col">
 		<h4>Add A Price:</h4>
  		Amount: <input type="number" step="0.01" name = "amount" >
-		Description: <input type="text" name = "description" >
+		Price Description: <input type="text" name = "priceDescription" >
 		
 		<br>
 		<h5>Choose Currency Type:</h5>

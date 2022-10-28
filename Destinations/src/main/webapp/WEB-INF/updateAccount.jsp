@@ -34,7 +34,7 @@
   		<h2>Bio</h2>
   		
   		
-		<textarea name="bio" class="form-control" rows="3" placeholder="${user.bio}"></textarea>
+		<textarea name="bio" class="form-control" rows="3">${user.bio}</textarea>
 		
   		
   		<h2>Address(optional)</h2>
@@ -55,15 +55,14 @@
  		
  		<label for="country">Country: </label>
   		<input type="text" id="country" name="country" value="${address.country}"><br>
-  		
-  		
-  		<input type="submit" value="Submit" class="btn btn" style="background-color: #7BC2BC; color: white;" />
-
+  		<hr>
+  		<input type="submit" value="Update My Account" class="btn btn-primary" />
+		
 	</form>
-	
+	<br>
 	<form action="deleteAccount.do" action="POST">
 		<input type="hidden" name="id" value="${user.id}" /> 
-		<input type="submit" value="Delete My Account" class="btn btn" style="background-color: #7BC2BC; color: white;" />
+		<input type="submit" value="Delete My Account" class="btn btn-primary"/>
 	</form> <br>
   		
   	</div>
