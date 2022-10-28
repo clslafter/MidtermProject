@@ -57,8 +57,7 @@
   		<input type="text" id="country" name="country" value="${address.country}"><br>
   		
   		
-  	
-		<input type="submit" value="Submit">
+  		<input type="submit" value="Submit" class="btn btn" style="background-color: #7BC2BC; color: white;" />
 
 	</form>
 	

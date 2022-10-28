@@ -30,21 +30,6 @@ public class DestinationDaoImpl implements DestinationDAO {
 	@PersistenceContext
 	private EntityManager em;
 
-//	@Override 
-//	public Destination findDestinationById2(int id) {
-//		String queryString = "SELECT d FROM Destination d "
-//				+ "JOIN d.categories "
-//				+ "JOIN d.features "
-//				+ "JOIN d.images "
-//				+ "JOIN d.prices "
-//				+ "JOIN d.destinationComments "
-//				+ "JOIN d.reviews "
-//				+ "WHERE d.id = :id";
-//		System.out.println(id);
-//		Destination destination = em.createQuery(queryString, Destination.class).setParameter("id", id).getSingleResult();
-//		return destination;
-//		
-//	}
 
 	/***************** CRUD *******************/
 
@@ -189,9 +174,6 @@ public class DestinationDaoImpl implements DestinationDAO {
 
 	@Override
 	public ReviewComment updateReviewCommentForReview(ReviewId reviewId, ReviewComment reviewComment, int userId) {
-//		User user = em.find(User.class, userId);
-//
-//		Review review = findReviewByReviewId(reviewId);
 
 		ReviewComment managed = em.find(ReviewComment.class, reviewComment.getId());
 		if (managed != null) {

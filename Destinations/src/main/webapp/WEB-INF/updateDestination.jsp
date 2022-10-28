@@ -21,7 +21,8 @@
  		<input type="text" id="name" name="name" value="${destination.name}" required><br>
  		
 		<h4>Description:</h4>
- 		<textarea name="description" class="form-control" rows="3" placeholder="${destination.description}"></textarea>
+ 		<%-- <textarea name="description" class="form-control" rows="3" placeholder="${destination.description}"></textarea> --%>
+ 		<input type="text" id="description" name="description" value="${destination.description}" size="1000"><br>
  		<br>
  		
  		<div class="row">
@@ -102,7 +103,8 @@
  		<label for="country">Country: </label>
   		<input type="text" id="country" name="country" value="${address.country}"><br>
 		<br>
-		<input type="submit" value="Submit"><br>
+		<input type="submit" value="Submit" class="btn btn-primary" />
+		<br>
  		</div>
  		</div>
 
