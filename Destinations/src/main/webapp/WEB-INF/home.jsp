@@ -91,7 +91,7 @@
         <h5 class="card-title">${destination.name}</h5>
         <p class="card-text">${destination.description}</p>
         <p class="card-text"><small class="text-muted">Posted On: ${destination.createDateFormatted}</small></p>
-        <p class="card-text"><small class="text-muted">Creator: ${destination.user.username}</small></p>
+        <p class="card-text"><small class="text-muted">Creator: <a href ="showOtherUsers.do?uid=${destination.user.id}">${destination.user.username}</a></small></p>
         
         <form action="showOtherUsers.do">
 		<input type="hidden" name="uid" value="${destination.user.id}" /> 

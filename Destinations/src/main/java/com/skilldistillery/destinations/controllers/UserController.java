@@ -162,6 +162,7 @@ public class UserController {
 		user = userDao.updateUserAccount(id, user);
 		address = userDao.updateAddressInUserAccount(addressId, address);
 		redir.addFlashAttribute("user", user);
+		System.out.println(user);
 		redir.addFlashAttribute("address", address);
 		mv.setViewName("redirect:userAccountUpdated.do");
 		return mv;

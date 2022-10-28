@@ -13,7 +13,7 @@
 <div class="container-fluid">
 <H1>Welcome to ${user.firstName}'s Profile!</H1>
 
-<H4>Member since: ${user.createdDate}</H4>
+<H4>Member since: ${user.createdDateFormatted}</H4>
 <H4>About Me: ${user.bio}</H4>
 
 
@@ -32,7 +32,9 @@
 		  			</div>
 		  			<ul class="list-group list-group-flush">
 		   				<li class="list-group-item">Date Created: ${destination.createDateFormatted}</li>
-		    			<li class="list-group-item">Last Edited: ${destination.lastEdited}</li>
+		   				<c:if test="${!empty destination.lastEdited}">
+		    			<li class="list-group-item">Last Edited: ${destination.editedDateFormatted}</li>
+		    			</c:if>
 		  			</ul>
 				</div>
 				</c:if>
