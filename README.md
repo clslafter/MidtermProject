@@ -116,7 +116,19 @@ Set realistic goals - distinguish between stretch goals and mvp early.
 
 The importance of making sure the input names in the jsp forms are exactly like the object fields in order to create a command line object becomes more apparent as the code gets more complicated.
 
-Idea of pulling in a full object and populating it with its id
+When populating a full command object for updating, it is necessary to pull in its id, not just its attributes.
+
+When redirecting by an object's id, it is necessary to concatenate that object's id into the redirect set view name.
+  * Example: `mv.setViewName("redirect:showDestination.do?did=" + destination.getId());`
+
+For an object with composite keys, it is necessary to pull in the values that make up the composite key in order to perform CRUD on the object.
+
+When there are plural relationships between two tables, it is necessary remove them from their respective lists in addition to removing them from the database with an em.remove() command.
+
+To quickly format a DateTime object into readable text, a DateTimeFormatter can be used in a method in the corresponding POJO. However, it is necessary to add jsp logic to avoid null pointers. It is also very important to annotate it with `@Transient.`
+
+Composite keys are created as their own object by using the foreign key ids in the join table. That is then used as the id in the POJO for the composite object.
+
 
 ## Stretch Goals Implemented:
   * Implemented dynamic nav bar with logo
