@@ -55,10 +55,10 @@ This web based application allows travel enthusiasts to discover and share excit
       * edit user submitted content (destinations, reviews, comments, etc.)
       * remove user submitted content (destinations, reviews, comments, etc.)
 
-//SCREEN SHOTS GO HERE//
-
+Welcome Page:
 ![Welcome page](https://github.com/clslafter/MidtermProject/blob/main/Screen%20Shot%20Welcome%20page.png)
 
+Sample Destination Page:
 ![Sample destination page](https://github.com/clslafter/MidtermProject/blob/main/Screen%20Shot%20Destination%20page.png)
 
 ## Implementation
