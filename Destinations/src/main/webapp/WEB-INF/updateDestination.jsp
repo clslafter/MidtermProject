@@ -10,6 +10,7 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp" />
+<div class="container-fluid">
 <H1>Update a Destination</H1>
 
 	<form action="updateDestinationInfo.do" method="POST">
@@ -132,6 +133,7 @@
 				</tbody>
 			</c:forEach>
 		</table>
+		</div>
 		<jsp:include page="bootstrapFoot.jsp" />
 	</body>
 </html>

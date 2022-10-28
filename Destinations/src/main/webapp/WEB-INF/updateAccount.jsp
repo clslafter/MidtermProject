@@ -9,6 +9,7 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp" />
+<div class="container-fluid">
 <h1>Update ${user.username}'s profile</h1>
 
 	<form action="updateUserInfo.do" method="POST">
@@ -66,7 +67,7 @@
 		<input type="submit" value="Delete My Account" class="btn btn" style="background-color: #7BC2BC; color: white;" />
 	</form> <br>
   		
-  	<!-- 	lots more fields go here -->
+  	</div>
 <jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>

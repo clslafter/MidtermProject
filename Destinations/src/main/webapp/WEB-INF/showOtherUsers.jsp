@@ -27,7 +27,7 @@
 				<div class="card" style="width: 18rem;">
 		 			<img src="${destination.imageUrl}" class="card-img-top" alt="...">
 		  			<div class="card-body">
-		    			<h5 class="card-title">${destination.name}</h5>
+		    			<h5 class="card-title"><a href="showDestination.do?did=${destination.id}">${destination.name}</a></h5>
 		    			<p class="card-text">${destination.description}</p>
 		  			</div>
 		  			<ul class="list-group list-group-flush">

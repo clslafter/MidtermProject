@@ -12,7 +12,7 @@
 	</head>
 <body>
 	<jsp:include page="navbar.jsp" />
-<div class="container-fluid">
+<div class="container-fluid1">
 	
 	<div class="container-fluid text-center">
 		<div class="row">
@@ -182,9 +182,6 @@
   					</div>
   				</div>
   				
-    		
-    
-	<!-- insert other destination details here -->
 		<div class="card" style="background-color: #FAF4F0; color: E5E5E5;">
   			<div class="card-body">
   				<h3>Type Of Destination</h3>
@@ -276,9 +273,9 @@
 		</div>
 	</div>
 
-
+</div>
 	
-	
+	<div class="container-fluid">
 
 	<c:choose>
 		<c:when test="${empty destination.reviews}">

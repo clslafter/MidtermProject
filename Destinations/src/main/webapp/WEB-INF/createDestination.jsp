@@ -10,6 +10,7 @@
 	</head>
 <body>
 	<jsp:include page="navbar.jsp" />
+	<div class="container-fluid">
 		<H1>Create a new Destination</H1>
 
 			<form action="createNewDestination.do" method="POST">
@@ -63,6 +64,7 @@
 		<input type="submit" value="Submit">
 
 	</form>
+	</div>
 	<jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>

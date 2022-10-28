@@ -34,6 +34,9 @@
 
 
 	<h1>Manage My Destinations: </h1>
+	<c:if test="${empty user.destinations }">
+	You don't have any destinations, <a href="createDestination.do">Create a Destination</a>
+	</c:if>
 	<div class ="col">
 		<div class = "row row-cols-1 row-cols-md-3 g-4">
 			<c:forEach items="${user.destinations}" var="destination"> 

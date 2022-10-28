@@ -115,6 +115,7 @@ public class UserController {
 
 	@RequestMapping(path = { "createAccount.do" })
 	public String createAccount(Model model, User user) {
+		user = null;
 		model.addAttribute("user", user);
 		return "createAccount";
 	}

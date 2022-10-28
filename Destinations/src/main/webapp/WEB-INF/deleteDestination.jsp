@@ -9,6 +9,7 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp" />
+<div class="container-fluid">
 
 	<form action="destinationDeleted.do" method="GET">
 		<h1>Delete Destination</h1>
@@ -18,6 +19,7 @@
 		 <input name="id" value="${destination.id}" type = "hidden"/> 
 		 <input type="submit" value="Confirm" style="background-color: #7BC2BC; color: white;"/>
 	</form>
+	</div>
 	<jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>
