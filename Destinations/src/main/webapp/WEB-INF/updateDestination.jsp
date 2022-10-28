@@ -101,10 +101,10 @@
  		
  		<label for="country">Country: </label>
   		<input type="text" id="country" name="country" value="${address.country}"><br>
+		<br>
+		<input type="submit" value="Submit"><br>
  		</div>
  		</div>
-
-		<input type="submit" value="Submit">
 
 	</form>
 		

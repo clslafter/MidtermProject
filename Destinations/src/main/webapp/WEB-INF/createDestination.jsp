@@ -12,8 +12,10 @@
 	<jsp:include page="navbar.jsp" />
 	<div class="container-fluid">
 		<H1>Create a new Destination</H1>
-
-			<form action="createNewDestination.do" method="POST">
+		
+		<form action="createNewDestination.do" method="POST">
+		<div class="row">
+			<div class="col">
 
 				<label for="name">Destination name:</label>
  				<input type="text" id="name" name="name" required><br>
@@ -43,27 +45,29 @@
  		
  				<label for="country">Country: </label>
   				<input type="text" id="country" name="country"><br>
-  		
-  		Add Features:
-  			<br>
+  			</div>
+  			
+  		<div class="col">
+  		<H4>Add Features:</H4>
   				<c:forEach items="${features}" var="feature"> 
   		
   				<input type="checkbox" id="${feature.id}" name="featureIds" value="${feature.id}">
 				<label for="${feature.name}">${feature.name}</label><br>
 			</c:forEach>
+		</div>
+		<div class="col">
 		
-		Add Categories:
-			<br>
+		<h4>Add Categories:</h4>
   				<c:forEach items="${categories}" var="category"> 
   					<input type="checkbox" id="${category.id}" name="categoryIds" value="${category.id}">
 					<label for="${category.name}">${category.name}</label><br>
 				</c:forEach>
-		
-		
-
+			</div>
+		</div>
+		<br>
 		<input type="submit" value="Submit">
-
 	</form>
+
 	</div>
 	<jsp:include page="bootstrapFoot.jsp" />
 </body>
