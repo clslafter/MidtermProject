@@ -57,6 +57,10 @@ This web based application allows travel enthusiasts to discover and share excit
 
 //SCREEN SHOTS GO HERE//
 
+![Welcome page](https://github.com/clslafter/MidtermProject/blob/main/Screen%20Shot%20Welcome%20page.png)
+
+![Sample destination page](https://github.com/clslafter/MidtermProject/blob/main/Screen%20Shot%20Destination%20page.png)
+
 ## Implementation
 
 We began this project by putting our ideas into a Trello board in the form of discreet user stories following a CRUD outline and then adding bullet points for each user story into a checklist. Concurrently, we also used a Figma wireframe to outline the individual web page functions and connections.
