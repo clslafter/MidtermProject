@@ -57,7 +57,7 @@
 						</form> <br>
 						
 		  				<form action="showDestination.do" action="POST">
-							<input type="hidden" name="id" value="${destination.id}" /> 
+							<input type="hidden" name="did" value="${destination.id}" /> 
 							<input type="submit" value="View Destination" class="btn btn" style="background-color: #7BC2BC; color: white;" />
 						</form> <br>
 		  			
