@@ -52,7 +52,7 @@
 		   				<c:if test="${!empty destination.lastEdited}">
 		    			<li class="list-group-item">Last Edited: ${destination.editedDateFormatted}</li>
 		    			</c:if>
-		    			<li class="list-group-item">Enabled: ${destination.enabled}</li>
+		    			<%-- <li class="list-group-item">Enabled: ${destination.enabled}</li> --%>
 		  			</ul>
 		  			<div class="card-body">
 		  			
